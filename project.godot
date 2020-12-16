@@ -8,15 +8,151 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Board",
+"language": "GDScript",
+"path": "res://src/core/BoardTemplate.gd"
+}, {
+"base": "Reference",
+"class": "CFConst",
+"language": "GDScript",
+"path": "res://src/core/CFConst.gd"
+}, {
+"base": "Node",
+"class": "CFControl",
+"language": "GDScript",
+"path": "res://src/core/CFControl.gd"
+}, {
+"base": "Reference",
+"class": "CFUtils",
+"language": "GDScript",
+"path": "res://src/core/CFUtils.gd"
+}, {
+"base": "Area2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://src/core/CardTemplate.gd"
+}, {
+"base": "Panel",
+"class": "CardBack",
+"language": "GDScript",
+"path": "res://src/core/Card/CardBack.gd"
+}, {
+"base": "CardBack",
+"class": "CardBackGlow",
+"language": "GDScript",
+"path": "res://src/core/Card/CardBackGlow.gd"
+}, {
+"base": "Reference",
+"class": "CardConfig",
+"language": "GDScript",
+"path": "res://src/custom/cards/CardConfig.gd"
+}, {
+"base": "Area2D",
+"class": "CardContainer",
+"language": "GDScript",
+"path": "res://src/core/CardContainer.gd"
+}, {
+"base": "Reference",
+"class": "CustomScripts",
+"language": "GDScript",
+"path": "res://src/custom/cards/CustomScripts.gd"
+}, {
+"base": "CardContainer",
+"class": "Hand",
+"language": "GDScript",
+"path": "res://src/core/Hand.gd"
+}, {
+"base": "Control",
+"class": "Highlight",
+"language": "GDScript",
+"path": "res://src/core/Highlight.gd"
+}, {
+"base": "VBoxContainer",
+"class": "ManipulationButtons",
+"language": "GDScript",
+"path": "res://src/core/Card/ManipulationButtons.gd"
+}, {
+"base": "Area2D",
+"class": "MousePointer",
+"language": "GDScript",
+"path": "res://src/core/MousePointer.gd"
+}, {
+"base": "CardContainer",
+"class": "Pile",
+"language": "GDScript",
+"path": "res://src/core/Pile.gd"
+}, {
+"base": "Reference",
+"class": "SP",
+"language": "GDScript",
+"path": "res://src/core/ScriptProperties.gd"
+}, {
+"base": "Reference",
+"class": "ScriptTask",
+"language": "GDScript",
+"path": "res://src/core/ScriptTask.gd"
+}, {
+"base": "Reference",
+"class": "ScriptingEngine",
+"language": "GDScript",
+"path": "res://src/core/ScriptingEngine.gd"
+}, {
+"base": "Line2D",
+"class": "TargetingArrow",
+"language": "GDScript",
+"path": "res://src/core/Card/TargetingArrow.gd"
+}, {
+"base": "HBoxContainer",
+"class": "Token",
+"language": "GDScript",
+"path": "res://src/core/Token.gd"
+}, {
+"base": "Node2D",
+"class": "TokenDrawer",
+"language": "GDScript",
+"path": "res://src/core/Card/TokenDrawer.gd"
+}, {
+"base": "Node2D",
+"class": "ViewportCardFocus",
+"language": "GDScript",
+"path": "res://src/core/ViewportCardFocus.gd"
+} ]
 _global_script_class_icons={
-
+"Board": "",
+"CFConst": "",
+"CFControl": "",
+"CFUtils": "",
+"Card": "",
+"CardBack": "",
+"CardBackGlow": "",
+"CardConfig": "",
+"CardContainer": "",
+"CustomScripts": "",
+"Hand": "",
+"Highlight": "",
+"ManipulationButtons": "",
+"MousePointer": "",
+"Pile": "",
+"SP": "",
+"ScriptTask": "",
+"ScriptingEngine": "",
+"TargetingArrow": "",
+"Token": "",
+"TokenDrawer": "",
+"ViewportCardFocus": ""
 }
 
 [application]
 
 config/name="arcology-deckbuilder"
+run/main_scene="res://src/core/Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+cfc="*res://src/core/CFControl.gd"
 
 [rendering]
 
