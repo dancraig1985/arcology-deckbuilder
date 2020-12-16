@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Card",
+"class": "ArcologyCard",
+"language": "GDScript",
+"path": "res://src/custom/cards/ArcologyCard.gd"
+}, {
 "base": "Node2D",
 "class": "Board",
 "language": "GDScript",
@@ -120,6 +125,7 @@ _global_script_classes=[ {
 "path": "res://src/core/ViewportCardFocus.gd"
 } ]
 _global_script_class_icons={
+"ArcologyCard": "",
 "Board": "",
 "CFConst": "",
 "CFControl": "",
@@ -156,7 +162,6 @@ cfc="*res://src/core/CFControl.gd"
 
 [rendering]
 
-quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

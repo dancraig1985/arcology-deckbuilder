@@ -6,10 +6,6 @@ var allCards := [] # A pseudo-deck array to hold the card objects we want to pul
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# We're assigning our positions programmatically,
-	# instead of defining them on the scene.
-	# This way any they will work with any size of viewport in a game.
-	# Discard pile goes bottom right
 	$FancyMovementToggle.pressed = cfc.fancy_movement
 	$OvalHandToggle.pressed = cfc.hand_use_oval_shape
 	$ScalingFocusOptions.selected = cfc.focus_style
@@ -91,18 +87,4 @@ func load_test_cards(extras := 11) -> void:
 		card.set_is_faceup(false,true)
 		card._determine_idle_state()
 		allCards.append(card) # Just keeping track of all the instanced card objects for demo purposes
-		#card.modulate.a = 0 # We use this for a nice transition effect
-#	$Deck.reorganize_stack()
-#	var test_card_array2 := []
-#	if extras == 11:
-#	# I ensure there's of each test card, for use in GUT
-#		for card_name in test_cards:
-#			test_card_array2.append(cfc.instance_card(card_name))
-#	for card in test_card_array2:
-#		$Deck2.add_child(card)
-#		# warning-ignore:return_value_discarded
-#		card.set_is_faceup(false,true)
-#		card._determine_idle_state()
-#		allCards.append(card) # Just keeping track of all the instanced card objects for demo purposes
-#		#card.modulate.a = 0 # We use this for a nice transition effect
-#	$Deck2.reorganize_stack()
+

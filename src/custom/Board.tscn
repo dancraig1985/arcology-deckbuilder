@@ -32,8 +32,10 @@ faceup_cards = true
 custom_styles/panel = SubResource( 1 )
 
 [node name="Label" parent="DiscardPile/Control/CenterContainer" index="0"]
-margin_left = 43.0
-margin_right = 106.0
+margin_left = 71.0
+margin_top = 19.0
+margin_right = 78.0
+margin_bottom = 21.0
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Discard"
 
