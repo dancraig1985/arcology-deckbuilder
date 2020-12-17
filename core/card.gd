@@ -6,7 +6,7 @@ var card_data := {}
 var CardStackMachine
 
 onready var node_card_collision:= $CardCollision
-onready var node_highlight := $Highlight
+onready var node_highlight := $HighlightMouse
 
 onready var node_card_name := $CardDisplay/Front/VBoxContainer/NamePlate/CardName
 onready var node_card_art := $CardDisplay/Front/VBoxContainer/CardArt
@@ -46,14 +46,14 @@ func _on_card_data_updated(card) -> void:
 
 
 func _on_mouse_entered():
-	set_highlight_visible(true)
+	Dealer.add_card_highlight_mouse_candidate(self)
 
 
 func _on_mouse_exited():
-	set_highlight_visible(false)
+	Dealer.remove_card_highlight_mouse_candidate(self)
 
 
-func set_highlight_visible(value := false) -> void:
+func set_highlight_mouse_visible(value := false) -> void:
 	node_highlight.visible = value
 
 

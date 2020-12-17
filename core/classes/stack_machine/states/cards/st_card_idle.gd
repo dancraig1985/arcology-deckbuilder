@@ -11,11 +11,11 @@ func _init():
 
 # Run once when the state starts
 func on_start(args = []): 
-	print_debug("Card starting Idle State")
+	pass
 
 # Run once when the state is finished
 func on_end(args = []): 
-	print_debug("Card endinging Idle State")
+	pass
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta, args = []): 

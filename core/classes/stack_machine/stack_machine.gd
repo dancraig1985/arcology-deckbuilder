@@ -16,11 +16,9 @@ var default_state
 # stored as a script resource reference
 # default state does not accept args for now (might fix in future)
 
-func _init(new_host: Node, new_default_state):
+func _init(new_host: Node, new_default_state: Script):
 	host = new_host
-	print_debug("new host: " + str(new_host))
 	default_state = new_default_state
-	print_debug("new default state: " + str(new_default_state))
 	add_create(default_state)
 
 func process(delta):
