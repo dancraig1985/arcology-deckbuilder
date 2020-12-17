@@ -3,8 +3,6 @@ extends Node
 var card_library := CardLibrary.new()
 
 var is_board_set_up := false
-var card_to_update
-var is_card_updated := false
 
 var card_scene := preload("res://core/scenes/card.tscn")
 
@@ -26,7 +24,15 @@ func instance_card(card_name: String = "Template", spawn_position: Vector2 = Vec
 func _process(delta):
 	if not is_board_set_up:
 		instance_card("Arcology Prime", Vector2(10, 10))
-		card_to_update = instance_card("Console Cowboy", Vector2(200, 10))
+		
 		instance_card("Arcology Prime", Vector2(10, 300))
+		instance_card("Console Cowboy", Vector2(70, 300))
+		instance_card("Console Cowboy", Vector2(30, 300))
+		instance_card("Arcology Prime", Vector2(50, 300))
+		
+		instance_card("Console Cowboy", Vector2(10, 560))
+		instance_card("Arcology Prime", Vector2(30, 820))
+		instance_card("Console Cowboy", Vector2(50, 1080))
+		
 		is_board_set_up = true
 
