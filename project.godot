@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Card",
 "language": "GDScript",
 "path": "res://core/card.gd"
+}, {
+"base": "Node",
+"class": "CardLibrary",
+"language": "GDScript",
+"path": "res://core/classes/card_library.gd"
 } ]
 _global_script_class_icons={
-"Card": ""
+"Card": "",
+"CardLibrary": ""
 }
 
 [application]
