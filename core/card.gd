@@ -1,9 +1,9 @@
-class_name Card
 extends Node2D
 
 signal card_data_updated(card)
 
 var card_data := {}
+var CardStackMachine
 
 onready var node_card_collision:= $CardCollision
 onready var node_highlight := $Highlight
@@ -14,16 +14,19 @@ onready var node_card_text := $CardDisplay/Front/VBoxContainer/TextPlate/CardTex
 
 
 func _ready():
-	print_debug(str(node_card_collision))
 	connect("card_data_updated", self, "_on_card_data_updated")
 	
-	#connect("mouse_entered", self, "_on_mouse_entered")
-	#connect("mouse_exited", self, "_on_mouse_exited")
+	node_card_collision.connect("mouse_entered", self, "_on_mouse_entered")
+	node_card_collision.connect("mouse_exited", self, "_on_mouse_exited")
+	
+#	var StackMachineClass = load(Constants.STACK_MACHINE_PATH)
+#	CardStackMachine = StackMachineClass.new(self, Constants.ST_CARD_IDLE)
+	CardStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_CARD_IDLE)
+	print_debug("current state name: " + str(CardStackMachine.get_current_state_name()))
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	CardStackMachine.process(delta)
 
 
 func import_card_data_from_dict(imported_card_data: Dictionary) -> void:
@@ -43,7 +46,6 @@ func _on_card_data_updated(card) -> void:
 
 
 func _on_mouse_entered():
-	print_debug("card z value: " + str(self.get_index()))
 	set_highlight_visible(true)
 
 

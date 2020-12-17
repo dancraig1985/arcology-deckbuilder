@@ -9,19 +9,19 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "Card",
-"language": "GDScript",
-"path": "res://core/card.gd"
-}, {
 "base": "Node",
 "class": "CardLibrary",
 "language": "GDScript",
 "path": "res://core/classes/card_library.gd"
+}, {
+"base": "Reference",
+"class": "StackMachineState",
+"language": "GDScript",
+"path": "res://core/classes/stack_machine/stack_machine_state.gd"
 } ]
 _global_script_class_icons={
-"Card": "",
-"CardLibrary": ""
+"CardLibrary": "",
+"StackMachineState": ""
 }
 
 [application]
@@ -33,6 +33,13 @@ config/icon="res://icon.png"
 [autoload]
 
 Dealer="*res://core/autoloads/dealer.gd"
+Constants="*res://core/autoloads/constants.gd"
+
+[debug]
+
+gdscript/warnings/unused_variable=false
+gdscript/warnings/unused_argument=false
+gdscript/warnings/return_value_discarded=false
 
 [display]
 
