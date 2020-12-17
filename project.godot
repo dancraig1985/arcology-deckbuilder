@@ -8,20 +8,25 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://core/card.gd"
+} ]
 _global_script_class_icons={
-
+"Card": ""
 }
 
 [application]
 
 config/name="arcology-deckbuilder"
-run/main_scene="res://src/core/Main.tscn"
+run/main_scene="res://core/scenes/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-cfc="*res://src/core/CFControl.gd"
+Dealer="*res://core/autoloads/dealer.gd"
 
 [display]
 
