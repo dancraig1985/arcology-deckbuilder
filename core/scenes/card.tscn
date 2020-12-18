@@ -137,7 +137,6 @@ texture = ExtResource( 4 )
 [node name="CardCollision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardCollision"]
-visible = false
 position = Vector2( 75, 120 )
 shape = SubResource( 3 )
 

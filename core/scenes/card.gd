@@ -1,3 +1,4 @@
+class_name Card
 extends Node2D
 
 signal card_data_updated(card)
@@ -7,8 +8,8 @@ var CardStackMachine
 
 var is_facedown: bool = false
 
-# Gotta be a better way to find this node
-onready var node_dealer := get_tree().get_root().find_node("Dealer")
+# Assigned on creation by Dealer
+onready var node_dealer: Node
 
 onready var node_card_collision:= $CardCollision
 onready var node_highlight_mouse := $HighlightMouse
@@ -38,6 +39,7 @@ func _process(delta):
 
 func import_card_data_from_dict(imported_card_data: Dictionary) -> void:
 	card_data = imported_card_data
+	print_debug("Import Card data card data: " + str(card_data))
 	emit_signal("card_data_updated", self)
 
 
@@ -65,6 +67,7 @@ func flip() -> void:
 
 
 func _on_card_data_updated(card) -> void:
+	print_debug("Card data update event: " + str(card_data))
 	node_card_name.text = card_data["Card Name"]
 	node_card_art.texture = load("res://assets/art/card_art/" + card_data["Card Art"] + ".png")
 	node_card_text.text = card_data["Card Text"]

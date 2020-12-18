@@ -12,7 +12,6 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
-	print_debug("card starting move at pos: " + str(host.position))
 	var target_position = args.target_position
 	var node_tween = host.node_card_tween
 	state_env.node_tween = node_tween

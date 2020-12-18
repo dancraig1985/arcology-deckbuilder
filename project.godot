@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "Card",
+"language": "GDScript",
+"path": "res://core/scenes/card.gd"
+}, {
 "base": "Node",
 "class": "CardLibrary",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://core/classes/stack_machine/stack_machine_state.gd"
 } ]
 _global_script_class_icons={
+"Card": "",
 "CardLibrary": "",
 "Deck": "",
 "StackMachineState": ""

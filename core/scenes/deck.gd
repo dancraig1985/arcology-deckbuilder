@@ -25,6 +25,9 @@ func add_card(new_card: Node) -> void:
 func remove_card(card_to_remove: Node) -> void:
 	node_cards.remove_child(card_to_remove)
 
+func move_card_to_deck(move_card: Node) -> void:
+	pass
+
 func refresh_card_positions() -> void:
 	var card_spots = node_card_spots.get_children()
 	var cards = node_cards.get_children()

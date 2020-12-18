@@ -24,11 +24,7 @@ func _process(delta):
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Console Cowboy", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
+
 
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		spawn_card_to_deck("Console Cowboy", node_player_deck)
@@ -42,7 +38,9 @@ func _process(delta):
 func instance_card(card_name: String = "Template") -> Node:
 	var card_node = CardScene.instance()
 	var card_data = DealerCardLibrary.get_card_data(card_name)
+	add_child(card_node) # add to tree to trigger _ready()
 	card_node.import_card_data_from_dict(card_data)
+	card_node.node_dealer = self
 	Audio.play("EarningMoney")
 	print_debug("Card instanced at: " + str(card_node.position))
 	return card_node
@@ -50,12 +48,13 @@ func instance_card(card_name: String = "Template") -> Node:
 
 func spawn_card_to_deck(card_name: String, target_deck: Deck) -> void:
 	var card_node = instance_card(card_name)
+	card_node.get_parent().remove_child(card_node)
 	card_node.position = $SpawnSpot.position
 	target_deck.add_card(card_node)
 
 
-func add_card_highlight_mouse_candidate(card: Node) -> void:
-	card_highlight_mouse_candidates.append(card)
+func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:
+	card_highlight_mouse_candidates.append(candidate_card)
 
 func remove_card_highlight_mouse_candidate(card: Node) -> void:
 	var found_index = card_highlight_mouse_candidates.find(card)
