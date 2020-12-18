@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arcology.png-31e5bc802a925845ff6da8bec0d5ddcc.stex"
+path="res://.import/arcology.png-c9f21d530cb807839513d9534a36d79f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/card-art/arcology.png"
-dest_files=[ "res://.import/arcology.png-31e5bc802a925845ff6da8bec0d5ddcc.stex" ]
+source_file="res://assets/art/card_art/arcology.png"
+dest_files=[ "res://.import/arcology.png-c9f21d530cb807839513d9534a36d79f.stex" ]
 
 [params]
 

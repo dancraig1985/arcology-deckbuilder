@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 var DealerCardLibrary := CardLibrary.new()
 
@@ -7,8 +7,6 @@ var is_board_set_up := false
 var card_highlight_mouse_candidates := []
 
 var CardScene := preload("res://core/scenes/card.tscn")
-
-onready var main_node = get_tree().get_root().get_node("Main")
 
 func _ready():
 	pass
@@ -37,7 +35,7 @@ func instance_card(card_name: String = "Template", \
 						spawn_z_index: int = 0) -> Node:
 	var card_node = CardScene.instance()
 	var card_data = DealerCardLibrary.get_card_data(card_name)
-	main_node.add_child(card_node)
+	add_child(card_node)
 	#card_node.position = spawn_position
 	card_node.push_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = spawn_position})
 	card_node.z_index = spawn_z_index

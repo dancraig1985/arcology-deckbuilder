@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://core/themes/panel_deck_spot.tres" type="StyleBox" id=1]
+
+[node name="DeckSpot" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 150.0
+margin_bottom = 240.0
+mouse_filter = 2
+custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

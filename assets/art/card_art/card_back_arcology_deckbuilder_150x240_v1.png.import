@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/console_cowboy.png-d54c71217619d46cdeabcdc68271aae7.stex"
+path="res://.import/card_back_arcology_deckbuilder_150x240_v1.png-78d665a96febef1e1671d4dea0824611.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/card-art/console_cowboy.png"
-dest_files=[ "res://.import/console_cowboy.png-d54c71217619d46cdeabcdc68271aae7.stex" ]
+source_file="res://assets/art/card_art/card_back_arcology_deckbuilder_150x240_v1.png"
+dest_files=[ "res://.import/card_back_arcology_deckbuilder_150x240_v1.png-78d665a96febef1e1671d4dea0824611.stex" ]
 
 [params]
 

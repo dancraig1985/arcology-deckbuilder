@@ -32,9 +32,9 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Dealer="*res://core/autoloads/dealer.gd"
 Constants="*res://core/autoloads/constants.gd"
 Audio="*res://core/autoloads/audio.tscn"
+RNG="*res://core/autoloads/rng.gd"
 
 [debug]
 

@@ -5,6 +5,8 @@ signal card_data_updated(card)
 var card_data := {}
 var CardStackMachine
 
+onready var node_dealer := get_parent()
+
 onready var node_card_collision:= $CardCollision
 onready var node_highlight_mouse := $HighlightMouse
 onready var node_card_tween := $CardTween
@@ -46,16 +48,18 @@ func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
 
 func _on_card_data_updated(card) -> void:
 	node_card_name.text = card_data["Card Name"]
-	node_card_art.texture = load("res://assets/art/card-art/" + card_data["Card Art"] + ".png")
+	node_card_art.texture = load("res://assets/art/card_art/" + card_data["Card Art"] + ".png")
 	node_card_text.text = card_data["Card Text"]
 
 
 func _on_mouse_entered():
-	Dealer.add_card_highlight_mouse_candidate(self)
+	if node_dealer:
+		node_dealer.add_card_highlight_mouse_candidate(self)
 
 
 func _on_mouse_exited():
-	Dealer.remove_card_highlight_mouse_candidate(self)
+	if node_dealer:
+		node_dealer.remove_card_highlight_mouse_candidate(self)
 
 
 func set_highlight_mouse_visible(value := false) -> void:

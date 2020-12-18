@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.09863, 0.0294, 0.21, 0.584314 )
+
+[node name="CardSpot" type="Node2D"]
+
+[node name="ColoredBox" type="Panel" parent="."]
+margin_right = 150.0
+margin_bottom = 240.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

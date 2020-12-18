@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://core/main.gd" type="Script" id=1]
+[ext_resource path="res://core/scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/backgrounds/bg_dim_city_1280x720.png" type="Texture" id=2]
+[ext_resource path="res://core/scenes/decks/player_hand.tscn" type="PackedScene" id=3]
+[ext_resource path="res://core/scenes/decks/player_deck.tscn" type="PackedScene" id=4]
+[ext_resource path="res://core/scenes/dealer.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -17,3 +20,13 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Dealer" parent="." instance=ExtResource( 5 )]
+
+[node name="Decks" type="Node2D" parent="Dealer"]
+
+[node name="PlayerHand" parent="Dealer/Decks" instance=ExtResource( 3 )]
+position = Vector2( 857.197, 506.381 )
+
+[node name="PlayerDeck" parent="Dealer/Decks" instance=ExtResource( 4 )]
+position = Vector2( 163.502, 415.899 )

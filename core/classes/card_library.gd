@@ -19,6 +19,13 @@ var cards := {
 	}
 }
 
+var decks := {
+	"Player Deck": {
+		"Arcology Prime": 3,
+		"Console Cowboy": 2
+	}
+}
+
 func get_card_data(card_name: String) -> Dictionary:
 	return cards[card_name]
 
