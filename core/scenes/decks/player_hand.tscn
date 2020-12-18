@@ -6,10 +6,10 @@
 [node name="PlayerHand" instance=ExtResource( 1 )]
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 200, 800 )
+position = Vector2( 250, 760 )
 
 [node name="CardSpots" parent="." index="1"]
-position = Vector2( 890, 520 )
+position = Vector2( 950, 520 )
 
 [node name="CardSpot" parent="CardSpots" index="0" instance=ExtResource( 2 )]
 position = Vector2( -500, 100 )

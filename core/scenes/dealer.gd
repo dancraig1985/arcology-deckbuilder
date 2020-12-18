@@ -24,7 +24,11 @@ func _process(delta):
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
-
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Console Cowboy", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
 
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		spawn_card_to_deck("Console Cowboy", node_player_deck)
@@ -42,7 +46,6 @@ func instance_card(card_name: String = "Template") -> Node:
 	card_node.import_card_data_from_dict(card_data)
 	card_node.node_dealer = self
 	Audio.play("EarningMoney")
-	print_debug("Card instanced at: " + str(card_node.position))
 	return card_node
 
 

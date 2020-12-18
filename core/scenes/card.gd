@@ -39,7 +39,6 @@ func _process(delta):
 
 func import_card_data_from_dict(imported_card_data: Dictionary) -> void:
 	card_data = imported_card_data
-	print_debug("Import Card data card data: " + str(card_data))
 	emit_signal("card_data_updated", self)
 
 
@@ -47,12 +46,18 @@ func set_card_data_value(key: String, value) -> void:
 	card_data[key] = value
 	emit_signal("card_data_updated", self)
 
+func set_z_index(value: int = 0) -> void:
+	z_index = value
+
 
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	CardStackMachine.push(state_class, new_args)
 
 func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	CardStackMachine.add(state_class, new_args)
+
+func move_to_position(target_position: Vector2) -> void:
+	add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = target_position})
 
 
 func set_is_facedown(value: bool = true) -> void:
@@ -67,7 +72,6 @@ func flip() -> void:
 
 
 func _on_card_data_updated(card) -> void:
-	print_debug("Card data update event: " + str(card_data))
 	node_card_name.text = card_data["Card Name"]
 	node_card_art.texture = load("res://assets/art/card_art/" + card_data["Card Art"] + ".png")
 	node_card_text.text = card_data["Card Text"]
