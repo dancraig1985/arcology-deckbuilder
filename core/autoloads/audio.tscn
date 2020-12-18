@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://core/audio.gd" type="Script" id=1]
+[ext_resource path="res://core/autoloads/audio.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/dealing_card.wav" type="AudioStream" id=2]
 [ext_resource path="res://assets/sfx/earning_money.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/sfx/flipping_card.wav" type="AudioStream" id=4]

@@ -34,6 +34,7 @@ config/icon="res://icon.png"
 
 Dealer="*res://core/autoloads/dealer.gd"
 Constants="*res://core/autoloads/constants.gd"
+Audio="*res://core/autoloads/audio.tscn"
 
 [debug]
 
@@ -43,8 +44,8 @@ gdscript/warnings/return_value_discarded=false
 
 [display]
 
-window/size/width=1280
-window/size/height=720
+window/size/width=1600
+window/size/height=900
 
 [rendering]
 

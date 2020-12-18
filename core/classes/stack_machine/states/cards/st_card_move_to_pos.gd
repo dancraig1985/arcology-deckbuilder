@@ -21,9 +21,10 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
-	if state_env.tween_node.is_active():
-		return 0
-	return 1
+	if not state_env.tween_node.is_active():
+		Audio.play("FlippingCard")
+		return 1
+	return 0
 
 # Run once when the state is finished
 func on_end(): 

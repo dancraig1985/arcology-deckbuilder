@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://core/card.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/card-art/arcology.png" type="Texture" id=2]
@@ -21,7 +21,20 @@ expand_margin_top = 4.0
 expand_margin_bottom = 4.0
 anti_aliasing = false
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.596078, 0.788235, 0.952941, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0494385, 0.132051, 0.351563, 1 )
+border_blend = true
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 75, 120 )
 
 [node name="Card" type="Node2D"]
@@ -99,14 +112,16 @@ margin_right = 150.0
 margin_bottom = 240.0
 mouse_filter = 2
 size_flags_vertical = 3
+custom_styles/panel = SubResource( 2 )
 
 [node name="CardText" type="Label" parent="CardDisplay/Front/VBoxContainer/TextPlate"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 143.0
-margin_bottom = 90.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 146.0
+margin_bottom = 93.0
 size_flags_vertical = 1
 theme = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 0.588235, 0.192157, 1 )
 text = "Here are the details of what this card might do..."
 align = 1
 autowrap = true
@@ -122,6 +137,6 @@ mouse_filter = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardCollision"]
 visible = false
 position = Vector2( 75, 120 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="CardTween" type="Tween" parent="."]

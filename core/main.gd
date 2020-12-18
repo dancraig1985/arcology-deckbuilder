@@ -2,9 +2,12 @@ extends Node
 
 
 func _ready():
-	pass
+	get_viewport().connect("size_changed", self, "_on_viewport_size_changed")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_viewport_size_changed():
+	print_debug("New viewport size: " + str(get_viewport().size))
+	#$Background.rect_size = get_viewport().size
+
+
+
