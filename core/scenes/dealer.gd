@@ -24,6 +24,11 @@ func _process(delta):
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Console Cowboy", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
 
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		spawn_card_to_deck("Console Cowboy", node_player_deck)
@@ -45,7 +50,7 @@ func instance_card(card_name: String = "Template") -> Node:
 
 func spawn_card_to_deck(card_name: String, target_deck: Deck) -> void:
 	var card_node = instance_card(card_name)
-	card_node.position = position
+	card_node.position = $SpawnSpot.position
 	target_deck.add_card(card_node)
 
 

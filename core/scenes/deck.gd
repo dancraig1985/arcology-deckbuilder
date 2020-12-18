@@ -7,6 +7,7 @@ export var deck_list: Dictionary = {
 }
 export var deck_name: String = "Player Deck"
 
+onready var node_deck_spot: Node = $DeckSpot
 onready var node_card_spots: Node = $CardSpots
 onready var node_cards: Node = $Cards
 
@@ -32,10 +33,12 @@ func refresh_card_positions() -> void:
 		card.z_index = i
 		if i < card_spots.size():
 			var card_spot = card_spots[i]
-			card.add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = card_spot.position})
+			var target_position = card_spot.position + node_card_spots.position
+			card.add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = target_position})
 			card.set_is_facedown(false)
 		else:
-			card.add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = Vector2()})
+			var target_position = node_deck_spot.position
+			card.add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = target_position})
 			card.set_is_facedown(true)
 	
 	
