@@ -46,7 +46,7 @@ func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
 
 func _on_card_data_updated(card) -> void:
 	node_card_name.text = card_data["Card Name"]
-	node_card_art.texture = load("res://assets/card-art/" + card_data["Card Art"] + ".png")
+	node_card_art.texture = load("res://assets/art/card-art/" + card_data["Card Art"] + ".png")
 	node_card_text.text = card_data["Card Text"]
 
 

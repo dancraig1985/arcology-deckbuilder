@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/black.svg-a3bcf6dc8b634e52482acc1a0b6c70c5.stex"
+path="res://.import/orange.svg-6a23e738c4c0452a589f0c3b521d09d6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tokens/black.svg"
-dest_files=[ "res://.import/black.svg-a3bcf6dc8b634e52482acc1a0b6c70c5.stex" ]
+source_file="res://assets/art/icons/orange.svg"
+dest_files=[ "res://.import/orange.svg-6a23e738c4c0452a589f0c3b521d09d6.stex" ]
 
 [params]
 

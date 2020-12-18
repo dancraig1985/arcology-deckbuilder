@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/view.svg-b2db9bcb5ef2f1d25945e28acd1c0e4b.stex"
+path="res://.import/bg_dim_city_1280x720.png-5efc4f498b78c0c9936a5e577bf3b5d9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/icons/view.svg"
-dest_files=[ "res://.import/view.svg-b2db9bcb5ef2f1d25945e28acd1c0e4b.stex" ]
+source_file="res://assets/art/backgrounds/bg_dim_city_1280x720.png"
+dest_files=[ "res://.import/bg_dim_city_1280x720.png-5efc4f498b78c0c9936a5e577bf3b5d9.stex" ]
 
 [params]
 

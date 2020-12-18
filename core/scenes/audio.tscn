@@ -1,16 +1,26 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://core/audio.gd" type="Script" id=1]
 [ext_resource path="res://assets/sfx/dealing_card.wav" type="AudioStream" id=2]
+[ext_resource path="res://assets/sfx/earning_money.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sfx/flipping_card.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/sfx/shuffling_cards.wav" type="AudioStream" id=5]
 
 [node name="Audio" type="Node"]
 script = ExtResource( 1 )
 
 [node name="DealingCard" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+bus = "Sound FX"
 
-[node name="DealingCard2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+[node name="FlippingCard" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Sound FX"
 
-[node name="DealingCard3" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 2 )
+[node name="ShufflingCards" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Sound FX"
+
+[node name="EarningMoney" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound FX"

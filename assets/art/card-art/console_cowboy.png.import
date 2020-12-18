@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blue.svg-2002d6f67720e8b00526db92e2e3abd9.stex"
+path="res://.import/console_cowboy.png-d54c71217619d46cdeabcdc68271aae7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tokens/blue.svg"
-dest_files=[ "res://.import/blue.svg-2002d6f67720e8b00526db92e2e3abd9.stex" ]
+source_file="res://assets/art/card-art/console_cowboy.png"
+dest_files=[ "res://.import/console_cowboy.png-d54c71217619d46cdeabcdc68271aae7.stex" ]
 
 [params]
 

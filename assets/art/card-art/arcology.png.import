@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/green.svg-8d5703ef1262efac1511d7f865110910.stex"
+path="res://.import/arcology.png-31e5bc802a925845ff6da8bec0d5ddcc.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tokens/green.svg"
-dest_files=[ "res://.import/green.svg-8d5703ef1262efac1511d7f865110910.stex" ]
+source_file="res://assets/art/card-art/arcology.png"
+dest_files=[ "res://.import/arcology.png-31e5bc802a925845ff6da8bec0d5ddcc.stex" ]
 
 [params]
 
