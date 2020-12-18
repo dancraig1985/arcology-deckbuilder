@@ -11,7 +11,7 @@ var stack_machine: Array = []
 # It looks like this:
 # [[state_object1, [arg1, arg2, ...]], [state_object2, [arg1, arg2, ...]], ...]
 
-var default_state
+var default_state: Script
 # a place to store a fallback state
 # stored as a script resource reference
 # default state does not accept args for now (might fix in future)
@@ -19,23 +19,23 @@ var default_state
 func _init(new_host: Node, new_default_state: Script):
 	host = new_host
 	default_state = new_default_state
-	add_create(default_state)
+	push(default_state)
 
 func process(delta):
 	# Method for processing the current state @ pos 0
 	if stack_machine.size() > 0:
 		# get top state info
-		var state_object = stack_machine[0][0]
-		var state_args = stack_machine[0][1]
+		var state_object = stack_machine[0]
+		var state_args = state_object.args
 		
 		# Check for first time running, and start state
 		if state_object.state_time == 0:
-			state_object.on_start(state_args)
+			state_object.on_start()
 			state_object.started = true
 			
 		# state.process returns 0 to repeat
 		# Pop the stack if return 1, process right away if -1
-		var proceed = state_object.process(delta, state_args)
+		var proceed = state_object.process(delta)
 		
 		# increment state_time by delta
 		state_object.state_time += delta
@@ -48,43 +48,31 @@ func process(delta):
 				process(delta)
 	elif default_state != null:
 		# If state stack is empty, we push the default
-		push_create(default_state)
+		push(default_state.new())
 		process(delta) # and try to run it right away
 
-func push(state):
+func push(state_class: Script, args: Dictionary = {}) -> void:
 	# add a state to front of state stack
-	stack_machine.push_front(state)
+	stack_machine.push_front(state_create(state_class, args))
 	emit_signal("stack_machine_changed")
 
-func add(state):
+func add(state_class: Script, args: Dictionary = {}) ->void:
 	# add a state to end of state stack
-	stack_machine.append(state)
+	stack_machine.append(state_create(state_class, args))
 	emit_signal("stack_machine_changed")
-
-func push_create(state_class, args = []):
-	# create and add a state class with args to front of state stack
-	push(state_create(state_class, args))
-
-func add_create(state_class, args = []):
-	# create and add a state class and args to end of state stack
-	add(state_create(state_class, args))
 
 func pop():
 	# pop from state stack
-	var top_state = stack_machine.pop_front()
-	var state_object = top_state[0]
-	var state_args = top_state[1]
+	var state_object = stack_machine.pop_front()
 	# process on_end event for the popped state
-	state_object.on_end(state_args)
+	state_object.on_end()
 	emit_signal("stack_machine_changed")
 
-func state_create(state_class, args = []):
-	# creates an entry appropriate for the stack_machine array
-	# [state_ref, [arg1, arg2, ...]]
-	var state_object = state_class.new()
-	state_object.host = host
-	
-	var state = [state_object, args]
+func state_create(state_class, args = {}):
+	# creates a new state object ready to be pushed to stack machine
+	var state = state_class.new()
+	state.host = host
+	state.args = args
 	return state
 
 func is_stack_machine_empty() -> bool:
@@ -94,10 +82,6 @@ func get_current_state():
 	if not is_stack_machine_empty():
 		return stack_machine[0]
 
-func get_current_state_obj():
-	if not is_stack_machine_empty():
-		return get_state_obj(get_current_state())
-
 func get_current_state_args():
 	if not is_stack_machine_empty():
 		return get_state_args(get_current_state())
@@ -106,12 +90,9 @@ func get_current_state_name():
 	if not is_stack_machine_empty():
 		return get_state_name(get_current_state())
 
-func get_state_obj(state) -> Object:
-	return state[0]
-
 func get_state_args(state) -> Array:
-	return state[1]
+	return state.args
 
 func get_state_name(state) -> String:
-	return get_state_obj(state).name
+	return state.name
 

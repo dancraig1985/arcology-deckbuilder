@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dealing_card.wav-57237356df0bf99fb1d48f70cff365ae.sample"
+
+[deps]
+
+source_file="res://assets/sfx/dealing_card.wav"
+dest_files=[ "res://.import/dealing_card.wav-57237356df0bf99fb1d48f70cff365ae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

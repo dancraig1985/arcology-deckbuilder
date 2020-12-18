@@ -38,7 +38,8 @@ func instance_card(card_name: String = "Template", \
 	var card_node = CardScene.instance()
 	var card_data = DealerCardLibrary.get_card_data(card_name)
 	main_node.add_child(card_node)
-	card_node.position = spawn_position
+	#card_node.position = spawn_position
+	card_node.push_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = spawn_position})
 	card_node.z_index = spawn_z_index
 	card_node.import_card_data_from_dict(card_data)
 	return card_node
