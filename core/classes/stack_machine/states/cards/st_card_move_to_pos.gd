@@ -24,11 +24,15 @@ func on_start():
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
 	if not state_env.node_tween.is_active():
-		Audio.play("FlippingCard")
 		return 1
+	
+	var distance_to_target = args.target_position - host.position
+	if distance_to_target.length() < 1:
+		return -1
+	
 	return 0
 
 # Run once when the state is finished
-func on_end(): 
-	pass
+func on_end():
+	Audio.play("FlippingCard")
 

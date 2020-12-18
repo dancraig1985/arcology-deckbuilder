@@ -8,7 +8,7 @@ func play(sound):
 	for i in children:
 		# if the name matches our given sound string, play it
 		if i.name == sound:
-			get_node(sound).play()
+			i.play()
 			return
 	# No node with name found
 	print(str("Sound node to play not found: ", sound, ". Available Nodes: ", children.size()))

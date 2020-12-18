@@ -38,11 +38,14 @@ func get_cards_count() -> int:
 func is_empty() -> bool:
 	return get_cards_count() > 0
 
-func move_card_to_deck(move_card: Node, target_deck: Node) -> void:
-	if is_empty(): return
+func draw_card():
+	var card_drawn = get_card_by_index(0)
+	remove_card(card_drawn)
+	card_drawn.set_is_facedown(false)
+	return card_drawn
 
-func move_card_at_index_to_deck(card_index: int, target_deck: Node):
-	if is_empty(): return
+func get_card_by_index(index: int) -> Card:
+	return get_cards()[index]
 
 func get_card_spots() -> Array:
 	return node_card_spots.get_children()
@@ -67,7 +70,10 @@ func refresh_card_positions() -> void:
 			card.move_to_position(get_card_spot_position(card_spot))
 			card.set_is_facedown(false)
 		else:
-			card.move_to_position(get_deck_spot_position())
+			var spot_position = get_deck_spot_position()
+			var stacking_offset = Vector2(-i * 2, -i * 2)
+			var target_position = spot_position + stacking_offset
+			card.move_to_position(target_position)
 			card.set_is_facedown(true)
 	
 	

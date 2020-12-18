@@ -35,6 +35,21 @@ func _process(delta):
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Console Cowboy", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Console Cowboy", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Console Cowboy", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		
 		is_board_set_up = true
 
