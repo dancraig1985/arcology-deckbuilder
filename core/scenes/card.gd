@@ -5,11 +5,18 @@ signal card_data_updated(card)
 var card_data := {}
 var CardStackMachine
 
-onready var node_dealer := get_parent()
+var is_facedown: bool = false
+
+# Gotta be a better way to find this node
+onready var node_dealer := get_tree().get_root().find_node("Dealer")
 
 onready var node_card_collision:= $CardCollision
 onready var node_highlight_mouse := $HighlightMouse
 onready var node_card_tween := $CardTween
+
+onready var node_front := $CardDisplay/Front
+onready var node_back := $CardDisplay/Back
+
 
 onready var node_card_name := $CardDisplay/Front/VBoxContainer/NamePlate/CardName
 onready var node_card_art := $CardDisplay/Front/VBoxContainer/CardArt
@@ -44,6 +51,17 @@ func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
 
 func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	CardStackMachine.add(state_class, new_args)
+
+
+func set_is_facedown(value: bool = true) -> void:
+	is_facedown = value
+	node_front.visible = not is_facedown
+	node_back.visible = is_facedown
+
+
+func flip() -> void:
+	node_front.visible = not node_front.visible
+	node_back.visible = not node_front.visible
 
 
 func _on_card_data_updated(card) -> void:

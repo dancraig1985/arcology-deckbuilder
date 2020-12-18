@@ -48,7 +48,7 @@ func process(delta):
 				process(delta)
 	elif default_state != null:
 		# If state stack is empty, we push the default
-		push(default_state.new())
+		push(default_state)
 		process(delta) # and try to run it right away
 
 func push(state_class: Script, args: Dictionary = {}) -> void:

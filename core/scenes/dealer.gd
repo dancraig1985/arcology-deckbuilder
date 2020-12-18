@@ -1,47 +1,52 @@
 extends Node2D
 
-var DealerCardLibrary := CardLibrary.new()
-
-var is_board_set_up := false
-
 var card_highlight_mouse_candidates := []
+
+var DealerCardLibrary := CardLibrary.new()
 
 var CardScene := preload("res://core/scenes/card.tscn")
 
+var is_board_set_up := false
+
+onready var node_player_deck := $Decks/PlayerDeck
+onready var node_player_hand := $Decks/PlayerHand
+
+
 func _ready():
 	pass
-
 
 func _process(delta):
 	process_card_highlight_mouse()
 	
 	if not is_board_set_up:
-		instance_card("Arcology Prime", Vector2(10, 10))
-		
-		instance_card("Arcology Prime", Vector2(10, 300), 5)
-		instance_card("Console Cowboy", Vector2(30, 300), 4)
-		instance_card("Arcology Prime", Vector2(50, 300), 3)
-		instance_card("Console Cowboy", Vector2(70, 300), 2)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Console Cowboy", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
+		spawn_card_to_deck("Arcology Prime", node_player_hand)
 
-		instance_card("Console Cowboy", Vector2(10, 560))
-		instance_card("Arcology Prime", Vector2(30, 820))
-		instance_card("Console Cowboy", Vector2(50, 1080))
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Console Cowboy", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		
 		is_board_set_up = true
 
 
-func instance_card(card_name: String = "Template", \
-						spawn_position: Vector2 = Vector2(0, 0), \
-						spawn_z_index: int = 0) -> Node:
+func instance_card(card_name: String = "Template") -> Node:
 	var card_node = CardScene.instance()
 	var card_data = DealerCardLibrary.get_card_data(card_name)
-	add_child(card_node)
-	#card_node.position = spawn_position
-	card_node.push_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = spawn_position})
-	card_node.z_index = spawn_z_index
 	card_node.import_card_data_from_dict(card_data)
-	Audio.play("DealingCard")
+	Audio.play("EarningMoney")
+	print_debug("Card instanced at: " + str(card_node.position))
 	return card_node
+
+
+func spawn_card_to_deck(card_name: String, target_deck: Deck) -> void:
+	var card_node = instance_card(card_name)
+	card_node.position = position
+	target_deck.add_card(card_node)
 
 
 func add_card_highlight_mouse_candidate(card: Node) -> void:

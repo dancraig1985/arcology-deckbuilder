@@ -22,4 +22,4 @@ func on_end():
 func process(delta): 
 	# return 0 to continue in this state
 	# return 1 to end state, return -1 to end state and process next state right away
-	return 0
+	return 1
