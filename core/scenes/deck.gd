@@ -19,7 +19,7 @@ onready var node_cards := $Cards
 
 
 func _ready() -> void:
-	add_to_group(Constants.NODE_GROUP.DECKS)
+	add_to_group(Constants.NODE_GROUPS.DECKS)
 	DeckStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_CARD_IDLE)
 
 func _process(delta) -> void:

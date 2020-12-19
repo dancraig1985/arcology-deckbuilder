@@ -21,10 +21,10 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		print_debug("Accept pressed")
-		if not node_player_deck.is_empty():
+		if not node_player_deck.is_empty() and not is_any_actor_acting():
 			draw_cards_from_deck_to_deck(1, node_player_deck, node_player_hand)
 	
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and not is_any_actor_acting():
 		print_debug("Cancel pressed")
 		if not node_player_hand.is_empty():
 			draw_cards_from_deck_to_deck(1, node_player_hand, node_player_discard_deck)
@@ -77,6 +77,15 @@ func draw_cards_from_deck_to_deck(num_cards: int,
 									target_deck: Node) -> void:
 	var cards_to_draw = min(source_deck.get_cards_count(), num_cards)
 	source_deck.draw_cards_to_deck(cards_to_draw, target_deck)
+
+func is_any_actor_acting() -> bool:
+	var actors_acting: bool = false
+	for card in get_tree().get_nodes_in_group(Constants.NODE_GROUPS.CARDS):
+		actors_acting = card.is_acting
+	for deck in get_tree().get_nodes_in_group(Constants.NODE_GROUPS.DECKS):
+		actors_acting = deck.is_acting
+	return actors_acting
+	
 
 
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:

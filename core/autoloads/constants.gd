@@ -6,7 +6,7 @@ var OP_CARD_MOVE_SPEED = 0.5
 # Time in seconds between card draws on Decks
 var OP_DECK_DRAW_DELAY = 0.25
 
-const NODE_GROUP = {
+const NODE_GROUPS = {
 	CARDS = "CARDS",
 	DECKS = "DECKS"
 }

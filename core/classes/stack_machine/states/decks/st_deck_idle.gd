@@ -12,7 +12,7 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start(): 
-	pass
+	host.is_acting = false
 
 # Run once when the state is finished
 func on_end(): 

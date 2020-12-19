@@ -26,7 +26,7 @@ onready var node_card_text := $CardDisplay/Front/VBoxContainer/TextPlate/CardTex
 
 
 func _ready():
-	add_to_group(Constants.NODE_GROUP.CARDS)
+	add_to_group(Constants.NODE_GROUPS.CARDS)
 	connect("card_data_updated", self, "_on_card_data_updated")
 	node_card_collision.connect("mouse_entered", self, "_on_mouse_entered")
 	node_card_collision.connect("mouse_exited", self, "_on_mouse_exited")
