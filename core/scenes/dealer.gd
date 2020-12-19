@@ -19,26 +19,12 @@ onready var node_player_discard_deck := $Decks/PlayerDiscardDeck
 func _ready():
 	add_to_group(Constants.NODE_GROUPS.DEALERS)
 	DealerStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_DEALER_IDLE)
+	add_state(Constants.ST_DEALER_GAME_START)
 
 func _process(delta):
 	process_card_highlight_mouse()
 	DealerStackMachine.process(delta)
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		print_debug("Accept pressed")
-		if not node_player_deck.is_empty() and not is_any_actor_acting():
-			draw_cards_from_deck_to_deck(1, node_player_deck, node_player_hand)
-	
-	if Input.is_action_just_pressed("ui_cancel") and not is_any_actor_acting():
-		print_debug("Cancel pressed")
-		if not node_player_hand.is_empty():
-			draw_cards_from_deck_to_deck(1, node_player_hand, node_player_discard_deck)
-	
-	if not is_board_set_up:
-		spawn_cards_to_deck("Arcology Prime", 14, node_player_deck)
-		spawn_cards_to_deck("Console Cowboy", 6,  node_player_deck)
-		
-		is_board_set_up = true
+
 
 func is_any_actor_acting() -> bool:
 	var actors_acting: bool = false
@@ -66,14 +52,16 @@ func spawn_cards_to_deck(card_name: String, num_cards: int, target_deck: Deck) -
 			num_cards = 1,
 			target_deck = target_deck
 		})
-	
-	
+
 
 func draw_cards_from_deck_to_deck(num_cards: int, 
 									source_deck: Node, 
 									target_deck: Node) -> void:
-	var cards_to_draw = min(source_deck.get_cards_count(), num_cards)
-	source_deck.draw_cards_to_deck(cards_to_draw, target_deck)
+	push_state(Constants.ST_DEALER_DRAW_CARDS_DECK_TO_DECK, {
+		num_cards = num_cards,
+		source_deck = source_deck,
+		target_deck = target_deck
+	})
 
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:
 	card_highlight_mouse_candidates.append(candidate_card)

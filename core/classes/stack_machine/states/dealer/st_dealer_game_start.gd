@@ -8,17 +8,19 @@ extends StackMachineState
 # otherwise return 0 to continue
 
 func _init() -> void:
-	name = "Dealer - Idle"
+	name = "Dealer - Game Start"
 
 # Run once when the state starts
-func on_start(): 
-	pass
+func on_start():
+	host.spawn_cards_to_deck("Arcology Prime", 14, host.node_player_deck)
+	host.spawn_cards_to_deck("Console Cowboy", 6,  host.node_player_deck)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
-	# return 0 to continue in this state
-	# return 1 to end state, return -1 to end state and process next state right away
-	return 1
+	if not host.is_any_actor_acting():
+		host.add_state(Constants.ST_DEALER_TURN_START)
+		return 1
+	return 0
 
 # Run once when the state is finished
 func on_end(): 

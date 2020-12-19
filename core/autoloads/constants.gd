@@ -1,13 +1,16 @@
 extends Node
 
 # Time it takes to complete a Card Move Tween in seconds
-var OP_CARD_MOVE_SPEED = 0.5
-
+var OP_CARD_MOVE_SPEED = 0.4
 # Time in seconds between card draws on Decks
-var OP_DECK_DRAW_DELAY = 0.25
-
+var OP_DECK_DRAW_DELAY = 0.12
 # Time in seconds between card spawns from Dealer
-var OP_DEALER_SPAWN_DELAY = 0.1
+var OP_DEALER_SPAWN_DELAY = 0.06
+# End of Turn Delay in seconds
+var OP_END_OF_TURN_DELAY: float = 1.0
+
+# BALANCE
+var BASE_CARD_DRAW_PER_TURN: int = 6
 
 const NODE_GROUPS = {
 	DEALERS = "DEALERS",
@@ -36,3 +39,11 @@ const ST_DEALER_IDLE: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_idle.gd")
 const ST_DEALER_SPAWN_CARDS_TO_DECK: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_spawn_cards_to_deck.gd")
+const ST_DEALER_DRAW_CARDS_DECK_TO_DECK: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_draw_cards_deck_to_deck.gd")
+const ST_DEALER_GAME_START: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_game_start.gd")
+const ST_DEALER_TURN_START: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_start.gd")
+const ST_DEALER_TURN_END: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_end.gd")

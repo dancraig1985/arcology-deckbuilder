@@ -8,17 +8,22 @@ extends StackMachineState
 # otherwise return 0 to continue
 
 func _init() -> void:
-	name = "Dealer - Idle"
+	name = "Dealer - Turn End"
 
 # Run once when the state starts
-func on_start(): 
-	pass
+func on_start():
+	var player_hand: Node = host.node_player_hand
+	var player_discard_deck: Node = host.node_player_discard_deck
+	var player_hand_size = player_hand.get_cards_count()
+	
+	host.draw_cards_from_deck_to_deck(player_hand_size, player_hand, player_discard_deck)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
-	# return 0 to continue in this state
-	# return 1 to end state, return -1 to end state and process next state right away
-	return 1
+	if state_time > Constants.OP_END_OF_TURN_DELAY and not host.is_any_actor_acting():
+		host.add_state(Constants.ST_DEALER_TURN_START)
+		return 1
+	return 0
 
 # Run once when the state is finished
 func on_end(): 
