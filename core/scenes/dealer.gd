@@ -23,7 +23,9 @@ func _ready():
 
 func _process(delta):
 	process_card_highlight_mouse()
-	DealerStackMachine.process(delta)
+	# Only process state if all cards/decks are "at rest"
+	if not is_any_actor_acting():
+		DealerStackMachine.process(delta)
 
 
 func is_any_actor_acting() -> bool:
@@ -41,7 +43,6 @@ func instance_card(card_name: String = "Template") -> Node:
 	remove_child(card_node)
 	card_node.import_card_data_from_dict(card_data)
 	card_node.node_dealer = self
-	Audio.play("EarningMoney")
 	return card_node
 
 

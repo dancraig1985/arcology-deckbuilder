@@ -20,7 +20,7 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
-	if state_time > Constants.OP_END_OF_TURN_DELAY and not host.is_any_actor_acting():
+	if state_time > Constants.OP_END_OF_TURN_DELAY:
 		host.add_state(Constants.ST_DEALER_TURN_START)
 		return 1
 	return 0

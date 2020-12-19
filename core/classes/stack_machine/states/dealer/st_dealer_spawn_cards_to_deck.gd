@@ -18,6 +18,7 @@ func on_start():
 	var card_node = host.instance_card(args.card_name)
 	card_node.position = host.get_node("SpawnSpot").position
 	args.target_deck.add_card(card_node)
+	Audio.play("EarningMoney")
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):

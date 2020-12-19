@@ -3,6 +3,7 @@
 [ext_resource path="res://core/scenes/deck.tscn" type="PackedScene" id=1]
 
 [node name="PlayerDeck" instance=ExtResource( 1 )]
+is_wait_for_refill_on_empty = true
 card_scale_in_deck_spot = 0.8
 
 [node name="DeckSpot" parent="." index="0"]

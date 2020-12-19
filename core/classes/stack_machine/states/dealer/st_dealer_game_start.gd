@@ -12,12 +12,12 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
-	host.spawn_cards_to_deck("Arcology Prime", 14, host.node_player_deck)
-	host.spawn_cards_to_deck("Console Cowboy", 6,  host.node_player_deck)
+	host.spawn_cards_to_deck("Arcology Prime", 10, host.node_player_deck)
+	host.spawn_cards_to_deck("Console Cowboy", 2,  host.node_player_deck)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
-	if not host.is_any_actor_acting():
+	if state_time > Constants.OP_DEALER_BOARD_ACTION_DELAY:
 		host.add_state(Constants.ST_DEALER_TURN_START)
 		return 1
 	return 0

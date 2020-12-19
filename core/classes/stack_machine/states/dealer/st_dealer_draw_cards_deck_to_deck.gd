@@ -25,9 +25,7 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
-	var source_deck = args.source_deck
-	var draw_delay = Constants.OP_DECK_DRAW_DELAY
-	if state_time > draw_delay and not source_deck.get_is_acting():
+	if state_time > Constants.OP_DEALER_BOARD_ACTION_DELAY:
 		return 1
 	return 0
 

@@ -6,6 +6,8 @@ var DeckStackMachine
 var is_acting: bool = false
 
 export var is_facedown: bool = true
+export var is_wait_for_refill_on_empty: bool = false
+export var refill_deck: NodePath
 export var card_scale_in_deck_spot: float = 1.0
 export var card_scale_in_card_spots: float = 1.0
 
@@ -67,7 +69,6 @@ func draw_card():
 	var card_drawn = get_card_by_index(get_cards_top_index())
 	remove_card(card_drawn)
 	card_drawn.set_is_facedown(false)
-	card_drawn.set_z_index(z_index + 10000)
 	return card_drawn
 
 func draw_cards_to_deck(num_cards: int, target_deck: Node) -> void:

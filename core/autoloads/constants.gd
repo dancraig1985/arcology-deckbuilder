@@ -8,9 +8,11 @@ var OP_DECK_DRAW_DELAY = 0.12
 var OP_DEALER_SPAWN_DELAY = 0.06
 # End of Turn Delay in seconds
 var OP_END_OF_TURN_DELAY: float = 1.0
+# Minimum time per Dealer action in seconds
+var OP_DEALER_BOARD_ACTION_DELAY: float = 0.5
 
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 6
+var BASE_CARD_DRAW_PER_TURN: int = 5
 
 const NODE_GROUPS = {
 	DEALERS = "DEALERS",
