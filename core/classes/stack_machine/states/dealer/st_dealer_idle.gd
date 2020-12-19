@@ -8,7 +8,7 @@ extends StackMachineState
 # otherwise return 0 to continue
 
 func _init() -> void:
-	name = "Deck - Idle"
+	name = "Dealer - Idle"
 
 # Run once when the state starts
 func on_start(): 

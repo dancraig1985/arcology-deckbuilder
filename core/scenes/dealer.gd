@@ -4,9 +4,12 @@ var card_highlight_mouse_candidates := []
 
 var DealerCardLibrary := CardLibrary.new()
 
+var DealerStackMachine
+
 var CardScene := preload("res://core/scenes/card.tscn")
 
 var is_board_set_up := false
+var is_acting: bool = false
 
 onready var node_player_deck := $Decks/PlayerDeck
 onready var node_player_hand := $Decks/PlayerHand
@@ -14,10 +17,12 @@ onready var node_player_discard_deck := $Decks/PlayerDiscardDeck
 
 
 func _ready():
-	pass
+	add_to_group(Constants.NODE_GROUPS.DEALERS)
+	DealerStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_DEALER_IDLE)
 
 func _process(delta):
 	process_card_highlight_mouse()
+	DealerStackMachine.process(delta)
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		print_debug("Accept pressed")
@@ -30,53 +35,10 @@ func _process(delta):
 			draw_cards_from_deck_to_deck(1, node_player_hand, node_player_discard_deck)
 	
 	if not is_board_set_up:
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Console Cowboy", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Console Cowboy", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Console Cowboy", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Console Cowboy", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
-		spawn_card_to_deck("Arcology Prime", node_player_deck)
+		spawn_cards_to_deck("Arcology Prime", 14, node_player_deck)
+		spawn_cards_to_deck("Console Cowboy", 6,  node_player_deck)
 		
 		is_board_set_up = true
-
-
-
-
-func instance_card(card_name: String = "Template") -> Node:
-	var card_node = CardScene.instance()
-	var card_data = DealerCardLibrary.get_card_data(card_name)
-	add_child(card_node) # add to tree to trigger _ready()
-	card_node.import_card_data_from_dict(card_data)
-	card_node.node_dealer = self
-	Audio.play("EarningMoney")
-	return card_node
-
-
-func spawn_card_to_deck(card_name: String, target_deck: Deck) -> void:
-	var card_node = instance_card(card_name)
-	card_node.get_parent().remove_child(card_node)
-	card_node.position = $SpawnSpot.position
-	target_deck.add_card(card_node)
-
-func draw_cards_from_deck_to_deck(num_cards: int, 
-									source_deck: Node, 
-									target_deck: Node) -> void:
-	var cards_to_draw = min(source_deck.get_cards_count(), num_cards)
-	source_deck.draw_cards_to_deck(cards_to_draw, target_deck)
 
 func is_any_actor_acting() -> bool:
 	var actors_acting: bool = false
@@ -85,8 +47,33 @@ func is_any_actor_acting() -> bool:
 	for deck in get_tree().get_nodes_in_group(Constants.NODE_GROUPS.DECKS):
 		actors_acting = deck.is_acting
 	return actors_acting
+
+func instance_card(card_name: String = "Template") -> Node:
+	var card_node = CardScene.instance()
+	var card_data = DealerCardLibrary.get_card_data(card_name)
+	add_child(card_node) # add to tree to trigger _ready()
+	remove_child(card_node)
+	card_node.import_card_data_from_dict(card_data)
+	card_node.node_dealer = self
+	Audio.play("EarningMoney")
+	return card_node
+
+
+func spawn_cards_to_deck(card_name: String, num_cards: int, target_deck: Deck) -> void:
+	for i in range(num_cards):
+		add_state(Constants.ST_DEALER_SPAWN_CARDS_TO_DECK, {
+			card_name = card_name,
+			num_cards = 1,
+			target_deck = target_deck
+		})
+	
 	
 
+func draw_cards_from_deck_to_deck(num_cards: int, 
+									source_deck: Node, 
+									target_deck: Node) -> void:
+	var cards_to_draw = min(source_deck.get_cards_count(), num_cards)
+	source_deck.draw_cards_to_deck(cards_to_draw, target_deck)
 
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:
 	card_highlight_mouse_candidates.append(candidate_card)
@@ -115,3 +102,16 @@ func process_card_highlight_mouse() -> void:
 			candidate.set_highlight_mouse_visible(false)
 		var card_to_highlight_mouse: Node = get_card_highlight_mouse_selection()
 		card_to_highlight_mouse.set_highlight_mouse_visible(true)
+
+
+func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
+	DealerStackMachine.push(state_class, new_args)
+
+func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
+	DealerStackMachine.add(state_class, new_args)
+
+func set_is_acting(value: bool) -> void:
+	is_acting = value
+
+func get_is_acting() -> bool:
+	return is_acting

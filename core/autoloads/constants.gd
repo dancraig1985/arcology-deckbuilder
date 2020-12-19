@@ -6,7 +6,11 @@ var OP_CARD_MOVE_SPEED = 0.5
 # Time in seconds between card draws on Decks
 var OP_DECK_DRAW_DELAY = 0.25
 
+# Time in seconds between card spawns from Dealer
+var OP_DEALER_SPAWN_DELAY = 0.1
+
 const NODE_GROUPS = {
+	DEALERS = "DEALERS",
 	CARDS = "CARDS",
 	DECKS = "DECKS"
 }
@@ -28,3 +32,7 @@ const ST_DECK_IDLE: Script = \
 const ST_DECK_DRAW_TO_DECK: Script = \
 		preload("res://core/classes/stack_machine/states/decks/st_deck_draw_to_deck.gd")
 
+const ST_DEALER_IDLE: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_idle.gd")
+const ST_DEALER_SPAWN_CARDS_TO_DECK: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_spawn_cards_to_deck.gd")

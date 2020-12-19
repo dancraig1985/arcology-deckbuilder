@@ -22,7 +22,7 @@ onready var node_cards := $Cards
 
 func _ready() -> void:
 	add_to_group(Constants.NODE_GROUPS.DECKS)
-	DeckStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_CARD_IDLE)
+	DeckStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_DECK_IDLE)
 
 func _process(delta) -> void:
 	DeckStackMachine.process(delta)
@@ -33,12 +33,6 @@ func get_screen_position() -> Vector2:
 func set_is_facedown(value: bool = true) -> void:
 	is_facedown = value
 	# TODO: more handling of flipping
-
-func set_is_active(value: bool) -> void:
-	is_acting = value
-
-func get_is_acting() -> bool:
-	return is_acting
 
 func set_card_scale_in_deck_spot(value: float = 1.0) -> void:
 	card_scale_in_deck_spot = value
@@ -114,9 +108,15 @@ func refresh_card_positions() -> void:
 			card.move_to_position(target_position)
 			card.set_is_facedown(is_facedown)
 
-
+# Private-ish functions
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	DeckStackMachine.push(state_class, new_args)
 
 func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	DeckStackMachine.add(state_class, new_args)
+
+func set_is_acting(value: bool) -> void:
+	is_acting = value
+
+func get_is_acting() -> bool:
+	return is_acting

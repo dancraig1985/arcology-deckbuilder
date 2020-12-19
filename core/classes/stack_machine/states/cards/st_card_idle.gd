@@ -3,6 +3,7 @@ extends StackMachineState
 # host = Entity using the state
 # args = arguments provided for state
 # state_time = time in seconds we have been in this state
+# state_env = {} < - Use to store info local to state
 
 # Have process return 1 or -1 when the state is finished,
 # otherwise return 0 to continue

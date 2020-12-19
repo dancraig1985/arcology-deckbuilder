@@ -8,20 +8,24 @@ extends StackMachineState
 # otherwise return 0 to continue
 
 func _init() -> void:
-	name = "Deck - Idle"
+	name = "Dealer - Spawn Cards"
 
 # Run once when the state starts
 func on_start(): 
-	host.is_acting = false
+	host.is_acting = true
+	
+	# Spawn card from card name and add to target Deck
+	var card_node = host.instance_card(args.card_name)
+	card_node.position = host.get_node("SpawnSpot").position
+	args.target_deck.add_card(card_node)
 
 # Usually called each step of the host, but can be called to run whenever
-func process(delta): 
-	# return 0 to continue in this state
-	# return 1 to end state, return -1 to end state and process next state right away
-	return 1
+func process(delta):
+	var draw_delay = Constants.OP_DECK_DRAW_DELAY
+	if state_time > draw_delay:
+		return 1
+	return 0
 
 # Run once when the state is finished
 func on_end(): 
 	pass
-
-
