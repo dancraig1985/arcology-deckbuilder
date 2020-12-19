@@ -10,6 +10,7 @@ var is_board_set_up := false
 
 onready var node_player_deck := $Decks/PlayerDeck
 onready var node_player_hand := $Decks/PlayerHand
+onready var node_player_discard_deck := $Decks/PlayerDiscardDeck
 
 
 func _ready():
@@ -19,22 +20,16 @@ func _process(delta):
 	process_card_highlight_mouse()
 	
 	if Input.is_action_just_pressed("ui_accept"):
-		print_debug("Left button pressed")
+		print_debug("Accept pressed")
 		if not node_player_deck.is_empty():
 			draw_cards_from_deck_to_deck(1, node_player_deck, node_player_hand)
 	
+	if Input.is_action_just_pressed("ui_cancel"):
+		print_debug("Cancel pressed")
+		if not node_player_hand.is_empty():
+			draw_cards_from_deck_to_deck(1, node_player_hand, node_player_discard_deck)
+	
 	if not is_board_set_up:
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Console Cowboy", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Console Cowboy", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-		spawn_card_to_deck("Arcology Prime", node_player_hand)
-
 		spawn_card_to_deck("Arcology Prime", node_player_deck)
 		spawn_card_to_deck("Console Cowboy", node_player_deck)
 		spawn_card_to_deck("Arcology Prime", node_player_deck)

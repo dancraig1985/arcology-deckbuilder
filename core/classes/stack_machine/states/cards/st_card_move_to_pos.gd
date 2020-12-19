@@ -12,6 +12,8 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
+	host.is_acting = true
+	
 	var target_position = args.target_position
 	var node_tween = host.node_card_tween
 	state_env.node_tween = node_tween

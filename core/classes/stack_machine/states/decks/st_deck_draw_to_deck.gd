@@ -12,6 +12,8 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
+	host.is_acting = true
+	
 	if not host.is_empty():
 		var drawn_card = host.draw_card()
 		args.target_deck.add_card(drawn_card)

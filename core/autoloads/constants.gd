@@ -6,6 +6,11 @@ var OP_CARD_MOVE_SPEED = 0.5
 # Time in seconds between card draws on Decks
 var OP_DECK_DRAW_DELAY = 0.25
 
+const NODE_GROUP = {
+	CARDS = "CARDS",
+	DECKS = "DECKS"
+}
+
 
 const STACK_MACHINE_PATH: String = "res://core/classes/stack_machine/stack_machine.gd"
 const STACK_MACHINE: Script = preload(STACK_MACHINE_PATH)

@@ -12,14 +12,14 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start(): 
-	pass
+	host.is_acting = false
+
+# Usually called each step of the host, but can be called to run whenever
+func process(delta): 
+	return 1
 
 # Run once when the state is finished
 func on_end(): 
 	pass
 
-# Usually called each step of the host, but can be called to run whenever
-func process(delta): 
-	# return 0 to continue in this state
-	# return 1 to end state, return -1 to end state and process next state right away
-	return 1
+

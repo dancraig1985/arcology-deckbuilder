@@ -3,6 +3,10 @@ extends Node2D
 
 var DeckStackMachine
 
+var is_acting: bool = false
+
+export var is_facedown: bool = true
+
 export var deck_list: Dictionary = {
 	"Arcology Prime": 14,
 	"Console Cowboy": 6
@@ -15,6 +19,7 @@ onready var node_cards := $Cards
 
 
 func _ready() -> void:
+	add_to_group(Constants.NODE_GROUP.DECKS)
 	DeckStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_CARD_IDLE)
 
 func _process(delta) -> void:
@@ -22,6 +27,16 @@ func _process(delta) -> void:
 
 func get_screen_position() -> Vector2:
 	return position + get_parent().position
+
+func set_is_facedown(value: bool = true) -> void:
+	is_facedown = value
+	# TODO: more handling of flipping
+
+func set_is_active(value: bool) -> void:
+	is_acting = value
+
+func get_is_acting() -> bool:
+	return is_acting
 
 func set_deck_list(new_deck_list: Dictionary) -> void:
 	deck_list = new_deck_list
@@ -77,13 +92,13 @@ func refresh_card_positions() -> void:
 		if i < get_card_spots_count():
 			var card_spot = card_spots[i]
 			card.move_to_position(get_card_spot_position(card_spot))
-			card.set_is_facedown(false)
+			card.set_is_facedown(is_facedown)
 		else:
 			var spot_position = get_deck_spot_position()
 			var stacking_offset = Vector2(-i * 2, -i * 2)
 			var target_position = spot_position + stacking_offset
 			card.move_to_position(target_position)
-			card.set_is_facedown(true)
+			card.set_is_facedown(is_facedown)
 
 
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:

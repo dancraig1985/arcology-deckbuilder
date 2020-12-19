@@ -7,6 +7,7 @@ var card_data := {}
 var CardStackMachine
 
 var is_facedown: bool = false
+var is_acting: bool = false
 
 # Assigned on creation by Dealer
 onready var node_dealer: Node
@@ -25,8 +26,8 @@ onready var node_card_text := $CardDisplay/Front/VBoxContainer/TextPlate/CardTex
 
 
 func _ready():
+	add_to_group(Constants.NODE_GROUP.CARDS)
 	connect("card_data_updated", self, "_on_card_data_updated")
-	
 	node_card_collision.connect("mouse_entered", self, "_on_mouse_entered")
 	node_card_collision.connect("mouse_exited", self, "_on_mouse_exited")
 	
@@ -48,6 +49,12 @@ func set_card_data_value(key: String, value) -> void:
 
 func set_z_index(value: int = 0) -> void:
 	z_index = value
+
+func set_is_active(value: bool) -> void:
+	is_acting = value
+
+func get_is_acting() -> bool:
+	return is_acting
 
 func move_to_position(target_position: Vector2) -> void:
 	add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = target_position})

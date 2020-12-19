@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://core/scenes/main.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/backgrounds/bg_dim_city_1280x720.png" type="Texture" id=2]
 [ext_resource path="res://core/scenes/decks/player_hand.tscn" type="PackedScene" id=3]
 [ext_resource path="res://core/scenes/decks/player_deck.tscn" type="PackedScene" id=4]
 [ext_resource path="res://core/scenes/dealer.tscn" type="PackedScene" id=5]
+[ext_resource path="res://core/scenes/decks/player_discard_deck.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -28,3 +29,5 @@ __meta__ = {
 [node name="PlayerDeck" parent="Dealer/Decks" instance=ExtResource( 4 )]
 
 [node name="PlayerHand" parent="Dealer/Decks" instance=ExtResource( 3 )]
+
+[node name="PlayerDiscardDeck" parent="Dealer/Decks" instance=ExtResource( 6 )]
