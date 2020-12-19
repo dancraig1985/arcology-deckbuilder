@@ -6,4 +6,4 @@
 script = ExtResource( 1 )
 
 [node name="SpawnSpot" type="Node2D" parent="."]
-position = Vector2( 664.61, 17.818 )
+position = Vector2( 776.61, -90.182 )

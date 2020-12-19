@@ -6,4 +6,4 @@
 is_facedown = false
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 1428.28, 638.053 )
+position = Vector2( 1488, 888 )

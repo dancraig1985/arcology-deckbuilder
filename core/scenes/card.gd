@@ -50,6 +50,9 @@ func set_card_data_value(key: String, value) -> void:
 func set_z_index(value: int = 0) -> void:
 	z_index = value
 
+func set_card_scale(value: float = 1.0) -> void:
+	scale = Vector2(value, value)
+
 func set_is_active(value: bool) -> void:
 	is_acting = value
 
