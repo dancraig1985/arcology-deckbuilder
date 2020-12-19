@@ -3,7 +3,7 @@
 [ext_resource path="res://core/scenes/deck.tscn" type="PackedScene" id=1]
 
 [node name="PlayerDeck" instance=ExtResource( 1 )]
-card_scale_in_deck_spot = 0.5
+card_scale_in_deck_spot = 0.8
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 136, 560 )
+position = Vector2( 100, 650 )

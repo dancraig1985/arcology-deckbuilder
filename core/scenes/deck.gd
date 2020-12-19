@@ -63,13 +63,17 @@ func get_cards() -> Array:
 func get_cards_count() -> int:
 	return get_cards().size()
 
+func get_cards_top_index() -> int:
+	return get_cards().size() - 1
+
 func is_empty() -> bool:
 	return get_cards_count() < 1
 
 func draw_card():
-	var card_drawn = get_card_by_index(0)
+	var card_drawn = get_card_by_index(get_cards_top_index())
 	remove_card(card_drawn)
 	card_drawn.set_is_facedown(false)
+	card_drawn.set_z_index(z_index + 10000)
 	return card_drawn
 
 func draw_cards_to_deck(num_cards: int, target_deck: Node) -> void:

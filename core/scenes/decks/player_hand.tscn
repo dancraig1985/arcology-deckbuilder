@@ -4,13 +4,15 @@
 [ext_resource path="res://core/scenes/card_spot.tscn" type="PackedScene" id=2]
 
 [node name="PlayerHand" instance=ExtResource( 1 )]
+z_index = 1000
 is_facedown = false
+card_scale_in_deck_spot = 0.8
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 120, 890 )
+position = Vector2( 96, 920 )
 
 [node name="CardSpots" parent="." index="1"]
-position = Vector2( 800, 630 )
+position = Vector2( 832, 656 )
 
 [node name="CardSpot" parent="CardSpots" index="0" instance=ExtResource( 2 )]
 position = Vector2( -500, 100 )
