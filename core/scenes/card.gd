@@ -49,16 +49,8 @@ func set_card_data_value(key: String, value) -> void:
 func set_z_index(value: int = 0) -> void:
 	z_index = value
 
-
-func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
-	CardStackMachine.push(state_class, new_args)
-
-func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
-	CardStackMachine.add(state_class, new_args)
-
 func move_to_position(target_position: Vector2) -> void:
 	add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = target_position})
-
 
 func set_is_facedown(value: bool = true) -> void:
 	is_facedown = value
@@ -90,4 +82,8 @@ func _on_mouse_exited():
 func set_highlight_mouse_visible(value := false) -> void:
 	node_highlight_mouse.visible = value
 
+func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
+	CardStackMachine.push(state_class, new_args)
 
+func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
+	CardStackMachine.add(state_class, new_args)

@@ -18,6 +18,11 @@ func _ready():
 func _process(delta):
 	process_card_highlight_mouse()
 	
+	if Input.is_action_just_pressed("ui_accept"):
+		print_debug("Left button pressed")
+		if not node_player_deck.is_empty():
+			draw_cards_from_deck_to_deck(1, node_player_deck, node_player_hand)
+	
 	if not is_board_set_up:
 		spawn_card_to_deck("Arcology Prime", node_player_hand)
 		spawn_card_to_deck("Console Cowboy", node_player_hand)
@@ -54,6 +59,8 @@ func _process(delta):
 		is_board_set_up = true
 
 
+
+
 func instance_card(card_name: String = "Template") -> Node:
 	var card_node = CardScene.instance()
 	var card_data = DealerCardLibrary.get_card_data(card_name)
@@ -69,6 +76,12 @@ func spawn_card_to_deck(card_name: String, target_deck: Deck) -> void:
 	card_node.get_parent().remove_child(card_node)
 	card_node.position = $SpawnSpot.position
 	target_deck.add_card(card_node)
+
+func draw_cards_from_deck_to_deck(num_cards: int, 
+									source_deck: Node, 
+									target_deck: Node) -> void:
+	var cards_to_draw = min(source_deck.get_cards_count(), num_cards)
+	source_deck.draw_cards_to_deck(cards_to_draw, target_deck)
 
 
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:

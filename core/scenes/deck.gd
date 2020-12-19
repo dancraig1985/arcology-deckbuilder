@@ -1,6 +1,8 @@
 class_name Deck
 extends Node2D
 
+var DeckStackMachine
+
 export var deck_list: Dictionary = {
 	"Arcology Prime": 14,
 	"Console Cowboy": 6
@@ -13,7 +15,10 @@ onready var node_cards := $Cards
 
 
 func _ready() -> void:
-	pass
+	DeckStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_CARD_IDLE)
+
+func _process(delta) -> void:
+	DeckStackMachine.process(delta)
 
 func get_screen_position() -> Vector2:
 	return position + get_parent().position
@@ -36,13 +41,17 @@ func get_cards_count() -> int:
 	return get_cards().size()
 
 func is_empty() -> bool:
-	return get_cards_count() > 0
+	return get_cards_count() < 1
 
 func draw_card():
 	var card_drawn = get_card_by_index(0)
 	remove_card(card_drawn)
 	card_drawn.set_is_facedown(false)
 	return card_drawn
+
+func draw_cards_to_deck(num_cards: int, target_deck: Node) -> void:
+	for i in range(num_cards):
+		add_state(Constants.ST_DECK_DRAW_TO_DECK, {target_deck = target_deck})
 
 func get_card_by_index(index: int) -> Card:
 	return get_cards()[index]
@@ -75,5 +84,10 @@ func refresh_card_positions() -> void:
 			var target_position = spot_position + stacking_offset
 			card.move_to_position(target_position)
 			card.set_is_facedown(true)
-	
-	
+
+
+func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
+	DeckStackMachine.push(state_class, new_args)
+
+func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
+	DeckStackMachine.add(state_class, new_args)
