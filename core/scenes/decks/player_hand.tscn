@@ -8,7 +8,7 @@ z_index = 1000
 is_facedown = false
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 96, 920 )
+position = Vector2( 120, 824 )
 
 [node name="CardSpots" parent="." index="1"]
 position = Vector2( 832, 656 )

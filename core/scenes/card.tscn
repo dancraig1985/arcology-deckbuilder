@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://core/scenes/card.gd" type="Script" id=1]
 [ext_resource path="res://assets/art/card_art/arcology.png" type="Texture" id=2]
@@ -22,8 +22,37 @@ expand_margin_top = 4.0
 expand_margin_bottom = 4.0
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.1054, 0.1377, 0.17, 0.776471 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.093, 0.1234, 0.15, 0.713726 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.1071, 0.141695, 0.17, 0.388235 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.0793, 0.20313, 0.61, 0.760784 )
+border_blend = true
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.596078, 0.788235, 0.952941, 1 )
+bg_color = Color( 0.596078, 0.788235, 0.952941, 0.427451 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -69,6 +98,7 @@ __meta__ = {
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+custom_styles/panel = SubResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -76,6 +106,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="CardDisplay/Front"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 1.0
 mouse_filter = 2
 custom_constants/separation = 0
 __meta__ = {
@@ -84,17 +115,18 @@ __meta__ = {
 
 [node name="NamePlate" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer"]
 margin_right = 150.0
-margin_bottom = 43.0
+margin_bottom = 37.0
 mouse_filter = 2
+custom_styles/panel = SubResource( 5 )
 
 [node name="CardName" type="Label" parent="CardDisplay/Front/VBoxContainer/NamePlate"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 143.0
-margin_bottom = 36.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 146.0
+margin_bottom = 33.0
 size_flags_vertical = 1
 theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.261108, 0.670214, 0.96875, 1 )
+custom_colors/font_color = Color( 0.305882, 0.701961, 0.988235, 1 )
 text = "Arcology Card - Testing Longer Name"
 align = 1
 valign = 1
@@ -105,30 +137,54 @@ __meta__ = {
 }
 
 [node name="CardArt" type="TextureRect" parent="CardDisplay/Front/VBoxContainer"]
-margin_top = 43.0
+margin_top = 37.0
 margin_right = 150.0
-margin_bottom = 143.0
+margin_bottom = 137.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 
 [node name="TextPlate" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer"]
-margin_top = 143.0
+margin_top = 137.0
 margin_right = 150.0
-margin_bottom = 240.0
+margin_bottom = 241.0
 mouse_filter = 2
 size_flags_vertical = 3
 custom_styles/panel = SubResource( 2 )
 
-[node name="CardText" type="Label" parent="CardDisplay/Front/VBoxContainer/TextPlate"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 146.0
-margin_bottom = 93.0
+margin_bottom = 100.0
+
+[node name="IconsPanel" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer"]
+margin_right = 142.0
+margin_bottom = 14.0
+
+[node name="Icons" type="HBoxContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer/IconsPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 135.0
+margin_bottom = 7.0
+alignment = 1
+
+[node name="Effect1" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer"]
+margin_top = 18.0
+margin_right = 142.0
+margin_bottom = 96.0
+size_flags_vertical = 3
+
+[node name="CardText" type="Label" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer/Effect1"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 135.0
+margin_bottom = 71.0
 size_flags_vertical = 1
 theme = ExtResource( 3 )
-custom_colors/font_color = Color( 1, 0.588235, 0.192157, 1 )
-text = "Here are the details of what this card might do..."
+custom_colors/font_color = Color( 0.980392, 0.72549, 0.6, 1 )
+text = "Purchase: Kill one net-runner."
 align = 1
+valign = 1
 autowrap = true
 
 [node name="Back" type="TextureRect" parent="CardDisplay"]
@@ -142,6 +198,7 @@ texture = ExtResource( 4 )
 position = Vector2( -77.4207, -117.466 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardCollision"]
+visible = false
 position = Vector2( 75, 120 )
 shape = SubResource( 3 )
 

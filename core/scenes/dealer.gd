@@ -47,14 +47,17 @@ func instance_card(card_name: String = "Template") -> Node:
 	card_node.node_dealer = self
 	return card_node
 
-func spawn_cards_to_deck(card_name: String, num_cards: int, target_deck: Deck) -> void:
-	for i in range(num_cards):
-		#push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
-		push_state(Constants.ST_DEALER_SPAWN_CARDS_TO_DECK, {
-			card_name = card_name,
-			num_cards = 1,
-			target_deck = target_deck
-		})
+func spawn_cards_to_deck(card_list: Dictionary, target_deck: Deck) -> void:
+	for key in card_list.keys():
+		var card_name = key
+		var num_cards = card_list[card_name]
+		for i in range(num_cards):
+			#push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+			push_state(Constants.ST_DEALER_SPAWN_CARDS_TO_DECK, {
+				card_name = card_name,
+				num_cards = 1,
+				target_deck = target_deck
+			})
 
 func draw_cards_from_deck_to_deck(num_cards: int, 
 									source_deck: Node, 

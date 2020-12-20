@@ -6,4 +6,4 @@
 is_wait_for_refill_on_empty = true
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 100, 650 )
+position = Vector2( 120, 584 )

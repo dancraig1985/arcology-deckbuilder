@@ -22,7 +22,8 @@ onready var node_back := $CardDisplay/Back
 
 onready var node_card_name := $CardDisplay/Front/VBoxContainer/NamePlate/CardName
 onready var node_card_art := $CardDisplay/Front/VBoxContainer/CardArt
-onready var node_card_text := $CardDisplay/Front/VBoxContainer/TextPlate/CardText
+onready var node_card_text := $CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer/Effect1/CardText
+onready var node_card_icons := $CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer/IconsPanel/Icons
 
 
 func _ready():
@@ -71,12 +72,34 @@ func _on_card_data_updated(card) -> void:
 	node_card_name.text = card_data["Card Name"]
 	node_card_art.texture = load("res://assets/art/card_art/" + card_data["Card Art"] + ".png")
 	node_card_text.text = card_data["Card Text"]
+	remove_all_icons()
+	for icon in card_data["Card Icons"]:
+		add_card_icon(icon)
 
+func add_card_icon(icon_name: String) -> void:
+	var new_icon: Node
+	match icon_name:
+		"Crypto":
+			new_icon = Constants.SC_ICON_CRYPTO.instance()
+		"Heart":
+			new_icon = Constants.SC_ICON_HEART.instance()
+		"Guns":
+			new_icon = Constants.SC_ICON_GUNS.instance()
+		"Tech":
+			new_icon = Constants.SC_ICON_TECH.instance()
+		"Ninja":
+			new_icon = Constants.SC_ICON_NINJA.instance()
+		"Card Draw":
+			new_icon = Constants.SC_ICON_GREEN_UP.instance()
+	node_card_icons.add_child(new_icon)
+
+func remove_all_icons() -> void:
+	for card_icon in node_card_icons.get_children():
+		card_icon.queue_free()
 
 func _on_mouse_entered():
 	if node_dealer:
 		node_dealer.add_card_highlight_mouse_candidate(self)
-
 
 func _on_mouse_exited():
 	if node_dealer:

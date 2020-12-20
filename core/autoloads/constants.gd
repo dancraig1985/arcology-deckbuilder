@@ -20,10 +20,8 @@ var OP_CARD_DECK_SCALE: float = 0.6
 var OP_CARD_IN_HAND_SCALE: float = 1.0
 
 
-
-
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 6
+var BASE_CARD_DRAW_PER_TURN: int = 8
 
 const NODE_GROUPS = {
 	DEALERS = "DEALERS",
@@ -71,3 +69,11 @@ const ST_DEALER_TURN_START: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_start.gd")
 const ST_DEALER_TURN_END: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_end.gd")
+
+# Pre-loaded Scenes
+const SC_ICON_HEART = preload("res://core/scenes/card_icons/icon_heart.tscn")
+const SC_ICON_CRYPTO = preload("res://core/scenes/card_icons/icon_money.tscn")
+const SC_ICON_GUNS = preload("res://core/scenes/card_icons/icon_gun.tscn")
+const SC_ICON_TECH = preload("res://core/scenes/card_icons/icon_tech.tscn")
+const SC_ICON_NINJA = preload("res://core/scenes/card_icons/icon_ninja.tscn")
+const SC_ICON_GREEN_UP = preload("res://core/scenes/card_icons/icon_green_up.tscn")
