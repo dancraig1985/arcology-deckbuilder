@@ -1,5 +1,7 @@
 extends Node2D
 
+signal player_data_updated()
+
 var card_highlight_mouse_candidates := []
 
 var DealerCardLibrary := CardLibrary.new()
@@ -10,11 +12,26 @@ var CardScene := preload("res://core/scenes/card.tscn")
 
 var control_clicked: String = ""
 
+var player_data = {
+	"Name": "Reefpirate",
+	"Resources": {
+		"Crypto": 0,
+		"Guns": 0,
+		"Tech": 0,
+		"Ninja": 0
+	}
+}
+
 onready var node_player_deck := $Decks/PlayerDeck
 onready var node_player_hand := $Decks/PlayerHand
 onready var node_player_discard_deck := $Decks/PlayerDiscardDeck
 
 onready var node_turn_status_label:= $TurnPanel/StatusPanel/TurnStatusLabel
+onready var node_crypto_label:= $TurnPanel/ResourceHBox/CryptoCounter/Center/HBox/ResourceLabel
+onready var node_guns_label:= $TurnPanel/ResourceHBox/GunsCounter/Center/HBox/ResourceLabel
+onready var node_tech_label:= $TurnPanel/ResourceHBox/TechCounter/Center/HBox/ResourceLabel
+onready var node_ninja_label:= $TurnPanel/ResourceHBox/NinjaCounter/Center/HBox/ResourceLabel
+
 onready var node_progress_turn_button := $TurnPanel/ProgressTurnButton
 
 func _ready():
@@ -23,7 +40,10 @@ func _ready():
 	DealerStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_DEALER_IDLE)
 	add_state(Constants.ST_DEALER_GAME_START)
 	
+	connect("player_data_updated", self, "_on_player_data_updated")
 	node_progress_turn_button.connect("pressed", self, "_on_progress_turn_button_pressed")
+	
+	refresh_player_labels()
 
 func _process(delta):
 	process_card_highlight_mouse()
@@ -75,6 +95,26 @@ func shuffle_deck(target_deck: Deck) -> void:
 		target_deck = target_deck
 	})
 
+func set_player_data(new_data: Dictionary = {}) -> void:
+	player_data = new_data
+	emit_signal("player_data_updated")
+
+func get_player_data() -> Dictionary:
+	return player_data
+
+func get_player_data_key(key: String):
+	return get_player_data()[key]
+
+func set_player_resource(key: String, new_value: int) -> void:
+	var temp_player_data: Dictionary = get_player_data()
+	temp_player_data["Resources"][key] = new_value
+	if new_value < 1:
+		temp_player_data["Resources"].erase(key)
+	set_player_data(temp_player_data)
+
+func get_player_resource(key: String):
+	return get_player_data()["Resources"][key]
+
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:
 	card_highlight_mouse_candidates.append(candidate_card)
 
@@ -102,10 +142,17 @@ func process_card_highlight_mouse() -> void:
 		var card_to_highlight_mouse: Node = get_card_highlight_mouse_selection()
 		card_to_highlight_mouse.set_highlight_mouse_visible(true)
 
-
 func _on_progress_turn_button_pressed() -> void:
 	control_clicked = "Progress Turn" 
 
+func _on_player_data_updated():
+	refresh_player_labels()
+
+func refresh_player_labels() -> void:
+	node_crypto_label.text = str(get_player_resource("Crypto"))
+	node_guns_label.text = str(get_player_resource("Guns"))
+	node_tech_label.text = str(get_player_resource("Tech"))
+	node_ninja_label.text = str(get_player_resource("Ninja"))
 
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	DealerStackMachine.push(state_class, new_args)

@@ -6,7 +6,7 @@
 [ext_resource path="res://core/scenes/decks/player_deck.tscn" type="PackedScene" id=4]
 [ext_resource path="res://core/scenes/dealer.tscn" type="PackedScene" id=5]
 [ext_resource path="res://core/scenes/decks/player_discard_deck.tscn" type="PackedScene" id=6]
-[ext_resource path="res://core/scenes/ui_turn_panel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://core/scenes/turn_panel/ui_turn_panel.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node"]
 script = ExtResource( 1 )
@@ -34,7 +34,8 @@ __meta__ = {
 [node name="PlayerDiscardDeck" parent="Dealer/Decks" instance=ExtResource( 6 )]
 
 [node name="TurnPanel" parent="Dealer" instance=ExtResource( 7 )]
-margin_left = 1424.98
-margin_top = 595.455
-margin_right = 1574.98
-margin_bottom = 680.455
+margin_left = 278.6
+margin_top = 558.614
+margin_right = 707.6
+margin_bottom = 618.614
+rect_min_size = Vector2( 100, 20 )
