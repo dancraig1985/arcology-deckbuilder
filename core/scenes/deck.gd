@@ -121,8 +121,9 @@ func get_card_spots_count() -> int:
 	return get_card_spots().size()
 
 func set_card_spots_start(start_i: int = 0) -> void:
-	var cards_count = get_cards_count()
-	card_spots_start = min(start_i, cards_count - 1)
+	var cards_count: int = get_cards_count()
+	var by_one_offset: int = -1
+	card_spots_start = min(start_i, cards_count + by_one_offset)
 
 func get_card_spots_start() -> int:
 	return card_spots_start

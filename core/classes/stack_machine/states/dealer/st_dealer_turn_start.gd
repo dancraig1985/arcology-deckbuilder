@@ -36,10 +36,14 @@ func on_start():
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
 	if state_time > Constants.OP_DEALER_BOARD_ACTION_DELAY:
-		if Input.is_action_just_pressed("ui_accept"):
-			print_debug("Accept pressed")
-			var player_deck = host.node_player_deck
-			host.shuffle_deck(player_deck)
+		# we can use events from button presses
+		# to set variables in Dealer that Dealer States will 
+		# watch and handle. Handler must reset variable to "".
+		if host.control_clicked == "Progress Turn":
+			print_debug("Progress Turn button pressed")
+			host.control_clicked = ""
+			host.add_state(Constants.ST_DEALER_TURN_END)
+			return 1
 		if Input.is_action_just_pressed("ui_cancel"):
 			print_debug("Cancel pressed")
 			var player_discard_deck = host.node_player_discard_deck

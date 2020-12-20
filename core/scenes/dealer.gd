@@ -8,21 +8,26 @@ var DealerStackMachine
 
 var CardScene := preload("res://core/scenes/card.tscn")
 
-var is_board_set_up := false
-var is_acting: bool = false
+var control_clicked: String = ""
 
 onready var node_player_deck := $Decks/PlayerDeck
 onready var node_player_hand := $Decks/PlayerHand
 onready var node_player_discard_deck := $Decks/PlayerDiscardDeck
 
+onready var node_turn_status_label:= $TurnPanel/StatusPanel/TurnStatusLabel
+onready var node_progress_turn_button := $TurnPanel/ProgressTurnButton
 
 func _ready():
 	add_to_group(Constants.NODE_GROUPS.DEALERS)
+	
 	DealerStackMachine = Constants.STACK_MACHINE.new(self, Constants.ST_DEALER_IDLE)
 	add_state(Constants.ST_DEALER_GAME_START)
+	
+	node_progress_turn_button.connect("pressed", self, "_on_progress_turn_button_pressed")
 
 func _process(delta):
 	process_card_highlight_mouse()
+	node_turn_status_label.text = DealerStackMachine.get_current_state_name()
 	DealerStackMachine.process(delta)
 
 func get_is_any_actor_acting() -> bool:
@@ -95,14 +100,13 @@ func process_card_highlight_mouse() -> void:
 		card_to_highlight_mouse.set_highlight_mouse_visible(true)
 
 
+func _on_progress_turn_button_pressed() -> void:
+	control_clicked = "Progress Turn" 
+
+
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	DealerStackMachine.push(state_class, new_args)
 
 func add_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	DealerStackMachine.add(state_class, new_args)
 
-func set_is_acting(value: bool) -> void:
-	is_acting = value
-
-func get_is_acting() -> bool:
-	return is_acting

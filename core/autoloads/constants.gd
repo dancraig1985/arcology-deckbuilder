@@ -2,30 +2,28 @@ extends Node
 
 # SPEEDS AND TIMINGS
 # Time it takes to complete a Card Move Tween in seconds
-var OP_CARD_MOVE_SPEED = 0.3
+var OP_CARD_MOVE_SPEED = 0.4
 # Time in seconds between card draws on Decks
 var OP_DECK_DRAW_DELAY = 0.06
 # Time in seconds between card spawns from Dealer
 var OP_DEALER_SPAWN_DELAY = 0.01
 # End of Turn Delay in seconds
-var OP_END_OF_TURN_DELAY: float = 1.0
+var OP_END_OF_TURN_DELAY: float = 0.5
 # Minimum time per Dealer action in seconds
-var OP_DEALER_BOARD_ACTION_DELAY: float = 0.5
+var OP_DEALER_BOARD_ACTION_DELAY: float = 0.2
 # Minimum time per Dealer action in seconds
-var OP_DECK_BOARD_ACTION_DELAY: float = 0.5
+var OP_DECK_BOARD_ACTION_DELAY: float = 0.2
 
 # VISUAL CONSTANTS
 var OP_CARD_SHUFFLE_SCALE: float = 1.0
 var OP_CARD_DECK_SCALE: float = 0.6
 var OP_CARD_IN_HAND_SCALE: float = 1.0
-var OP_CARD_HAND_OVERFLOW_SCALE: float = 0.8
-var OP_CARD_DISCARD_SCALE: float = 0.6
 
 
 
 
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 4
+var BASE_CARD_DRAW_PER_TURN: int = 6
 
 const NODE_GROUPS = {
 	DEALERS = "DEALERS",

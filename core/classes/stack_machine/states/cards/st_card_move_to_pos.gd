@@ -21,10 +21,10 @@ func on_start():
 	node_tween.remove_all()
 	state_env.node_tween.interpolate_property(host, "position", 
 			host.position, target_position, Constants.OP_CARD_MOVE_SPEED, 
-			Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+			Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
 	state_env.node_tween.interpolate_property(host, "scale", 
 			host.scale, target_scale, Constants.OP_CARD_MOVE_SPEED, 
-			Tween.TRANS_QUART, Tween.EASE_IN_OUT)
+			Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	state_env.node_tween.start()
 
 # Usually called each step of the host, but can be called to run whenever
