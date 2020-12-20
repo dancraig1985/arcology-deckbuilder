@@ -51,8 +51,10 @@ func set_z_index(value: int = 0) -> void:
 func set_card_scale(value: float = 1.0) -> void:
 	scale = Vector2(value, value)
 
-func move_to_position(target_position: Vector2) -> void:
-	add_state(Constants.ST_CARD_MOVE_TO_POSITION, {target_position = target_position})
+func move_to_position(target_position: Vector2, target_scale: Vector2) -> void:
+	add_state(Constants.ST_CARD_MOVE_TO_POSITION, {
+		target_position = target_position,
+		target_scale = target_scale})
 
 func set_is_facedown(value: bool = true) -> void:
 	is_facedown = value

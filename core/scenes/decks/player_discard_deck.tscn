@@ -4,7 +4,6 @@
 
 [node name="PlayerDiscardDeck" instance=ExtResource( 1 )]
 is_facedown = false
-card_scale_in_deck_spot = 0.8
 
 [node name="DeckSpot" parent="." index="0"]
 position = Vector2( 1504, 920 )

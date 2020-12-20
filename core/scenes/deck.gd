@@ -10,9 +10,6 @@ var card_spots_end: int # derived from start and card_count
 
 export var is_facedown: bool = true
 export var is_wait_for_refill_on_empty: bool = false
-export var refill_deck: NodePath
-export var card_scale_in_deck_spot: float = 1.0
-export var card_scale_in_card_spots: float = 1.0
 
 export var deck_list: Dictionary = {
 	"Arcology Prime": 14,
@@ -41,12 +38,6 @@ func set_is_facedown(value: bool = true) -> void:
 
 func get_is_facedown() -> bool:
 	return is_facedown
-
-func set_card_scale_in_deck_spot(value: float = 1.0) -> void:
-	card_scale_in_deck_spot = value
-
-func set_card_scale_in_card_spots(value: float = 1.0) -> void:
-	card_scale_in_deck_spot = value
 
 func set_deck_list(new_deck_list: Dictionary) -> void:
 	deck_list = new_deck_list
@@ -102,21 +93,22 @@ func refresh_card_positions() -> void:
 	var card_spots_count = get_card_spots_count()
 	var cards = get_cards()
 	var cards_count = get_cards_count()
-	var is_facedown = get_is_facedown()
 	for i in range(cards_count):
 		var card = cards[i]
 		card.set_z_index(i)
 		if i < card_spots_count:
 			var card_spot = card_spots[i]
-			card.set_card_scale(card_scale_in_card_spots)
-			card.move_to_position(get_card_spot_position(card_spot))
+			var target_scale = Vector2(Constants.OP_CARD_IN_HAND_SCALE, 
+										Constants.OP_CARD_IN_HAND_SCALE)
+			card.move_to_position(get_card_spot_position(card_spot), target_scale)
 			card.set_is_facedown(is_facedown)
 		else:
 			var spot_position = get_deck_spot_position()
 			var stacking_offset = Vector2(-i * 2, -i * 2)
 			var target_position = spot_position + stacking_offset
-			card.set_card_scale(card_scale_in_deck_spot)
-			card.move_to_position(target_position)
+			var target_scale = Vector2(Constants.OP_CARD_DECK_SCALE, 
+										Constants.OP_CARD_DECK_SCALE)
+			card.move_to_position(target_position, target_scale)
 			card.set_is_facedown(is_facedown)
 
 func get_card_by_index(index: int) -> Card:

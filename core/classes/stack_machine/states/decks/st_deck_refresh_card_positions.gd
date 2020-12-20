@@ -24,17 +24,18 @@ func on_start():
 		card.set_z_index(i)
 		if i < card_spots_count:
 			var card_spot = card_spots[i]
-			var card_scale_in_card_spots = host.card_scale_in_card_spots
-			card.set_card_scale(card_scale_in_card_spots)
-			card.move_to_position(host.get_card_spot_position(card_spot))
+			var target_position = host.get_card_spot_position(card_spot)
+			var target_scale = Vector2(Constants.OP_CARD_IN_HAND_SCALE, 
+										Constants.OP_CARD_IN_HAND_SCALE)
+			card.move_to_position(target_position, target_scale)
 			card.set_is_facedown(is_facedown)
 		else:
 			var spot_position = host.get_deck_spot_position()
 			var stacking_offset = Vector2(-i * 2, -i * 2)
 			var target_position = spot_position + stacking_offset
-			var card_scale_in_deck_spot = host.card_scale_in_deck_spot
-			card.set_card_scale(card_scale_in_deck_spot)
-			card.move_to_position(target_position)
+			var target_scale = Vector2(Constants.OP_CARD_DECK_SCALE, 
+										Constants.OP_CARD_DECK_SCALE)
+			card.move_to_position(target_position, target_scale)
 			card.set_is_facedown(is_facedown)
 
 # Usually called each step of the host, but can be called to run whenever

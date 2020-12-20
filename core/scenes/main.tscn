@@ -27,7 +27,6 @@ __meta__ = {
 [node name="Decks" type="Node2D" parent="Dealer"]
 
 [node name="PlayerDeck" parent="Dealer/Decks" instance=ExtResource( 4 )]
-refill_deck = NodePath("../PlayerDiscardDeck")
 
 [node name="PlayerHand" parent="Dealer/Decks" instance=ExtResource( 3 )]
 

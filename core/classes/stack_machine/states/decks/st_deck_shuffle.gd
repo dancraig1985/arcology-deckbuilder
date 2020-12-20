@@ -21,6 +21,7 @@ func on_start():
 		cards_parent.remove_child(card)
 	
 	cards.shuffle()
+	Audio.play("ShufflingCards")
 	
 	for card in cards:
 		cards_parent.add_child(card)
@@ -28,7 +29,11 @@ func on_start():
 	for card in cards:
 		var rand_x = card.position.x + RNG.get_randi(75, -75)
 		var rand_y = card.position.y + RNG.get_randi(120, -120)
-		card.move_to_position(Vector2(rand_x, rand_y))
+		
+		var rand_pos = Vector2(rand_x, rand_y)
+		var shuffle_scale = Vector2(Constants.OP_CARD_SHUFFLE_SCALE,
+									Constants.OP_CARD_SHUFFLE_SCALE)
+		card.move_to_position(rand_pos, shuffle_scale)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
