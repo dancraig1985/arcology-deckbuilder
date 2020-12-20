@@ -89,9 +89,11 @@ func add_card_icon(icon_name: String) -> void:
 			new_icon = Constants.SC_ICON_TECH.instance()
 		"Ninja":
 			new_icon = Constants.SC_ICON_NINJA.instance()
-		"Card Draw":
+		"Draw":
 			new_icon = Constants.SC_ICON_GREEN_UP.instance()
-	node_card_icons.add_child(new_icon)
+	
+	if new_icon:
+		node_card_icons.add_child(new_icon)
 
 func remove_all_icons() -> void:
 	for card_icon in node_card_icons.get_children():

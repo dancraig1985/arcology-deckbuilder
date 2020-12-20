@@ -21,7 +21,7 @@ var OP_CARD_IN_HAND_SCALE: float = 1.0
 
 
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 8
+var BASE_CARD_DRAW_PER_TURN: int = 4
 
 const NODE_GROUPS = {
 	DEALERS = "DEALERS",
