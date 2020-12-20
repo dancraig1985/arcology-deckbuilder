@@ -24,17 +24,22 @@ func on_start():
 		print_debug("Cards to Draw: " + str(num_cards_to_draw) + " - Base: " + str(Constants.BASE_CARD_DRAW_PER_TURN))
 		print_debug("Cards in player_deck: " + str(player_deck_size))
 		print_debug("Cards short: " + str(num_cards_short))
-		# Dealer board actions are "pushed" not "added"
+		# Dealer board actions are "pushed" not "added
 		host.draw_cards_from_deck_to_deck(num_cards_short, player_deck, player_hand)
+		
+		## NEW STATE -> RESHUFFLE_DISCARD - I think it's finally 
+		## unique enough to get own state
 		host.shuffle_deck(player_deck)
 		host.draw_cards_from_deck_to_deck(-1, player_discard_deck, player_deck)
+		
+		## NEW STATE -> DRAW_PHASE - Can repeat if needed after reshuffles, etc.
 		host.draw_cards_from_deck_to_deck(num_cards_to_draw, player_deck, player_hand)
 		
 	else:
 		host.draw_cards_from_deck_to_deck(num_cards_to_draw, player_deck, player_hand)
 
 # Usually called each step of the host, but can be called to run whenever
-func process(delta):
+func process(delta): ## < -- TODO: Move most of this input stuff to new State
 	if state_time > Constants.OP_DEALER_BOARD_ACTION_DELAY:
 		# we can use events from button presses
 		# to set variables in Dealer that Dealer States will 
@@ -44,6 +49,12 @@ func process(delta):
 			host.control_clicked = ""
 			host.add_state(Constants.ST_DEALER_TURN_END)
 			return 1
+		if Input.is_action_just_pressed("ui_accept"):
+			print_debug("Accept pressed")
+			var resource_key = "Crypto"
+			var resource = host.get_player_resource(resource_key)
+			host.set_player_resource(resource_key, resource + 1)
+			Audio.play("EarningMoney")
 		if Input.is_action_just_pressed("ui_cancel"):
 			print_debug("Cancel pressed")
 			var player_discard_deck = host.node_player_discard_deck

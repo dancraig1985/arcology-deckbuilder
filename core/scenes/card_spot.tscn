@@ -4,6 +4,7 @@
 bg_color = Color( 0.09863, 0.0294, 0.21, 0.584314 )
 
 [node name="CardSpot" type="Node2D"]
+z_index = -20
 
 [node name="ColoredBox" type="Panel" parent="."]
 margin_left = -75.0

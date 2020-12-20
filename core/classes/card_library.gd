@@ -1,7 +1,7 @@
 class_name CardLibrary
 extends Node
 
-var cards := {
+var cards := { ## < -- TODO: Import this from JSON
 	"Template": {
 		"Card Name": "Name of Card",
 		"Card Art": "File name for card-art (.png assumed)",
@@ -25,7 +25,8 @@ var cards := {
 		"Card Art": "arcology",
 		"Card Text": "Cyber money.",
 		"Card Icons": [
-			"Crypto"
+			"Crypto",
+			"Draw"
 		]
 	},
 	"Console Cowboy": {
