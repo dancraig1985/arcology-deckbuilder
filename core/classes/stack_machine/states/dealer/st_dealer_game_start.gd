@@ -25,8 +25,7 @@ func on_start():
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
 	if state_time > Constants.OP_DEALER_BOARD_ACTION_DELAY:
-		host.add_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
-		host.add_state(Constants.ST_DEALER_TURN_START)
+		host.add_turn_state(Constants.ST_DEALER_TURN_START)
 		return 1
 	return 0
 

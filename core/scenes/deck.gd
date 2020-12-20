@@ -82,6 +82,11 @@ func draw_cards_to_deck(num_cards: int, target_deck: Node) -> void:
 	for i in range(num_cards):
 		add_state(Constants.ST_DECK_DRAW_TO_DECK, {target_deck = target_deck})
 
+func draw_card_to_deck(target_deck: Node) -> Card:
+	var card_drawn = draw_card()
+	target_deck.add_card(card_drawn)
+	return card_drawn
+
 func shuffle() -> void:
 	add_state(Constants.ST_DECK_SHUFFLE)
 

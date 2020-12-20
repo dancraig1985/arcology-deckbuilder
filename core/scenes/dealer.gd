@@ -79,7 +79,7 @@ func spawn_cards_to_deck(card_list: Dictionary, target_deck: Deck) -> void:
 				target_deck = target_deck
 			})
 
-func draw_cards_from_deck_to_deck(num_cards: int, 
+func draw_cards_from_deck_to_deck(num_cards: int, # -1 = all
 									source_deck: Node, 
 									target_deck: Node) -> void:
 	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
@@ -89,11 +89,38 @@ func draw_cards_from_deck_to_deck(num_cards: int,
 		target_deck = target_deck
 	})
 
+func draw_to_player_hand(source_deck: Node) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_TURN_DRAW_CARD, {
+		source_deck = source_deck
+	})
+
+func attempt_draw(source_deck: Node, target_deck: Node) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_TURN_ATTEMPT_DRAW, {
+		source_deck = source_deck,
+		target_deck = target_deck
+	})
+
+func reshuffle_discard() -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_TURN_RESHUFFLE_DISCARD)
+
+func evaluate_card_drawn(card_drawn: Node) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_TURN_EVALUATE_CARD_DRAWN, {
+		card_drawn = card_drawn
+	})
+
 func shuffle_deck(target_deck: Deck) -> void:
 	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	push_state(Constants.ST_DEALER_SHUFFLE_DECK, {
 		target_deck = target_deck
 	})
+
+func add_turn_state(state_class: Script) -> void:
+	add_state(state_class)
+	add_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 
 func set_player_data(new_data: Dictionary = {}) -> void:
 	player_data = new_data
@@ -102,14 +129,12 @@ func set_player_data(new_data: Dictionary = {}) -> void:
 func get_player_data() -> Dictionary:
 	return player_data
 
-func get_player_data_key(key: String):
+func get_player_data_value(key: String):
 	return get_player_data()[key]
 
 func set_player_resource(key: String, new_value: int) -> void:
 	var temp_player_data: Dictionary = get_player_data()
 	temp_player_data["Resources"][key] = new_value
-	if new_value < 1:
-		temp_player_data["Resources"].erase(key)
 	set_player_data(temp_player_data)
 
 func get_player_resource(key: String):

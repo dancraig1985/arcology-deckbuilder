@@ -46,6 +46,9 @@ func set_card_data_value(key: String, value) -> void:
 	card_data[key] = value
 	emit_signal("card_data_updated", self)
 
+func get_card_data_value(key: String):
+	return card_data[key]
+
 func set_z_index(value: int = 0) -> void:
 	z_index = value
 

@@ -6,9 +6,9 @@ var cards := { ## < -- TODO: Import this from JSON
 		"Card Name": "Name of Card",
 		"Card Art": "File name for card-art (.png assumed)",
 		"Card Text": "Card description.",
-		"Card Icons": [
-			"Crypto",
-			"Heart"
+		"Card Icons": [  # Card Icon strings are evaluated at:
+			"Crypto",    # card - add_card_icon
+			"Heart"      # turn_state - evaluate drawn card
 		],
 		"Effects": {}
 	},

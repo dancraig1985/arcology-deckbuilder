@@ -8,9 +8,9 @@ var OP_DECK_DRAW_DELAY = 0.06
 # Time in seconds between card spawns from Dealer
 var OP_DEALER_SPAWN_DELAY = 0.01
 # End of Turn Delay in seconds
-var OP_END_OF_TURN_DELAY: float = 0.5
+var OP_END_OF_TURN_DELAY: float = 1.0
 # Minimum time per Dealer action in seconds
-var OP_DEALER_BOARD_ACTION_DELAY: float = 0.2
+var OP_DEALER_BOARD_ACTION_DELAY: float = 0.1
 # Minimum time per Dealer action in seconds
 var OP_DECK_BOARD_ACTION_DELAY: float = 0.2
 
@@ -67,8 +67,19 @@ const ST_DEALER_GAME_START: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_game_start.gd")
 const ST_DEALER_TURN_START: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_start.gd")
+const ST_DEALER_TURN_ATTEMPT_DRAW: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_attempt_draw.gd")
+const ST_DEALER_TURN_RESHUFFLE_DISCARD: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_reshuffle_discard.gd")
+const ST_DEALER_TURN_DRAW_CARD: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_draw_card.gd")
+const ST_DEALER_TURN_EVALUATE_CARD_DRAWN: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_evaluate_card_drawn.gd")
+const ST_DEALER_TURN_INPUT: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_input.gd")
 const ST_DEALER_TURN_END: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_turn_end.gd")
+
 
 # Pre-loaded Scenes
 const SC_ICON_HEART = preload("res://core/scenes/card_icons/icon_heart.tscn")

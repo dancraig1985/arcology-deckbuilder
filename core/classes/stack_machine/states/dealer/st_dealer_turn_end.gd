@@ -16,12 +16,17 @@ func on_start():
 	var player_discard_deck: Node = host.node_player_discard_deck
 	var player_hand_size = player_hand.get_cards_count()
 	
+	host.set_player_resource("Crypto", 0)
+	host.set_player_resource("Guns", 0)
+	host.set_player_resource("Tech", 0)
+	host.set_player_resource("Ninja", 0)
+	
 	host.draw_cards_from_deck_to_deck(player_hand_size, player_hand, player_discard_deck)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
 	if state_time > Constants.OP_END_OF_TURN_DELAY:
-		host.add_state(Constants.ST_DEALER_TURN_START)
+		host.add_turn_state(Constants.ST_DEALER_TURN_START)
 		return 1
 	return 0
 
