@@ -11,15 +11,9 @@ func _init() -> void:
 	name = "Dealer - Draw Cards Deck-to-Deck"
 
 # Run once when the state starts
-func on_start():
-	var num_cards = args.num_cards # -1 to draw whole deck
-	var source_deck = args.source_deck
+func on_start(): 
 	var target_deck = args.target_deck
-	
-	if num_cards == -1:
-		num_cards = source_deck.get_cards_count()
-	
-	source_deck.draw_cards_to_deck(num_cards, target_deck)
+	target_deck.shuffle()
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):

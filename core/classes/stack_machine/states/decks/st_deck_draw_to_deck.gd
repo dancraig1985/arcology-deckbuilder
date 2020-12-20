@@ -12,6 +12,7 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
+	host.set_is_acting(true)
 	state_env.is_card_drawn = false	
 
 # Usually called each step of the host, but can be called to run whenever

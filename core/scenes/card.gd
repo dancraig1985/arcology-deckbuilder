@@ -37,11 +37,9 @@ func _ready():
 func _process(delta):
 	CardStackMachine.process(delta)
 
-
 func import_card_data_from_dict(imported_card_data: Dictionary) -> void:
 	card_data = imported_card_data
 	emit_signal("card_data_updated", self)
-
 
 func set_card_data_value(key: String, value) -> void:
 	card_data[key] = value

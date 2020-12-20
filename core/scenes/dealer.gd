@@ -23,12 +23,9 @@ func _ready():
 
 func _process(delta):
 	process_card_highlight_mouse()
-	# Only process state if all cards/decks are "at rest"
-	if not is_any_actor_acting():
-		DealerStackMachine.process(delta)
+	DealerStackMachine.process(delta)
 
-
-func is_any_actor_acting() -> bool:
+func get_is_any_actor_acting() -> bool:
 	var actors_acting: bool = false
 	for card in get_tree().get_nodes_in_group(Constants.NODE_GROUPS.CARDS):
 		actors_acting = card.is_acting
@@ -45,22 +42,28 @@ func instance_card(card_name: String = "Template") -> Node:
 	card_node.node_dealer = self
 	return card_node
 
-
 func spawn_cards_to_deck(card_name: String, num_cards: int, target_deck: Deck) -> void:
 	for i in range(num_cards):
-		add_state(Constants.ST_DEALER_SPAWN_CARDS_TO_DECK, {
+		#push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+		push_state(Constants.ST_DEALER_SPAWN_CARDS_TO_DECK, {
 			card_name = card_name,
 			num_cards = 1,
 			target_deck = target_deck
 		})
 
-
 func draw_cards_from_deck_to_deck(num_cards: int, 
 									source_deck: Node, 
 									target_deck: Node) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	push_state(Constants.ST_DEALER_DRAW_CARDS_DECK_TO_DECK, {
 		num_cards = num_cards,
 		source_deck = source_deck,
+		target_deck = target_deck
+	})
+
+func shuffle_deck(target_deck: Deck) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_SHUFFLE_DECK, {
 		target_deck = target_deck
 	})
 
@@ -72,7 +75,6 @@ func remove_card_highlight_mouse_candidate(card: Node) -> void:
 	while found_index != -1:
 		card_highlight_mouse_candidates.remove(found_index)
 		found_index = card_highlight_mouse_candidates.find(card)
-	
 	card.set_highlight_mouse_visible(false)
 
 func get_card_highlight_mouse_selection():

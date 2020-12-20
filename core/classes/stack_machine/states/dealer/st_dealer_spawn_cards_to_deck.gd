@@ -11,9 +11,7 @@ func _init() -> void:
 	name = "Dealer - Spawn Cards"
 
 # Run once when the state starts
-func on_start(): 
-	host.is_acting = true
-	
+func on_start():
 	# Spawn card from card name and add to target Deck
 	var card_node = host.instance_card(args.card_name)
 	card_node.position = host.get_node("SpawnSpot").position
@@ -22,7 +20,7 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
-	var draw_delay = Constants.OP_DECK_DRAW_DELAY
+	var draw_delay = Constants.OP_DEALER_SPAWN_DELAY
 	if state_time > draw_delay:
 		return 1
 	return 0

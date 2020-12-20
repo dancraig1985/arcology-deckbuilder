@@ -5,6 +5,9 @@ var DeckStackMachine
 
 var is_acting: bool = false
 
+var card_spots_start: int = 0
+var card_spots_end: int # derived from start and card_count
+
 export var is_facedown: bool = true
 export var is_wait_for_refill_on_empty: bool = false
 export var refill_deck: NodePath
@@ -36,6 +39,9 @@ func set_is_facedown(value: bool = true) -> void:
 	is_facedown = value
 	# TODO: more handling of flipping
 
+func get_is_facedown() -> bool:
+	return is_facedown
+
 func set_card_scale_in_deck_spot(value: float = 1.0) -> void:
 	card_scale_in_deck_spot = value
 
@@ -62,8 +68,18 @@ func get_cards_count() -> int:
 func get_cards_top_index() -> int:
 	return get_cards().size() - 1
 
+func get_cards_parent() -> Node:
+	return node_cards
+
 func is_empty() -> bool:
 	return get_cards_count() < 1
+
+func is_at_least_one_card_acting() -> bool:
+	var card_is_acting: bool = false
+	for card in get_cards():
+		if card.is_acting:
+			card_is_acting = true
+	return card_is_acting
 
 func draw_card():
 	var card_drawn = get_card_by_index(get_cards_top_index())
@@ -75,28 +91,22 @@ func draw_cards_to_deck(num_cards: int, target_deck: Node) -> void:
 	for i in range(num_cards):
 		add_state(Constants.ST_DECK_DRAW_TO_DECK, {target_deck = target_deck})
 
-func get_card_by_index(index: int) -> Card:
-	return get_cards()[index]
+func shuffle() -> void:
+	add_state(Constants.ST_DECK_SHUFFLE)
 
-func get_card_spots() -> Array:
-	return node_card_spots.get_children()
-
-func get_card_spots_count() -> int:
-	return get_card_spots().size()
-
-func get_card_spot_position(card_spot: Node) -> Vector2:
-	return card_spot.position + card_spot.get_parent().position
-
-func get_deck_spot_position() -> Vector2:
-	return node_deck_spot.position
+func add_refresh_card_positions() -> void:
+	add_state(Constants.ST_DECK_REFRESH_CARD_POSITIONS)
 
 func refresh_card_positions() -> void:
 	var card_spots = get_card_spots()
+	var card_spots_count = get_card_spots_count()
 	var cards = get_cards()
-	for i in range(get_cards_count()):
+	var cards_count = get_cards_count()
+	var is_facedown = get_is_facedown()
+	for i in range(cards_count):
 		var card = cards[i]
 		card.set_z_index(i)
-		if i < get_card_spots_count():
+		if i < card_spots_count:
 			var card_spot = card_spots[i]
 			card.set_card_scale(card_scale_in_card_spots)
 			card.move_to_position(get_card_spot_position(card_spot))
@@ -108,6 +118,41 @@ func refresh_card_positions() -> void:
 			card.set_card_scale(card_scale_in_deck_spot)
 			card.move_to_position(target_position)
 			card.set_is_facedown(is_facedown)
+
+func get_card_by_index(index: int) -> Card:
+	return get_cards()[index]
+
+func get_card_spots() -> Array:
+	return node_card_spots.get_children()
+
+func get_card_spots_count() -> int:
+	return get_card_spots().size()
+
+func set_card_spots_start(start_i: int = 0) -> void:
+	var cards_count = get_cards_count()
+	card_spots_start = min(start_i, cards_count - 1)
+
+func get_card_spots_start() -> int:
+	return card_spots_start
+
+func get_card_spots_end(cards_spot_start: int) -> int:
+	var card_spots_count = get_card_spots_count()
+	var cards_count = get_cards_count()
+	card_spots_end = card_spots_start + card_spots_count - 1
+	if card_spots_end >= cards_count:
+		card_spots_end = card_spots_end - cards_count
+	return card_spots_end
+
+func get_card_spot_position(card_spot: Node) -> Vector2:
+	return card_spot.position + card_spot.get_parent().position
+
+func is_valid_card_spot_index(index: int) -> bool:
+	var start_i = get_card_spots_start()
+	return index >= start_i and index <= get_card_spots_end(start_i)
+
+func get_deck_spot_position() -> Vector2:
+	return node_deck_spot.position
+
 
 # Private-ish functions
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:

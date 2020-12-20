@@ -12,7 +12,7 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start(): 
-	host.is_acting = false
+	host.set_is_acting(false)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 
