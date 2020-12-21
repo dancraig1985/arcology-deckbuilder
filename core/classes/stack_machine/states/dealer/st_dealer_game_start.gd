@@ -13,14 +13,14 @@ func _init() -> void:
 # Run once when the state starts
 func on_start():
 	var player_deck_card_list = host.DealerCardLibrary.get_deck_list("Player Deck")
-	var market_deck_card_list = host.DealerCardLibrary.get_deck_list("Market Deck")
 	var player_deck = host.node_player_deck
-	var market_deck = host.node_market_deck
-	var market_hand = host.node_market_hand
 	
 	host.shuffle_deck(player_deck)
 	host.spawn_cards_to_deck(player_deck_card_list, player_deck)
 	
+	var market_deck_card_list = host.DealerCardLibrary.get_deck_list("Market Deck")
+	var market_deck = host.node_market_deck
+	var market_hand = host.node_market_hand
 	for i in range(Constants.BASE_MARKET_CARD_DRAW_GAME_START):
 		host.attempt_draw(market_deck, market_hand)
 	

@@ -8,6 +8,7 @@ z_index = 1000
 is_facedown = false
 
 [node name="DeckSpot" parent="." index="0"]
+visible = false
 position = Vector2( 136, 888 )
 
 [node name="CardSpots" parent="." index="1"]

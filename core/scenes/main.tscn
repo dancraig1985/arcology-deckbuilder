@@ -29,16 +29,16 @@ __meta__ = {
 
 [node name="Decks" type="Node2D" parent="Dealer"]
 
+[node name="MarketDeck" parent="Dealer/Decks" instance=ExtResource( 8 )]
+
+[node name="MarketHand" parent="Dealer/Decks" instance=ExtResource( 9 )]
+z_index = 20
+
 [node name="PlayerDeck" parent="Dealer/Decks" instance=ExtResource( 4 )]
 
 [node name="PlayerHand" parent="Dealer/Decks" instance=ExtResource( 3 )]
 
 [node name="PlayerDiscardDeck" parent="Dealer/Decks" instance=ExtResource( 6 )]
-
-[node name="MarketDeck" parent="Dealer/Decks" instance=ExtResource( 8 )]
-
-[node name="MarketHand" parent="Dealer/Decks" instance=ExtResource( 9 )]
-z_index = 20
 
 [node name="TurnPanel" parent="Dealer" instance=ExtResource( 7 )]
 margin_left = 272.0

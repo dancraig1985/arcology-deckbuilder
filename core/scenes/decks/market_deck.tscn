@@ -4,6 +4,7 @@
 
 [node name="MarketDeck" instance=ExtResource( 1 )]
 position = Vector2( 0, -32 )
+is_for_sale_to_player = true
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 136, 440 )
+position = Vector2( 136, 296 )

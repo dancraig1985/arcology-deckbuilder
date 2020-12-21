@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://core/themes/panel_deck_spot.tres" type="StyleBox" id=1]
 [ext_resource path="res://fonts/Comfortaa-Bold.ttf" type="DynamicFontData" id=2]
@@ -13,6 +13,17 @@ size = 24
 outline_size = 1
 outline_color = Color( 0.0980392, 0.027451, 0.211765, 0.584314 )
 font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.8, 0.501961, 0.239216, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_color = Color( 0.0980392, 0.027451, 0.211765, 0.584314 )
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="TurnPanel" type="Panel"]
 anchor_right = 1.0
@@ -86,8 +97,8 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 64.0
 margin_bottom = 33.0
-rect_min_size = Vector2( 32, 24 )
 size_flags_horizontal = 3
+custom_styles/panel = SubResource( 6 )
 
 [node name="GunsCounter" parent="ResourceHBox" instance=ExtResource( 6 )]
 anchor_right = 0.0
@@ -95,8 +106,8 @@ anchor_bottom = 0.0
 margin_left = 68.0
 margin_right = 133.0
 margin_bottom = 33.0
-rect_min_size = Vector2( 32, 24 )
 size_flags_horizontal = 3
+custom_styles/panel = SubResource( 6 )
 
 [node name="TechCounter" parent="ResourceHBox" instance=ExtResource( 7 )]
 anchor_right = 0.0
@@ -104,8 +115,8 @@ anchor_bottom = 0.0
 margin_left = 137.0
 margin_right = 201.0
 margin_bottom = 33.0
-rect_min_size = Vector2( 32, 24 )
 size_flags_horizontal = 3
+custom_styles/panel = SubResource( 6 )
 
 [node name="NinjaCounter" parent="ResourceHBox" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -113,5 +124,5 @@ anchor_bottom = 0.0
 margin_left = 205.0
 margin_right = 270.0
 margin_bottom = 33.0
-rect_min_size = Vector2( 32, 24 )
 size_flags_horizontal = 3
+custom_styles/panel = SubResource( 6 )

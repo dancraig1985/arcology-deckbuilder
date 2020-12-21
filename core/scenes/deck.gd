@@ -9,6 +9,9 @@ var card_spots_start: int = 0
 var card_spots_end: int # derived from start and card_count
 
 export var is_facedown: bool = true
+export var is_for_sale_to_player: bool = false
+export var is_auto_refilled: bool = false # <- set true to cancel draw orders on decks
+											#  otherwise deck will keep trying to draw
 
 export var deck_name: String = "Player Deck"
 
@@ -90,23 +93,32 @@ func refresh_card_positions() -> void:
 	var card_spots_count = get_card_spots_count()
 	var cards = get_cards()
 	var cards_count = get_cards_count()
+	
+	var target_position: Vector2
+	var target_scale: Vector2
+	
 	for i in range(cards_count):
 		var card = cards[i]
 		card.set_z_index(i)
 		if i < card_spots_count:
 			var card_spot = card_spots[i]
-			var target_scale = Vector2(Constants.OP_CARD_IN_HAND_SCALE, 
+			target_position = get_card_spot_position(card_spot)
+			target_scale = Vector2(Constants.OP_CARD_IN_HAND_SCALE, 
 										Constants.OP_CARD_IN_HAND_SCALE)
-			card.move_to_position(get_card_spot_position(card_spot), target_scale)
-			card.set_is_facedown(is_facedown)
+			
 		else:
 			var spot_position = get_deck_spot_position()
-			var stacking_offset = Vector2(-i * 2, -i * 2)
-			var target_position = spot_position + stacking_offset
-			var target_scale = Vector2(Constants.OP_CARD_DECK_SCALE, 
+			var stacking_offset = Vector2(-i * 1, -i * 1)
+			target_position = spot_position + stacking_offset
+			target_scale = Vector2(Constants.OP_CARD_DECK_SCALE, 
 										Constants.OP_CARD_DECK_SCALE)
-			card.move_to_position(target_position, target_scale)
-			card.set_is_facedown(is_facedown)
+		
+		card.move_to_position(target_position, target_scale)
+		# the order of the following two methods is IMPORTANT
+		# this is probably not good
+		card.set_is_for_sale_to_player(is_for_sale_to_player)
+		card.set_is_facedown(is_facedown)
+		
 
 func get_card_by_index(index: int) -> Card:
 	return get_cards()[index]

@@ -16,8 +16,8 @@ func on_start():
 	var target_deck: Node = args.target_deck
 	var player_hand: Node = host.node_player_hand
 	
-	var card_drawn = source_deck.draw_card()
-	target_deck.add_card(card_drawn)
+	var card_drawn = source_deck.draw_card_to_deck(target_deck)
+	
 	if target_deck == player_hand:
 		host.evaluate_card_drawn(card_drawn)
 

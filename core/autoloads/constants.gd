@@ -2,7 +2,7 @@ extends Node
 
 # SPEEDS AND TIMINGS
 # Time it takes to complete a Card Move Tween in seconds
-var OP_CARD_MOVE_SPEED = 0.4
+var OP_CARD_MOVE_SPEED = 0.3
 # Time in seconds between card draws on Decks
 var OP_DECK_DRAW_DELAY = 0.06
 # Time in seconds between card spawns from Dealer
@@ -10,7 +10,7 @@ var OP_DEALER_SPAWN_DELAY = 0.01
 # End of Turn Delay in seconds
 var OP_END_OF_TURN_DELAY: float = 1.0
 # Minimum time per Dealer action in seconds
-var OP_DEALER_BOARD_ACTION_DELAY: float = 0.1
+var OP_DEALER_BOARD_ACTION_DELAY: float = 0.05
 # Minimum time per Dealer action in seconds
 var OP_DECK_BOARD_ACTION_DELAY: float = 0.2
 
@@ -21,18 +21,17 @@ var OP_CARD_IN_HAND_SCALE: float = 1.0
 
 
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 4
+var BASE_CARD_DRAW_PER_TURN: int = 5
 
-var BASE_MARKET_CARD_DRAW_GAME_START: int = 5
-var BASE_MARKET_CARD_DRAW_PER_TURN: int = 2
-var BASE_MARKET_DISCARD_PER_TURN: int = 1
+var BASE_MARKET_CARD_DRAW_GAME_START: int = 1
+var BASE_MARKET_CARD_DRAW_PER_TURN: int = 1
+var BASE_MARKET_DISCARD_PER_TURN: int = 0
 
 const NODE_GROUPS = {
 	DEALERS = "DEALERS",
 	CARDS = "CARDS",
 	DECKS = "DECKS"
 }
-
 
 const STACK_MACHINE_PATH: String = "res://core/classes/stack_machine/stack_machine.gd"
 const STACK_MACHINE: Script = preload(STACK_MACHINE_PATH)
@@ -92,3 +91,8 @@ const SC_ICON_GUNS = preload("res://core/scenes/card_icons/icon_gun.tscn")
 const SC_ICON_TECH = preload("res://core/scenes/card_icons/icon_tech.tscn")
 const SC_ICON_NINJA = preload("res://core/scenes/card_icons/icon_ninja.tscn")
 const SC_ICON_GREEN_UP = preload("res://core/scenes/card_icons/icon_green_up.tscn")
+
+const SC_RC_SM_ICON_CRYPTO = preload("res://core/scenes/turn_panel/resource_counters/crypto_counter_sm.tscn")
+const SC_RC_SM_ICON_GUNS = preload("res://core/scenes/turn_panel/resource_counters/guns_counter_sm.tscn")
+const SC_RC_SM_ICON_TECH = preload("res://core/scenes/turn_panel/resource_counters/tech_counter_sm.tscn")
+const SC_RC_SM_ICON_NINJA = preload("res://core/scenes/turn_panel/resource_counters/ninja_counter_sm.tscn")

@@ -16,6 +16,9 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): ## < -- TODO: Move most of this input stuff to new State
+	var player_name = host.human_player_name
+	host.set_all_highlight_targets(false)
+	host.highlight_all_affordable_targets(player_name)
 	if state_time > Constants.OP_DEALER_BOARD_ACTION_DELAY:
 		# we can use events from button presses
 		# to set variables in Dealer that Dealer States will 
@@ -26,22 +29,10 @@ func process(delta): ## < -- TODO: Move most of this input stuff to new State
 			host.control_clicked = ""
 			host.add_turn_state(Constants.ST_DEALER_TURN_END)
 			return 1
-		if Input.is_action_just_pressed("ui_accept"):
-			print_debug("Accept pressed")
-			var resource_key = "Crypto"
-			var resource = host.get_player_resource(resource_key)
-			host.set_player_resource(resource_key, resource + 1)
-			Audio.play("EarningMoney")
-		if Input.is_action_just_pressed("ui_cancel"):
-			print_debug("Cancel pressed")
-			var player_discard_deck = host.node_player_discard_deck
-			var player_hand = host.node_player_hand
-			if not player_hand.is_empty():
-				host.draw_cards_from_deck_to_deck(1, player_hand, player_discard_deck)
 	return 0
 
 # Run once when the state is finished
 func on_end(): 
-	pass
+	host.set_all_highlight_targets(false)
 
 

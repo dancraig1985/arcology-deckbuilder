@@ -5,9 +5,11 @@
 
 [node name="MarketHand" instance=ExtResource( 1 )]
 is_facedown = false
+is_for_sale_to_player = true
 
 [node name="DeckSpot" parent="." index="0"]
 visible = false
+position = Vector2( 136, 456 )
 
 [node name="CardSpots" parent="." index="1"]
 position = Vector2( 256, 288 )

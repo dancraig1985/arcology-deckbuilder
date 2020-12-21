@@ -17,17 +17,19 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
-	# If set to keep trying to draw a card until we get one
-	if host.is_empty():
+	var host_is_empty = host.is_empty()
+	if host_is_empty and host.is_auto_refilled:
 		# stuck here forever now :(
 		return 0
+	else:
+		if host_is_empty:
+			return 1
 	
 	if not state_env.is_card_drawn:
-		var drawn_card = host.draw_card()
-		args.target_deck.add_card(drawn_card)
-		host.set_is_acting(true)
 		state_env.is_card_drawn = true
-		state_time = 0
+		var target_deck = args.target_deck
+		var drawn_card = host.draw_card() # TODO: add args to this for index top/bottom
+		target_deck.add_card(drawn_card)
 		Audio.play("DealingCard")
 	
 	var draw_delay = Constants.OP_DECK_DRAW_DELAY

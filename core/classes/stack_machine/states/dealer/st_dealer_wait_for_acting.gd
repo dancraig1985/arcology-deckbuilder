@@ -16,7 +16,7 @@ func on_start():
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta):
-	var draw_delay = Constants.OP_DECK_DRAW_DELAY
+	var draw_delay = Constants.OP_DEALER_BOARD_ACTION_DELAY
 	if state_time > draw_delay and not host.get_is_any_actor_acting():
 		return 1
 	return 0

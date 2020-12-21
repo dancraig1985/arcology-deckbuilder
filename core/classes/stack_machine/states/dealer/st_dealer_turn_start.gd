@@ -13,16 +13,21 @@ func _init() -> void:
 # Run once when the state starts
 func on_start():
 	var player_deck: Node = host.node_player_deck
-	var player_deck_size: int = player_deck.get_cards_count()
 	var player_hand: Node = host.node_player_hand
-	var num_cards_to_draw: int = Constants.BASE_CARD_DRAW_PER_TURN
-	var num_cards_short: int = num_cards_to_draw - player_deck_size
-	print_debug("Cards to Draw: " + str(num_cards_to_draw) + " - Base: " + str(Constants.BASE_CARD_DRAW_PER_TURN))
-	print_debug("Cards in player_deck: " + str(player_deck_size))
-	print_debug("Cards short: " + str(num_cards_short))
 	
-	for i in range(num_cards_to_draw):
+	for i in range(Constants.BASE_CARD_DRAW_PER_TURN):
 		host.attempt_draw(player_deck, player_hand)
+	
+	var market_deck: Node = host.node_market_deck
+	var market_hand: Node = host.node_market_hand
+	
+	host.shuffle_deck(market_deck)
+	
+	for i in range(Constants.BASE_MARKET_DISCARD_PER_TURN):
+		host.attempt_draw(market_hand, market_deck)
+	
+	for i in range(Constants.BASE_MARKET_CARD_DRAW_PER_TURN):
+		host.attempt_draw(market_deck, market_hand)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): ## < -- TODO: Move most of this input stuff to new State

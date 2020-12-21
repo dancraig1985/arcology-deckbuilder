@@ -126,8 +126,8 @@ var cards := { ## < -- TODO: Import this from JSON
 			"Guns"
 		]
 	},
-	"Internal Spark": {
-		"Card Name": "Internal Spark",
+	"Inner Spark": {
+		"Card Name": "Inner Spark",
 		"Card Cost": {
 			"Crypto": 3
 		},
@@ -245,22 +245,20 @@ var decks := {
 		"Cousin Jim": 2,
 	},
 	"Market Deck": {
-		"Anarchist": 1,
+		"Anarchist": 4,
 		"Arcology Prime": 1,
-		"Cat Burglar": 1,
-		"Console Cowboy": 1,
-		"Cousin Jim": 1,
-		"Data Fence": 1,
-		"Fixer": 1,
-		"Hitman": 1,
-		"Internal Spark": 1,
-		"Jazz Dive": 1,
-		"Local Muscle": 1,
+		"Cat Burglar": 4,
+		"Console Cowboy": 4,
+		"Data Fence": 2,
+		"Fixer": 2,
+		"Hitman": 4,
+		"Inner Spark": 4,
+		"Jazz Dive": 4,
+		"Local Muscle": 4,
 		"LTA Veteran": 1,
-		"Market Stall": 1,
-		"Rainy Day": 1,
-		"Shadow Accountant": 1,
-		"Small-time Fixer": 1,
+		"Market Stall": 4,
+		"Shadow Accountant": 2,
+		"Small-time Fixer": 2,
 		"Viper Gang": 1,
 	}
 }

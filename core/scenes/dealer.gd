@@ -93,6 +93,9 @@ func spawn_cards_to_deck(card_list: Dictionary, target_deck: Deck) -> void:
 				target_deck = target_deck
 			})
 
+func get_all_cards() -> Array:
+	return get_tree().get_nodes_in_group(Constants.NODE_GROUPS.CARDS)
+
 func draw_cards_from_deck_to_deck(num_cards: int, # -1 = all
 									source_deck: Node, 
 									target_deck: Node) -> void:
@@ -161,6 +164,17 @@ func set_player_resource(player_name: String, key: String, new_value: int) -> vo
 func get_player_resource(player_name: String, key: String):
 	return get_player_data(player_name)["Resources"][key]
 
+func get_player_resources(player_name: String) -> Dictionary:
+	return get_player_data_value(player_name, "Resources")
+
+func get_player_can_afford_cost(player_name: String, target_cost: Dictionary) -> bool:
+	var can_afford = true
+	var resources = get_player_resources(player_name)
+	for cost_key in target_cost.keys():
+		if resources[cost_key] < target_cost[cost_key]:
+			can_afford = false
+	return can_afford
+
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:
 	card_highlight_mouse_candidates.append(candidate_card)
 
@@ -187,6 +201,18 @@ func process_card_highlight_mouse() -> void:
 			candidate.set_highlight_mouse_visible(false)
 		var card_to_highlight_mouse: Node = get_card_highlight_mouse_selection()
 		card_to_highlight_mouse.set_highlight_mouse_visible(true)
+
+func set_all_highlight_targets(value: bool) -> void:
+	for card in get_all_cards():
+		card.set_highlight_target_visible(value)
+
+func highlight_all_affordable_targets(player_name: String) -> void:
+	for card in get_all_cards():
+		var card_cost = card.get_card_cost()
+		if get_player_can_afford_cost(player_name, card_cost) \
+				and not card.get_is_facedown() \
+				and card.get_is_for_sale_to_player():
+			card.set_highlight_target_visible(true)
 
 func _on_progress_turn_button_pressed() -> void:
 	control_clicked = "Progress Turn" 
