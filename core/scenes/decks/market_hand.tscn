@@ -3,32 +3,35 @@
 [ext_resource path="res://core/scenes/deck.tscn" type="PackedScene" id=1]
 [ext_resource path="res://core/scenes/card_spot.tscn" type="PackedScene" id=2]
 
-[node name="PlayerHand" instance=ExtResource( 1 )]
-z_index = 1000
+[node name="MarketHand" instance=ExtResource( 1 )]
 is_facedown = false
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 136, 888 )
+visible = false
 
 [node name="CardSpots" parent="." index="1"]
-visible = false
-position = Vector2( 832, 656 )
-z_index = -100
+position = Vector2( 256, 288 )
 
 [node name="CardSpot" parent="CardSpots" index="0" instance=ExtResource( 2 )]
-position = Vector2( -500, 100 )
+position = Vector2( 70.4467, 117.559 )
 
 [node name="CardSpot2" parent="CardSpots" index="1" instance=ExtResource( 2 )]
-position = Vector2( -300, 100 )
+position = Vector2( 238.447, 117.559 )
 
 [node name="CardSpot3" parent="CardSpots" index="2" instance=ExtResource( 2 )]
-position = Vector2( -100, 100 )
+position = Vector2( 406.447, 117.559 )
 
 [node name="CardSpot4" parent="CardSpots" index="3" instance=ExtResource( 2 )]
-position = Vector2( 100, 100 )
+position = Vector2( 574.447, 117.559 )
 
 [node name="CardSpot5" parent="CardSpots" index="4" instance=ExtResource( 2 )]
-position = Vector2( 300, 100 )
+position = Vector2( 742.447, 117.559 )
 
 [node name="CardSpot6" parent="CardSpots" index="5" instance=ExtResource( 2 )]
-position = Vector2( 500, 100 )
+position = Vector2( 910.447, 117.559 )
+
+[node name="CardSpot7" parent="CardSpots" index="6" instance=ExtResource( 2 )]
+position = Vector2( 1078.45, 117.559 )
+
+[node name="CardSpot8" parent="CardSpots" index="7" instance=ExtResource( 2 )]
+position = Vector2( 1240, 120 )

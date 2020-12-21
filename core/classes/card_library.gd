@@ -204,7 +204,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		"Card Cost": {
 			"Crypto": 5
 		},
-		"Card Art": "rainy_day",
+		"Card Art": "shadow_accountant",
 		"Card Text": "What they don't earn is made up by their savings.",
 		"Card Icons": [
 			"Crypto",

@@ -9,12 +9,7 @@ var card_spots_start: int = 0
 var card_spots_end: int # derived from start and card_count
 
 export var is_facedown: bool = true
-export var is_wait_for_refill_on_empty: bool = false
 
-export var deck_list: Dictionary = {
-	"Arcology Prime": 14,
-	"Console Cowboy": 6
-}
 export var deck_name: String = "Player Deck"
 
 onready var node_deck_spot := $DeckSpot
@@ -38,9 +33,6 @@ func set_is_facedown(value: bool = true) -> void:
 
 func get_is_facedown() -> bool:
 	return is_facedown
-
-func set_deck_list(new_deck_list: Dictionary) -> void:
-	deck_list = new_deck_list
 
 func add_card(new_card: Node) -> void:
 	node_cards.add_child(new_card) # FIX: this is at pos(0,0)

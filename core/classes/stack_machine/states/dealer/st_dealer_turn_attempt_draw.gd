@@ -12,12 +12,14 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
+	var source_deck: Node = args.source_deck
+	var target_deck: Node = args.target_deck
 	var player_deck: Node = host.node_player_deck
-	
-	if player_deck.is_empty():
+	# Player has special reshuffle() trick for now
+	if source_deck.is_empty() and source_deck == player_deck:
 		host.reshuffle_discard()
-	else:
-		host.draw_to_player_hand(player_deck)
+	if not source_deck.is_empty():
+		host.draw_to_deck(source_deck, target_deck)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): ## < -- TODO: Move most of this input stuff to new State

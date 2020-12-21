@@ -19,10 +19,8 @@ func on_start():
 func process(delta):
 	# If set to keep trying to draw a card until we get one
 	if host.is_empty():
-		if host.is_wait_for_refill_on_empty:
-			return 0
-		else:
-			return 1
+		# stuck here forever now :(
+		return 0
 	
 	if not state_env.is_card_drawn:
 		var drawn_card = host.draw_card()

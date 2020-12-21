@@ -12,19 +12,33 @@ var CardScene := preload("res://core/scenes/card.tscn")
 
 var control_clicked: String = ""
 
+var human_player_name: String = "Reefpirate"
 var player_data = {
-	"Name": "Reefpirate",
-	"Resources": {
-		"Crypto": 0,
-		"Guns": 0,
-		"Tech": 0,
-		"Ninja": 0
-	}
+	human_player_name: {
+		"Name": human_player_name,
+		"Resources": {
+			"Crypto": 0,
+			"Guns": 0,
+			"Tech": 0,
+			"Ninja": 0
+		}
+	},
+	"Player Two": {
+		"Name": "Player Two",
+		"Resources": {
+			"Crypto": 0,
+			"Guns": 0,
+			"Tech": 0,
+			"Ninja": 0
+		}
+	},
 }
 
 onready var node_player_deck := $Decks/PlayerDeck
 onready var node_player_hand := $Decks/PlayerHand
 onready var node_player_discard_deck := $Decks/PlayerDiscardDeck
+onready var node_market_deck := $Decks/MarketDeck
+onready var node_market_hand := $Decks/MarketHand
 
 onready var node_turn_status_label:= $TurnPanel/StatusPanel/TurnStatusLabel
 onready var node_crypto_label:= $TurnPanel/ResourceHBox/CryptoCounter/Center/HBox/ResourceLabel
@@ -95,6 +109,13 @@ func draw_to_player_hand(source_deck: Node) -> void:
 		source_deck = source_deck
 	})
 
+func draw_to_deck(source_deck: Node, target_deck: Node) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_TURN_DRAW_CARD, {
+		source_deck = source_deck,
+		target_deck = target_deck
+	})
+
 func attempt_draw(source_deck: Node, target_deck: Node) -> void:
 	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	push_state(Constants.ST_DEALER_TURN_ATTEMPT_DRAW, {
@@ -122,23 +143,23 @@ func add_turn_state(state_class: Script) -> void:
 	add_state(state_class)
 	add_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 
-func set_player_data(new_data: Dictionary = {}) -> void:
-	player_data = new_data
+func set_player_data(player_name: String, new_data: Dictionary = {}) -> void:
+	player_data[player_name] = new_data
 	emit_signal("player_data_updated")
 
-func get_player_data() -> Dictionary:
-	return player_data
+func get_player_data(player_name: String) -> Dictionary:
+	return player_data[player_name]
 
-func get_player_data_value(key: String):
-	return get_player_data()[key]
+func get_player_data_value(player_name: String, key: String):
+	return get_player_data(player_name)[key]
 
-func set_player_resource(key: String, new_value: int) -> void:
-	var temp_player_data: Dictionary = get_player_data()
+func set_player_resource(player_name: String, key: String, new_value: int) -> void:
+	var temp_player_data: Dictionary = get_player_data(player_name)
 	temp_player_data["Resources"][key] = new_value
-	set_player_data(temp_player_data)
+	set_player_data(player_name, temp_player_data)
 
-func get_player_resource(key: String):
-	return get_player_data()["Resources"][key]
+func get_player_resource(player_name: String, key: String):
+	return get_player_data(player_name)["Resources"][key]
 
 func add_card_highlight_mouse_candidate(candidate_card: Node) -> void:
 	card_highlight_mouse_candidates.append(candidate_card)
@@ -174,10 +195,10 @@ func _on_player_data_updated():
 	refresh_player_labels()
 
 func refresh_player_labels() -> void:
-	node_crypto_label.text = str(get_player_resource("Crypto"))
-	node_guns_label.text = str(get_player_resource("Guns"))
-	node_tech_label.text = str(get_player_resource("Tech"))
-	node_ninja_label.text = str(get_player_resource("Ninja"))
+	node_crypto_label.text = str(get_player_resource(human_player_name, "Crypto"))
+	node_guns_label.text = str(get_player_resource(human_player_name, "Guns"))
+	node_tech_label.text = str(get_player_resource(human_player_name, "Tech"))
+	node_ninja_label.text = str(get_player_resource(human_player_name, "Ninja"))
 
 func push_state(state_class: Script, new_args: Dictionary = {}) -> void:
 	DealerStackMachine.push(state_class, new_args)

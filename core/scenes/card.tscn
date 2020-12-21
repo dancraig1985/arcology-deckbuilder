@@ -156,10 +156,12 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 146.0
 margin_bottom = 100.0
+mouse_filter = 2
 
 [node name="IconsPanel" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer"]
 margin_right = 142.0
 margin_bottom = 14.0
+mouse_filter = 2
 theme = ExtResource( 3 )
 
 [node name="Icons" type="HBoxContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer/IconsPanel"]
@@ -167,12 +169,14 @@ margin_left = 7.0
 margin_top = 7.0
 margin_right = 135.0
 margin_bottom = 7.0
+mouse_filter = 2
 alignment = 1
 
 [node name="Effect1" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer"]
 margin_top = 18.0
 margin_right = 142.0
 margin_bottom = 96.0
+mouse_filter = 2
 size_flags_vertical = 3
 
 [node name="CardText" type="Label" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer/Effect1"]
