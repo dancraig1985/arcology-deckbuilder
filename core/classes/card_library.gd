@@ -1,6 +1,15 @@
 class_name CardLibrary
 extends Node
 
+var card_icons = [ # and order they should appear in array/match
+	"Heart",
+	"Crypto",
+	"Guns",
+	"Ninja",
+	"Tech",
+	"Draw"
+]
+
 var cards := { ## < -- TODO: Import this from JSON
 	"Template": {
 		"Card Name": "Name of Card",
@@ -12,52 +21,252 @@ var cards := { ## < -- TODO: Import this from JSON
 		],
 		"Effects": {}
 	},
+	##########################################################
+	## MARKET CARDS ##########################################
+	"Anarchist": {
+		"Card Name": "Anarchist",
+		"Card Cost": {
+			"Crypto": 3
+		},
+		"Card Art": "anarchist",
+		"Card Text": "Morally flexible activist.",
+		"Card Icons": [
+			"Heart",
+			"Ninja"
+		]
+	},
+	"Arcology Prime": {
+		"Card Name": "Arcology Prime",
+		"Card Cost": {
+			"Crypto": 10
+		},
+		"Card Art": "arcology",
+		"Card Text": "A city in a steel tower.",
+		"Card Icons": [
+			"Crypto",
+			"Crypto",
+			"Crypto",
+			"Tech",
+			"Draw"
+		]
+	},
+	"Cat Burglar": {
+		"Card Name": "Cat Burglar",
+		"Card Cost": {
+			"Crypto": 6
+		},
+		"Card Art": "art_thief",
+		"Card Text": "No common criminal, he steals the rich stuff!",
+		"Card Icons": [
+			"Ninja",
+			"Ninja"
+		]
+	},
+	"Console Cowboy": {
+		"Card Name": "Console Cowboy",
+		"Card Cost": {
+			"Crypto": 5
+		},
+		"Card Art": "console_cowboy",
+		"Card Text": "Risking his neck for the tech.",
+		"Card Icons": [
+			"Heart",
+			"Tech"
+		]
+	},
+	"Cousin Jim": {
+		"Card Name": "Cousin Jim",
+		"Card Cost": {
+			"Crypto": 0
+		},
+		"Card Art": "cousin_jim",
+		"Card Text": "He's not much, but he's always been there for you.",
+		"Card Icons": [
+			"Health",
+			"Guns"
+		]
+	},
+	"Data Fence": {
+		"Card Name": "Data Fence",
+		"Card Cost": {
+			"Crypto": 6
+		},
+		"Card Art": "data_fence",
+		"Card Text": "You can get black market prices with the right info.",
+		"Card Icons": [
+			"Crypto",
+			"Crypto",
+			"Tech"
+		]
+	},
+	"Fixer": {
+		"Card Name": "Fixer",
+		"Card Cost": {
+			"Crypto": 7
+		},
+		"Card Art": "fixer",
+		"Card Text": "His office smells like crap but he knows people.",
+		"Card Icons": [
+			"Crypto",
+			"Crypto",
+			"Draw"
+		]
+	},
+	"Hitman": {
+		"Card Name": "Hitman",
+		"Card Cost": {
+			"Crypto": 6
+		},
+		"Card Art": "hitman",
+		"Card Text": "Quantities of ammunition have a quality all their own.",
+		"Card Icons": [
+			"Heart",
+			"Heart",
+			"Guns",
+			"Guns"
+		]
+	},
+	"Internal Spark": {
+		"Card Name": "Internal Spark",
+		"Card Cost": {
+			"Crypto": 3
+		},
+		"Card Art": "spark",
+		"Card Text": "I have an idea!",
+		"Card Icons": [
+			"Crypto",
+			"Draw"
+		]
+	},
+	"Jazz Dive": {
+		"Card Name": "Jazz Dive",
+		"Card Cost": {
+			"Crypto": 4
+		},
+		"Card Art": "jazz_dive",
+		"Card Text": "Hard-boiled tequila and woodwinds.",
+		"Card Icons": [
+			"Draw"
+		]
+	},
+	"Local Muscle": {
+		"Card Name": "Local Muscle",
+		"Card Cost": {
+			"Crypto": 3
+		},
+		"Card Art": "local_muscle",
+		"Card Text": "Cannon fodder good for collecting money.",
+		"Card Icons": [
+			"Heart",
+			"Guns"
+		]
+	},
+	"LTA Veteran": {
+		"Card Name": "LTA Veteran",
+		"Card Cost": {
+			"Crypto": 8
+		},
+		"Card Art": "lta_veteran",
+		"Card Text": "Survivor of the Glider War, now premium sprawl muscle.",
+		"Card Icons": [
+			"Heart",
+			"Heart",
+			"Guns",
+			"Guns",
+			"Guns",
+			"Ninja"
+		]
+	},
+	"Market Stall": {
+		"Card Name": "Market Stall",
+		"Card Cost": {
+			"Crypto": 2
+		},
+		"Card Art": "market_stall",
+		"Card Text": "Among the few remaining remnants of your legitimate previous life.",
+		"Card Icons": [
+			"Crypto"
+		]
+	},
 	"Rainy Day": {
 		"Card Name": "Rainy Day",
+		"Card Cost": {
+			"Crypto": 0
+		},
 		"Card Art": "rainy_day",
 		"Card Text": "Maybe tomorrow...",
 		"Card Icons": [
 		
 		]
 	},
-	"Arcology Prime": {
-		"Card Name": "Arcology Prime",
-		"Card Art": "arcology",
-		"Card Text": "Cyber money.",
+	"Shadow Accountant": {
+		"Card Name": "Shadow Accountant",
+		"Card Cost": {
+			"Crypto": 5
+		},
+		"Card Art": "rainy_day",
+		"Card Text": "What they don't earn is made up by their savings.",
 		"Card Icons": [
 			"Crypto",
-			"Draw"
+			"Crypto"
 		]
 	},
-	"Console Cowboy": {
-		"Card Name": "Console Cowboy",
-		"Card Art": "console_cowboy",
-		"Card Text": "Risking his neck for tech.",
+	"Small-time Fixer": {
+		"Card Name": "Small-time Fixer",
+		"Card Cost": {
+			"Crypto": 4
+		},
+		"Card Art": "small_time_fixer",
+		"Card Text": "An old local hook-up who may have a lead on a few things.",
 		"Card Icons": [
-			"Heart",
 			"Crypto",
-			"Tech"
+			"Crypto"
 		]
 	},
 	"Viper Gang": {
 		"Card Name": "Viper Gang",
+		"Card Cost": {
+			"Crypto": 6
+		},
 		"Card Art": "motorcycle_gang",
 		"Card Text": "Guns on bikes go vroom.",
 		"Card Icons": [
 			"Heart",
-			"Guns"
+			"Guns",
+			"Draw"
 		]
 	}
 }
 
 var decks := {
 	"Player Deck": {
-		"Arcology Prime": 3,
-		"Console Cowboy": 2
+		"Market Stall": 6, 
+		"Rainy Day": 4,
+		"Cousin Jim": 2,
+	},
+	"Market Deck": {
+		"Anarchist": 1,
+		"Arcology Prime": 1,
+		"Cat Burglar": 1,
+		"Console Cowboy": 1,
+		"Cousin Jim": 1,
+		"Data Fence": 1,
+		"Fixer": 1,
+		"Hitman": 1,
+		"Internal Spark": 1,
+		"Jazz Dive": 1,
+		"Local Muscle": 1,
+		"LTA Veteran": 1,
+		"Market Stall": 1,
+		"Rainy Day": 1,
+		"Shadow Accountant": 1,
+		"Small-time Fixer": 1,
+		"Viper Gang": 1,
 	}
 }
 
 func get_card_data(card_name: String) -> Dictionary:
 	return cards[card_name]
 
-
+func get_deck_list(deck_name: String) -> Dictionary:
+	return decks[deck_name]

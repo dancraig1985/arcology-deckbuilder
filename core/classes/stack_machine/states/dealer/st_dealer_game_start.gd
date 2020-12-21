@@ -12,12 +12,7 @@ func _init() -> void:
 
 # Run once when the state starts
 func on_start():
-	var card_list = {
-		"Arcology Prime": 6, 
-		"Console Cowboy": 4,
-		"Viper Gang": 2,
-		"Rainy Day": 8
-	}
+	var card_list = host.DealerCardLibrary.get_deck_list("Player Deck")
 	var player_deck = host.node_player_deck
 	host.shuffle_deck(player_deck)
 	host.spawn_cards_to_deck(card_list, player_deck)
