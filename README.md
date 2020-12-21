@@ -1,5 +1,5 @@
 # arcology-deckbuilder
-Cyberpunk deckbuilder strategy game
+Cyberpunk deckbuilding strategy game
 
 I'm going for less _Slay the Spire_ vibes, and more along the lines of _Mystic Vale_ crossed with _Race the Galaxy_, mixed with _Star Realms_ and plenty of cyberpunk themes.
 
