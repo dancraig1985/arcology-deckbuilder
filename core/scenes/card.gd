@@ -3,11 +3,12 @@ extends Node2D
 
 signal card_data_updated(card)
 signal is_facedown_updated(value)
-signal is_for_sale_to_player_updated(value
-)
+signal is_for_sale_to_player_updated(value)
+
 var card_data := {}
 var CardStackMachine
 
+var deck
 var is_facedown: bool = false
 var is_for_sale_to_player: bool = false
 
@@ -136,6 +137,7 @@ func set_cost_icons_visible(value: bool) -> void:
 func set_is_for_sale_to_player(value: bool = not is_for_sale_to_player) -> void:
 	is_for_sale_to_player = value
 	set_cost_icons_visible(value)
+	emit_signal("is_for_sale_to_player_updated", value)
 
 func get_is_for_sale_to_player() -> bool:
 	return is_for_sale_to_player

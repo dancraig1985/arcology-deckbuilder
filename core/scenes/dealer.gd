@@ -4,6 +4,9 @@ signal player_data_updated()
 
 var card_highlight_mouse_candidates := []
 
+var mouse_scroll_reload: float = 0.0
+var is_mouse_scrollable: bool = false
+var scroll_deck: Deck
 var DealerCardLibrary := CardLibrary.new()
 
 var DealerStackMachine
@@ -61,8 +64,31 @@ func _ready():
 
 func _process(delta):
 	process_card_highlight_mouse()
+	
+	if not is_mouse_scrollable:
+		mouse_scroll_reload += delta
+	if mouse_scroll_reload > Constants.OP_MOUSE_SCROLL_DELAY:
+		mouse_scroll_reload = 0
+		is_mouse_scrollable = true
+	
+	if card_highlight_mouse_candidates.size() > 0:
+		scroll_deck = get_card_highlight_mouse_selection().deck
+	else:
+		scroll_deck = node_player_deck
+	
 	node_turn_status_label.text = DealerStackMachine.get_current_state_name()
 	DealerStackMachine.process(delta)
+	
+	# Global (not game state dependent) Controls go here
+	if Input.is_action_just_released("ui_scroll_up") and is_mouse_scrollable:
+		is_mouse_scrollable = false
+		var scroll_increment: int = 1
+		scroll_deck.increment_card_spots_start(scroll_increment)
+	
+	if Input.is_action_just_released("ui_scroll_down") and is_mouse_scrollable:
+		is_mouse_scrollable = false
+		var scroll_increment: int = -1
+		scroll_deck.increment_card_spots_start(scroll_increment)
 
 func get_is_any_actor_acting() -> bool:
 	var actors_acting: bool = false
@@ -185,10 +211,10 @@ func remove_card_highlight_mouse_candidate(card: Node) -> void:
 		found_index = card_highlight_mouse_candidates.find(card)
 	card.set_highlight_mouse_visible(false)
 
-func get_card_highlight_mouse_selection():
+func get_card_highlight_mouse_selection() -> Card:
 	#find highest z-index node
 	var highest: int = -9999999
-	var selection: Node
+	var selection: Card
 	for candidate in card_highlight_mouse_candidates:
 		if candidate.z_index > highest:
 			selection = candidate

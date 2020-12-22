@@ -240,9 +240,9 @@ var cards := { ## < -- TODO: Import this from JSON
 
 var decks := {
 	"Player Deck": {
-		"Market Stall": 6, 
-		"Rainy Day": 4,
-		"Cousin Jim": 2,
+		"Market Stall": 5, 
+		"Rainy Day": 6,
+		"Cousin Jim": 1,
 	},
 	"Market Deck": {
 		"Anarchist": 4,

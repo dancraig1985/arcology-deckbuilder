@@ -18,7 +18,7 @@ func on_start():
 	var target_scale = args.target_scale
 	var node_tween = host.node_card_tween
 	state_env.node_tween = node_tween
-	node_tween.remove_all()
+	# node_tween.remove_all()
 	state_env.node_tween.interpolate_property(host, "position", 
 			host.position, target_position, Constants.OP_CARD_MOVE_SPEED, 
 			Tween.TRANS_QUAD, Tween.EASE_IN_OUT)
