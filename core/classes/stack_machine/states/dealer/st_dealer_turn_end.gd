@@ -22,7 +22,7 @@ func on_start():
 	host.set_player_resource(player_name, "Tech", 0)
 	host.set_player_resource(player_name, "Ninja", 0)
 	
-	host.draw_cards_from_deck_to_deck(player_hand_size, player_hand, player_discard_deck)
+	host.draw_cards_from_deck_to_deck(player_hand, player_discard_deck, player_hand_size, -1, -1)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): 

@@ -15,7 +15,7 @@ func on_start():
 	# Spawn card from card name and add to target Deck
 	var card_node = host.instance_card(args.card_name)
 	card_node.position = host.get_node("SpawnSpot").position
-	args.target_deck.add_card(card_node)
+	args.target_deck.add_card(card_node, -1)
 	Audio.play("EarningMoney")
 
 # Usually called each step of the host, but can be called to run whenever

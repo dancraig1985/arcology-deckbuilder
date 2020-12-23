@@ -13,6 +13,12 @@ var card_icons = [ # and order they should appear in array/match
 var cards := { ## < -- TODO: Import this from JSON
 	"Template": {
 		"Card Name": "Name of Card",
+		"Card Cost": {
+			"Crypto": 1,
+			# ... other costs go in here
+			# must be valid resource name (found in player Resources obj)
+			# ie. no Draw cost or Heart cost (for now)
+		},
 		"Card Art": "File name for card-art (.png assumed)",
 		"Card Text": "Card description.",
 		"Card Icons": [  # Card Icon strings are evaluated at:

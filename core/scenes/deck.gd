@@ -44,13 +44,17 @@ func set_is_facedown(value: bool = true) -> void:
 func get_is_facedown() -> bool:
 	return is_facedown
 
-func add_card(new_card: Node) -> void:
-	node_cards.add_child(new_card) # FIX: this is at pos(0,0)
+func add_card(new_card: Node, to_index: int = 0) -> void:
 	new_card.deck = self
+	node_cards.add_child(new_card)
+	var valid_to_index: int = get_valid_card_index(to_index)
+	node_cards.move_child(new_card, valid_to_index)
+	
 	# the order of the following two methods is IMPORTANT
 	# this is probably not good
 	new_card.set_is_for_sale_to_player(is_for_sale_to_player)
 	new_card.set_is_facedown(is_facedown)
+	
 	refresh_card_positions()
 
 func remove_card(card_to_remove: Node) -> void:
@@ -63,8 +67,11 @@ func get_cards() -> Array:
 func get_cards_count() -> int:
 	return get_cards().size()
 
-func get_cards_top_index() -> int:
-	return get_cards().size() - 1
+func get_cards_bottom_index() -> int:
+	var cards_count = get_cards_count()
+	if cards_count < 1:
+		return 0
+	return cards_count - 1
 
 func get_cards_parent() -> Node:
 	return node_cards
@@ -79,19 +86,40 @@ func is_at_least_one_card_acting() -> bool:
 			card_is_acting = true
 	return card_is_acting
 
-func draw_card():
-	var card_drawn = get_card_by_index(get_cards_top_index())
-	remove_card(card_drawn)
-	card_drawn.set_is_facedown(false)
+func draw_card(index: int) -> Card:
+	var deck_bottom_index = get_cards_bottom_index()
+	var valid_card_index: int = get_valid_card_index(index)
+	var card_drawn: Card = get_card_by_index(valid_card_index)
+	node_cards.remove_child(card_drawn)
+	Audio.play("DealingCard")
 	return card_drawn
 
-func draw_cards_to_deck(num_cards: int, target_deck: Node) -> void:
-	for i in range(num_cards):
-		add_state(Constants.ST_DECK_DRAW_TO_DECK, {target_deck = target_deck})
+func get_valid_card_index(index: int) -> int:
+	var deck_bottom_index = get_cards_bottom_index()
+	if index < 0 or index > deck_bottom_index:
+		return deck_bottom_index
+	return index
 
-func draw_card_to_deck(target_deck: Node) -> Card:
-	var card_drawn = draw_card()
-	target_deck.add_card(card_drawn)
+func draw_cards_to_deck(target_deck: Node,
+						num_cards: int = 1,
+						from_index: int = -1,
+						to_index: int = 0) -> void:
+	# card_index is not guaranteed position to draw from
+	# dependent on how many cards are in deck
+	# reliable bet is top of the deck (card_index = 0)
+	for i in range(num_cards):
+		add_state(Constants.ST_DECK_DRAW_TO_DECK, {
+				target_deck = target_deck,
+				num_cards = num_cards,
+				from_index = from_index,
+				to_index = to_index
+			})
+
+func draw_card_to_deck(target_deck: Node,
+						from_index: int = -1,
+						to_index: int = 0) -> Card:
+	var card_drawn = draw_card(from_index)
+	target_deck.add_card(card_drawn, to_index)
 	return card_drawn
 
 func shuffle() -> void:

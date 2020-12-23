@@ -108,48 +108,59 @@ func instance_card(card_name: String = "Template") -> Node:
 	return card_node
 
 func spawn_cards_to_deck(card_list: Dictionary, target_deck: Deck) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	for key in card_list.keys():
 		var card_name = key
 		var num_cards = card_list[card_name]
 		for i in range(num_cards):
-			#push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 			push_state(Constants.ST_DEALER_SPAWN_CARDS_TO_DECK, {
 				card_name = card_name,
 				num_cards = 1,
 				target_deck = target_deck
 			})
+		
 
 func get_all_cards() -> Array:
 	return get_tree().get_nodes_in_group(Constants.NODE_GROUPS.CARDS)
 
-func draw_cards_from_deck_to_deck(num_cards: int, # -1 = all
+func draw_cards_from_deck_to_deck(
 									source_deck: Node, 
-									target_deck: Node) -> void:
+									target_deck: Node,
+									num_cards: int = 0, # -1 = all) -> void:
+									from_index: int = -1, # -1 = bottom
+									to_index: int = 0
+								) -> void: 
 	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	push_state(Constants.ST_DEALER_DRAW_CARDS_DECK_TO_DECK, {
+		source_deck = source_deck,
+		target_deck = target_deck,
 		num_cards = num_cards,
-		source_deck = source_deck,
-		target_deck = target_deck
+		from_index = from_index,
+		to_index = to_index
 	})
 
-func draw_to_player_hand(source_deck: Node) -> void:
-	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
-	push_state(Constants.ST_DEALER_TURN_DRAW_CARD, {
-		source_deck = source_deck
-	})
-
-func draw_to_deck(source_deck: Node, target_deck: Node) -> void:
+func draw_to_deck(source_deck: Node,
+					target_deck: Node,
+					from_index: int = -1,
+					to_index: int = 0) -> void:
 	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	push_state(Constants.ST_DEALER_TURN_DRAW_CARD, {
 		source_deck = source_deck,
-		target_deck = target_deck
+		target_deck = target_deck,
+		from_index = from_index,
+		to_index = to_index
 	})
 
-func attempt_draw(source_deck: Node, target_deck: Node) -> void:
+func attempt_draw(source_deck: Node,
+					target_deck: Node,
+					from_index: int = -1,
+					to_index: int = 0) -> void:
 	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
 	push_state(Constants.ST_DEALER_TURN_ATTEMPT_DRAW, {
 		source_deck = source_deck,
-		target_deck = target_deck
+		target_deck = target_deck,
+		from_index = from_index,
+		to_index = to_index
 	})
 
 func reshuffle_discard() -> void:

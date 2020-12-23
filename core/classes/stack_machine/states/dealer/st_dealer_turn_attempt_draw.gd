@@ -14,9 +14,13 @@ func _init() -> void:
 func on_start():
 	var source_deck: Node = args.source_deck
 	var target_deck: Node = args.target_deck
+	var from_index: int = args.from_index
+	var to_index: int = args.to_index
 	var player_deck: Node = host.node_player_deck
 	
-	host.draw_to_deck(source_deck, target_deck)
+	
+	host.draw_to_deck(source_deck, target_deck, from_index, to_index)
+	
 	# Player has special reshuffle() trick for now
 	if source_deck.is_empty() and source_deck == player_deck:
 		host.reshuffle_discard()

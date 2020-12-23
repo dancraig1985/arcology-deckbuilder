@@ -14,9 +14,11 @@ func _init() -> void:
 func on_start():
 	var source_deck: Node = args.source_deck
 	var target_deck: Node = args.target_deck
+	var from_index: int = args.from_index
+	var to_index: int = args.to_index
 	var player_hand: Node = host.node_player_hand
 	
-	var card_drawn = source_deck.draw_card_to_deck(target_deck)
+	var card_drawn = source_deck.draw_card_to_deck(target_deck, from_index, to_index)
 	
 	if target_deck == player_hand:
 		host.evaluate_card_drawn(card_drawn)

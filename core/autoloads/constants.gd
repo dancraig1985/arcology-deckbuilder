@@ -2,7 +2,7 @@ extends Node
 
 # SPEEDS AND TIMINGS
 # Delay before next mouse scroll wheel input
-var OP_MOUSE_SCROLL_DELAY: float = 0.1
+var OP_MOUSE_SCROLL_DELAY: float = 0.16
 # Time it takes to complete a Card Move Tween in seconds
 var OP_CARD_MOVE_SPEED = 0.2
 # Time in seconds between card draws on Decks

@@ -19,18 +19,19 @@ func on_start():
 func process(delta):
 	var host_is_empty = host.is_empty()
 	if host_is_empty and host.is_auto_refilled:
-		# stuck here forever now :(
+		# stuck here forever now!
+		# must be refilled by dealer to continue
 		return 0
 	else:
 		if host_is_empty:
 			return 1
-	
 	if not state_env.is_card_drawn:
-		state_env.is_card_drawn = true
 		var target_deck = args.target_deck
-		var drawn_card = host.draw_card() # TODO: add args to this for index top/bottom
-		target_deck.add_card(drawn_card)
-		Audio.play("DealingCard")
+		var from_index = args.from_index
+		var to_index = args.to_index
+		
+		var drawn_card = host.draw_card_to_deck(target_deck, from_index, to_index)
+		state_env.is_card_drawn = true
 	
 	var draw_delay = Constants.OP_DECK_DRAW_DELAY
 	if state_time > draw_delay and state_env.is_card_drawn:

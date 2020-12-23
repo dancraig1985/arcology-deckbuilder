@@ -16,7 +16,7 @@ func on_start():
 	var player_hand: Node = host.node_player_hand
 	
 	for i in range(Constants.BASE_CARD_DRAW_PER_TURN):
-		host.attempt_draw(player_deck, player_hand)
+		host.attempt_draw(player_deck, player_hand, -1, 0)
 	
 	var market_deck: Node = host.node_market_deck
 	var market_hand: Node = host.node_market_hand
@@ -24,10 +24,10 @@ func on_start():
 	host.shuffle_deck(market_deck)
 	
 	for i in range(Constants.BASE_MARKET_DISCARD_PER_TURN):
-		host.attempt_draw(market_hand, market_deck)
+		host.attempt_draw(market_hand, market_deck, -1, 0)
 	
 	for i in range(Constants.BASE_MARKET_CARD_DRAW_PER_TURN):
-		host.attempt_draw(market_deck, market_hand)
+		host.attempt_draw(market_deck, market_hand, -1, -1)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): ## < -- TODO: Move most of this input stuff to new State

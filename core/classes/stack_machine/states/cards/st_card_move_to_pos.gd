@@ -32,6 +32,7 @@ func process(delta):
 	var tween = state_env.node_tween
 	if not tween.is_active():
 		tween.remove_all()
+		Audio.play("DealingCard")
 		return 1
 	
 	var distance_to_target = args.target_position - host.position

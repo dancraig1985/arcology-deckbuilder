@@ -4,6 +4,7 @@
 [ext_resource path="res://core/scenes/card_spot.tscn" type="PackedScene" id=2]
 
 [node name="MarketHand" instance=ExtResource( 1 )]
+z_index = 1000
 is_facedown = false
 is_for_sale_to_player = true
 

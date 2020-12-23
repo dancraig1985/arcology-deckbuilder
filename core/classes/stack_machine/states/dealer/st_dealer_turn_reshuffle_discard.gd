@@ -16,7 +16,7 @@ func on_start():
 	var player_discard_deck: Node = host.node_player_discard_deck
 	
 	host.shuffle_deck(player_deck)
-	host.draw_cards_from_deck_to_deck(-1, player_discard_deck, player_deck)
+	host.draw_cards_from_deck_to_deck(player_discard_deck, player_deck, -1, -1, 0)
 
 # Usually called each step of the host, but can be called to run whenever
 func process(delta): ## < -- TODO: Move most of this input stuff to new State
