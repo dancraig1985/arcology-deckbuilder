@@ -10,6 +10,34 @@ var card_icons = [ # and order they should appear in array/match
 	"Draw"
 ]
 
+var decks := {
+	"Player Deck": {
+		"Market Stall": 5, 
+		"Rainy Day": 6,
+		"Cousin Jim": 1,
+		"Viper Gang": 2,
+		"Anarchist": 4,
+		"Inner Spark": 4,
+	},
+	"Market Deck": {
+		"Anarchist": 4,
+		"Arcology Prime": 1,
+		"Cat Burglar": 4,
+		"Console Cowboy": 4,
+		"Data Fence": 2,
+		"Fixer": 2,
+		"Hitman": 4,
+		"Inner Spark": 4,
+		"Jazz Dive": 4,
+		"Local Muscle": 4,
+		"LTA Veteran": 1,
+		"Market Stall": 4,
+		"Shadow Accountant": 2,
+		"Small-time Fixer": 2,
+		"Viper Gang": 1,
+	}
+}
+
 var cards := { ## < -- TODO: Import this from JSON
 	"Template": {
 		"Card Name": "Name of Card",
@@ -241,31 +269,6 @@ var cards := { ## < -- TODO: Import this from JSON
 			"Guns",
 			"Draw"
 		]
-	}
-}
-
-var decks := {
-	"Player Deck": {
-		"Market Stall": 5, 
-		"Rainy Day": 6,
-		"Cousin Jim": 1,
-	},
-	"Market Deck": {
-		"Anarchist": 4,
-		"Arcology Prime": 1,
-		"Cat Burglar": 4,
-		"Console Cowboy": 4,
-		"Data Fence": 2,
-		"Fixer": 2,
-		"Hitman": 4,
-		"Inner Spark": 4,
-		"Jazz Dive": 4,
-		"Local Muscle": 4,
-		"LTA Veteran": 1,
-		"Market Stall": 4,
-		"Shadow Accountant": 2,
-		"Small-time Fixer": 2,
-		"Viper Gang": 1,
 	}
 }
 

@@ -8,28 +8,29 @@ z_index = 1000
 is_facedown = false
 
 [node name="DeckSpot" parent="." index="0"]
-visible = false
-position = Vector2( 136, 888 )
+position = Vector2( 288, 832 )
 
 [node name="CardSpots" parent="." index="1"]
-visible = false
-position = Vector2( 832, 656 )
+position = Vector2( 952, 664 )
 z_index = -100
 
 [node name="CardSpot" parent="CardSpots" index="0" instance=ExtResource( 2 )]
-position = Vector2( -500, 100 )
+position = Vector2( -496, 96 )
 
 [node name="CardSpot2" parent="CardSpots" index="1" instance=ExtResource( 2 )]
-position = Vector2( -300, 100 )
+position = Vector2( -320, 96 )
 
 [node name="CardSpot3" parent="CardSpots" index="2" instance=ExtResource( 2 )]
-position = Vector2( -100, 100 )
+position = Vector2( -144, 96 )
 
 [node name="CardSpot4" parent="CardSpots" index="3" instance=ExtResource( 2 )]
-position = Vector2( 100, 100 )
+position = Vector2( 32, 96 )
 
 [node name="CardSpot5" parent="CardSpots" index="4" instance=ExtResource( 2 )]
-position = Vector2( 300, 100 )
+position = Vector2( 208, 96 )
 
 [node name="CardSpot6" parent="CardSpots" index="5" instance=ExtResource( 2 )]
-position = Vector2( 500, 100 )
+position = Vector2( 384, 96 )
+
+[node name="CardSpot7" parent="CardSpots" index="6" instance=ExtResource( 2 )]
+position = Vector2( 552, 96 )
