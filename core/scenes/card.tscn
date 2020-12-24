@@ -147,7 +147,7 @@ __meta__ = {
 
 [node name="NamePlate" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer"]
 margin_right = 150.0
-margin_bottom = 37.0
+margin_bottom = 38.0
 mouse_filter = 2
 custom_styles/panel = SubResource( 4 )
 
@@ -155,28 +155,30 @@ custom_styles/panel = SubResource( 4 )
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 146.0
-margin_bottom = 33.0
+margin_bottom = 34.0
 size_flags_vertical = 1
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 0.66, 0.83, 1, 1 )
+custom_constants/line_spacing = -2
 text = "Arcology Card - Testing Longer Name"
 align = 1
 valign = 1
 autowrap = true
 uppercase = true
+max_lines_visible = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="CardArt" type="TextureRect" parent="CardDisplay/Front/VBoxContainer"]
-margin_top = 37.0
+margin_top = 38.0
 margin_right = 150.0
-margin_bottom = 137.0
+margin_bottom = 138.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 
 [node name="TextPlate" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer"]
-margin_top = 137.0
+margin_top = 138.0
 margin_right = 150.0
 margin_bottom = 241.0
 mouse_filter = 2
@@ -187,7 +189,7 @@ custom_styles/panel = SubResource( 5 )
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 146.0
-margin_bottom = 100.0
+margin_bottom = 99.0
 mouse_filter = 2
 
 [node name="IconsPanel" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer"]
@@ -207,7 +209,7 @@ alignment = 1
 [node name="Effect1" type="PanelContainer" parent="CardDisplay/Front/VBoxContainer/TextPlate/VBoxContainer"]
 margin_top = 18.0
 margin_right = 142.0
-margin_bottom = 96.0
+margin_bottom = 95.0
 mouse_filter = 2
 size_flags_vertical = 3
 
@@ -215,14 +217,16 @@ size_flags_vertical = 3
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 135.0
-margin_bottom = 71.0
+margin_bottom = 70.0
 size_flags_vertical = 1
 theme = ExtResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_constants/line_spacing = -2
 text = "Purchase: Kill one net-runner."
 align = 1
 valign = 1
 autowrap = true
+max_lines_visible = 4
 
 [node name="Back" type="TextureRect" parent="CardDisplay"]
 visible = false
