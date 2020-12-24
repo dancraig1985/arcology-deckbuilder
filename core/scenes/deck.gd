@@ -122,6 +122,11 @@ func draw_card_to_deck(target_deck: Node,
 	target_deck.add_card(card_drawn, to_index)
 	return card_drawn
 
+func draw_card_node_to_deck(target_deck: Deck, target_card: Card):
+	remove_card(target_card)
+	target_deck.add_card(target_card, -1)
+	refresh_card_positions()
+
 func shuffle() -> void:
 	add_state(Constants.ST_DECK_SHUFFLE)
 
@@ -167,8 +172,6 @@ func refresh_card_positions() -> void:
 			target_scale = Vector2(Constants.OP_CARD_DECK_SCALE, 
 										Constants.OP_CARD_DECK_SCALE)
 			card.move_to_position(target_position, target_scale)
-		
-		
 
 func get_card_by_index(index: int) -> Card:
 	return get_cards()[index]

@@ -14,10 +14,7 @@ var decks := {
 	"Player Deck": {
 		"Market Stall": 5, 
 		"Rain": 6,
-		"Cousin Jim": 1,
-		"Viper Biker Gang": 2,
-		"Anarchist": 4,
-		"Inner Spark": 4,
+		"Cousin Jim": 1
 	},
 	"Market Deck": {
 		"Anarchist": 4,

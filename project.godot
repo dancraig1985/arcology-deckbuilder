@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://core/classes/card_library.gd"
 }, {
 "base": "Node2D",
+"class": "Dealer",
+"language": "GDScript",
+"path": "res://core/scenes/dealer.gd"
+}, {
+"base": "Node2D",
 "class": "Deck",
 "language": "GDScript",
 "path": "res://core/scenes/deck.gd"
@@ -32,6 +37,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "Card": "",
 "CardLibrary": "",
+"Dealer": "",
 "Deck": "",
 "StackMachineState": ""
 }

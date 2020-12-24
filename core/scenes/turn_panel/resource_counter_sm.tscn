@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/art/icons/money.png" type="Texture" id=1]
-[ext_resource path="res://core/themes/main_theme.tres" type="Theme" id=2]
+[ext_resource path="res://core/themes/main_theme_sm_font.tres" type="Theme" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.878431, 0.513726, 0.192157, 1 )
@@ -42,19 +42,21 @@ __meta__ = {
 }
 
 [node name="HBox" type="HBoxContainer" parent="Center"]
-margin_right = 46.0
-margin_bottom = 30.0
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 38.0
+margin_bottom = 23.0
 
 [node name="ResourceTexture" type="TextureRect" parent="Center/HBox"]
 margin_right = 12.0
-margin_bottom = 30.0
+margin_bottom = 16.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="ResourceLabel" type="Label" parent="Center/HBox"]
 margin_left = 16.0
-margin_right = 46.0
-margin_bottom = 30.0
+margin_right = 30.0
+margin_bottom = 16.0
 rect_min_size = Vector2( 14, 14 )
 size_flags_horizontal = 3
 theme = ExtResource( 2 )

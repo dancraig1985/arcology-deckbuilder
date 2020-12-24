@@ -26,9 +26,8 @@ var OP_CARD_DECK_Z: int = 0
 var OP_CARD_IN_HAND_Z: int = 200
 
 
-
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 10
+var BASE_CARD_DRAW_PER_TURN: int = 4
 
 var BASE_MARKET_CARD_DRAW_GAME_START: int = 1
 var BASE_MARKET_CARD_DRAW_PER_TURN: int = 1
@@ -69,6 +68,8 @@ const ST_DEALER_SPAWN_CARDS_TO_DECK: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_spawn_cards_to_deck.gd")
 const ST_DEALER_DRAW_CARDS_DECK_TO_DECK: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_draw_cards_deck_to_deck.gd")
+const ST_DEALER_DRAW_CARD_NODE: Script = \
+		preload("res://core/classes/stack_machine/states/dealer/st_dealer_draw_card_node.gd")
 const ST_DEALER_SHUFFLE_DECK: Script = \
 		preload("res://core/classes/stack_machine/states/dealer/st_dealer_shuffle_deck.gd")
 

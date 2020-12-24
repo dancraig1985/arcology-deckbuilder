@@ -1,3 +1,4 @@
+class_name Dealer
 extends Node2D
 
 signal player_data_updated()
@@ -153,6 +154,16 @@ func draw_to_deck(source_deck: Node,
 		to_index = to_index
 	})
 
+func draw_node_to_deck(source_deck: Deck,
+					target_deck: Deck,
+					target_card: Card) -> void:
+	push_state(Constants.ST_DEALER_WAIT_FOR_ACTING)
+	push_state(Constants.ST_DEALER_DRAW_CARD_NODE, {
+		source_deck = source_deck,
+		target_deck = target_deck,
+		target_card = target_card
+	})
+
 func attempt_draw(source_deck: Node,
 					target_deck: Node,
 					from_index: int = -1,
@@ -192,16 +203,33 @@ func set_player_data(player_name: String, new_data: Dictionary = {}) -> void:
 func get_player_data(player_name: String) -> Dictionary:
 	return player_data[player_name]
 
+func set_player_data_value(player_name: String, key: String, new_value):
+	var player_obj = get_player_data(player_name)
+	player_obj[key] = new_value
+	set_player_data(player_name, player_obj)
+
 func get_player_data_value(player_name: String, key: String):
 	return get_player_data(player_name)[key]
 
-func set_player_resource(player_name: String, key: String, new_value: int) -> void:
+func set_player_resource(player_name: String, \
+							key: String, \
+							new_value: int) -> void:
 	var temp_player_data: Dictionary = get_player_data(player_name)
 	temp_player_data["Resources"][key] = new_value
 	set_player_data(player_name, temp_player_data)
 
+func set_player_resources_minus_cost(player_name: String, \
+										cost_obj: Dictionary) -> void:
+											
+	for cost_key in cost_obj.keys():
+		var value = get_player_resource(player_name, cost_key)
+		set_player_resource(player_name, cost_key, value - cost_obj[cost_key])
+
 func get_player_resource(player_name: String, key: String):
 	return get_player_data(player_name)["Resources"][key]
+
+func set_player_resources(player_name: String, new_resources: Dictionary) -> void:
+	set_player_data_value(player_name, "Resources", new_resources)
 
 func get_player_resources(player_name: String) -> Dictionary:
 	return get_player_data_value(player_name, "Resources")
@@ -234,7 +262,7 @@ func get_card_highlight_mouse_selection() -> Card:
 			highest = candidate.z_index
 	return selection
 
-func process_card_highlight_mouse() -> void:
+func process_card_highlight_mouse():
 	if card_highlight_mouse_candidates.size() > 0:
 		for candidate in card_highlight_mouse_candidates:
 			candidate.set_highlight_mouse_visible(false)
