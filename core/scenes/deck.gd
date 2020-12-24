@@ -141,24 +141,27 @@ func refresh_card_positions() -> void:
 	
 	var card_spots_count: int = get_card_spots_count()
 	var card_spots_counted: int = 0
+	var cards_in_deck: int = 0
 	for i in range(cards_count):
 		var card: Card = cards[i]
-		card.set_z_index(i)
 		if card_spot_indexes.size() > 0 \
 				and card_spots_count > 0 \
 				and card_spots_counted < card_spots_count \
 				and card_spot_indexes.has(i): # <- send to card_spots logic
+					
 			var card_spots_index: int = card_spot_indexes.find(i)
 			card_spots_counted += 1
 			var card_spot = get_card_spots()[card_spots_index]
-			
+			card.set_z_index(Constants.OP_CARD_IN_HAND_Z)
 			target_position = get_card_spot_position(card_spot)
 			target_scale = Vector2(Constants.OP_CARD_IN_HAND_SCALE, 
 										Constants.OP_CARD_IN_HAND_SCALE)
 			card.move_to_position(target_position, target_scale)
 		else: # <- send to deck
+			card.set_z_index(Constants.OP_CARD_DECK_Z + cards_in_deck)
+			cards_in_deck += 1
 			var spot_position = get_deck_spot_position()
-			var stacking_offset = Vector2(-i * 1, -i * 1)
+			var stacking_offset = Vector2(-cards_in_deck * 1, -cards_in_deck * 1)
 			
 			target_position = spot_position + stacking_offset
 			target_scale = Vector2(Constants.OP_CARD_DECK_SCALE, 

@@ -13,9 +13,9 @@ var card_icons = [ # and order they should appear in array/match
 var decks := {
 	"Player Deck": {
 		"Market Stall": 5, 
-		"Rainy Day": 6,
+		"Rain": 6,
 		"Cousin Jim": 1,
-		"Viper Gang": 2,
+		"Viper Biker Gang": 2,
 		"Anarchist": 4,
 		"Inner Spark": 4,
 	},
@@ -34,7 +34,7 @@ var decks := {
 		"Market Stall": 4,
 		"Shadow Accountant": 2,
 		"Small-time Fixer": 2,
-		"Viper Gang": 1,
+		"Viper Biker Gang": 1,
 	}
 }
 
@@ -49,6 +49,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "File name for card-art (.png assumed)",
 		"Card Text": "Card description.",
+		"Card Scene": "card_grey.tscn",
 		"Card Icons": [  # Card Icon strings are evaluated at:
 			"Crypto",    # card - add_card_icon
 			"Heart"      # turn_state - evaluate drawn card
@@ -64,6 +65,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "anarchist",
 		"Card Text": "Morally flexible activist.",
+		"Card Scene": "card_blue.tscn",
 		"Card Icons": [
 			"Heart",
 			"Ninja"
@@ -76,6 +78,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "arcology",
 		"Card Text": "A city in a steel tower.",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Crypto",
 			"Crypto",
@@ -91,6 +94,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "art_thief",
 		"Card Text": "No common criminal, he steals the rich stuff!",
+		"Card Scene": "card_blue.tscn",
 		"Card Icons": [
 			"Ninja",
 			"Ninja"
@@ -103,6 +107,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "console_cowboy",
 		"Card Text": "Risking his neck for the tech.",
+		"Card Scene": "card_purple.tscn",
 		"Card Icons": [
 			"Heart",
 			"Tech"
@@ -115,6 +120,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "cousin_jim",
 		"Card Text": "He's not much, but he's always been there for you.",
+		"Card Scene": "card_red.tscn",
 		"Card Icons": [
 			"Health",
 			"Guns"
@@ -127,6 +133,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "data_fence",
 		"Card Text": "You can get black market prices with the right info.",
+		"Card Scene": "card_purple.tscn",
 		"Card Icons": [
 			"Crypto",
 			"Crypto",
@@ -140,6 +147,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "fixer",
 		"Card Text": "His office smells like crap but he knows people.",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Crypto",
 			"Crypto",
@@ -153,6 +161,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "hitman",
 		"Card Text": "Quantities of ammunition have a quality all their own.",
+		"Card Scene": "card_red.tscn",
 		"Card Icons": [
 			"Heart",
 			"Heart",
@@ -167,6 +176,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "spark",
 		"Card Text": "I have an idea!",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Crypto",
 			"Draw"
@@ -175,10 +185,11 @@ var cards := { ## < -- TODO: Import this from JSON
 	"Jazz Dive": {
 		"Card Name": "Jazz Dive",
 		"Card Cost": {
-			"Crypto": 4
+			"Crypto": 2
 		},
 		"Card Art": "jazz_dive",
 		"Card Text": "Hard-boiled tequila and woodwinds.",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Draw"
 		]
@@ -190,6 +201,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "local_muscle",
 		"Card Text": "Cannon fodder good for collecting money.",
+		"Card Scene": "card_red.tscn",
 		"Card Icons": [
 			"Heart",
 			"Guns"
@@ -202,6 +214,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "lta_veteran",
 		"Card Text": "Survivor of the Glider War, now premium sprawl muscle.",
+		"Card Scene": "card_red.tscn",
 		"Card Icons": [
 			"Heart",
 			"Heart",
@@ -218,17 +231,19 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "market_stall",
 		"Card Text": "Among the few remaining remnants of your legitimate previous life.",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Crypto"
 		]
 	},
-	"Rainy Day": {
-		"Card Name": "Rainy Day",
+	"Rain": {
+		"Card Name": "Rain",
 		"Card Cost": {
 			"Crypto": 0
 		},
 		"Card Art": "rainy_day",
 		"Card Text": "Maybe tomorrow...",
+		"Card Scene": "card_grey.tscn",
 		"Card Icons": [
 		
 		]
@@ -240,6 +255,7 @@ var cards := { ## < -- TODO: Import this from JSON
 		},
 		"Card Art": "shadow_accountant",
 		"Card Text": "What they don't earn is made up by their savings.",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Crypto",
 			"Crypto"
@@ -251,19 +267,21 @@ var cards := { ## < -- TODO: Import this from JSON
 			"Crypto": 4
 		},
 		"Card Art": "small_time_fixer",
-		"Card Text": "An old local hook-up who may have a lead on a few things.",
+		"Card Text": "An local hook-up who may have a lead on a few things.",
+		"Card Scene": "card_green.tscn",
 		"Card Icons": [
 			"Crypto",
 			"Crypto"
 		]
 	},
-	"Viper Gang": {
-		"Card Name": "Viper Gang",
+	"Viper Biker Gang": {
+		"Card Name": "Viper Biker Gang",
 		"Card Cost": {
 			"Crypto": 6
 		},
 		"Card Art": "motorcycle_gang",
 		"Card Text": "Guns on bikes go vroom.",
+		"Card Scene": "card_red.tscn",
 		"Card Icons": [
 			"Heart",
 			"Guns",

@@ -8,10 +8,10 @@ z_index = 1000
 is_facedown = false
 
 [node name="DeckSpot" parent="." index="0"]
-position = Vector2( 288, 832 )
+position = Vector2( 1512, 768 )
 
 [node name="CardSpots" parent="." index="1"]
-position = Vector2( 952, 664 )
+position = Vector2( 784, 664 )
 z_index = -100
 
 [node name="CardSpot" parent="CardSpots" index="0" instance=ExtResource( 2 )]

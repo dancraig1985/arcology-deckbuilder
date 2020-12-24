@@ -27,6 +27,7 @@ func on_start():
 		cards_parent.add_child(card)
 	
 	for card in cards:
+		card.set_z_index(Constants.OP_CARD_SHUFFLE_Z)
 		var rand_x = card.position.x + RNG.get_randi(75, -75)
 		var rand_y = card.position.y + RNG.get_randi(120, -120)
 		

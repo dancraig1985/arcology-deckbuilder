@@ -10,7 +10,7 @@ is_for_sale_to_player = true
 
 [node name="DeckSpot" parent="." index="0"]
 visible = false
-position = Vector2( 136, 456 )
+position = Vector2( 1512, 424 )
 
 [node name="CardSpots" parent="." index="1"]
 position = Vector2( 256, 288 )
@@ -35,6 +35,3 @@ position = Vector2( 910.447, 117.559 )
 
 [node name="CardSpot7" parent="CardSpots" index="6" instance=ExtResource( 2 )]
 position = Vector2( 1078.45, 117.559 )
-
-[node name="CardSpot8" parent="CardSpots" index="7" instance=ExtResource( 2 )]
-position = Vector2( 1240, 120 )

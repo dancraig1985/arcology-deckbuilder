@@ -21,9 +21,14 @@ var OP_CARD_SHUFFLE_SCALE: float = 1.0
 var OP_CARD_DECK_SCALE: float = 0.6
 var OP_CARD_IN_HAND_SCALE: float = 1.0
 
+var OP_CARD_SHUFFLE_Z: int = 400
+var OP_CARD_DECK_Z: int = 0
+var OP_CARD_IN_HAND_Z: int = 200
+
+
 
 # BALANCE
-var BASE_CARD_DRAW_PER_TURN: int = 4
+var BASE_CARD_DRAW_PER_TURN: int = 10
 
 var BASE_MARKET_CARD_DRAW_GAME_START: int = 1
 var BASE_MARKET_CARD_DRAW_PER_TURN: int = 1

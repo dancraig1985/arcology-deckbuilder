@@ -53,15 +53,15 @@ corner_radius_bottom_left = 4
 expand_margin_left = 2.0
 expand_margin_right = 2.0
 expand_margin_top = 2.0
-expand_margin_bottom = 2.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.121569, 0.215686, 0.309804, 0.894118 )
+bg_color = Color( 0.196, 0.198133, 0.2, 0.854902 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
-border_color = Color( 0.141176, 0.584314, 0.898039, 0.388235 )
+border_color = Color( 0.9114, 0.947987, 0.98, 0.807843 )
 border_blend = true
 corner_radius_top_left = 6
 corner_radius_top_right = 6
@@ -128,6 +128,7 @@ __meta__ = {
 [node name="Front" type="Panel" parent="CardDisplay"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 1.52588e-05
 mouse_filter = 2
 custom_styles/panel = SubResource( 3 )
 __meta__ = {

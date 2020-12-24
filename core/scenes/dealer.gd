@@ -99,9 +99,10 @@ func get_is_any_actor_acting() -> bool:
 		actors_acting = deck.is_acting
 	return actors_acting
 
-func instance_card(card_name: String = "Template") -> Node:
-	var card_node = CardScene.instance()
+func instance_card(card_name: String = "Template") -> Card:
 	var card_data = DealerCardLibrary.get_card_data(card_name)
+	var card_scene = load("res://core/scenes/cards/" + card_data["Card Scene"])
+	var card_node = card_scene.instance()
 	add_child(card_node) # add to tree to trigger _ready()
 	remove_child(card_node)
 	card_node.import_card_data_from_dict(card_data)
