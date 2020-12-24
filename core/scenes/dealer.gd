@@ -80,15 +80,16 @@ func _process(delta):
 	DealerStackMachine.process(delta)
 	
 	# Global (not game state dependent) Controls go here
-	if Input.is_action_just_released("ui_scroll_up") and is_mouse_scrollable:
-		is_mouse_scrollable = false
-		var scroll_increment: int = -1
-		scroll_deck.increment_card_spots_start(scroll_increment)
-	
-	if Input.is_action_just_released("ui_scroll_down") and is_mouse_scrollable:
-		is_mouse_scrollable = false
-		var scroll_increment: int = 1
-		scroll_deck.increment_card_spots_start(scroll_increment)
+	if scroll_deck.get_cards_count() > scroll_deck.get_card_spots_count():
+		if Input.is_action_just_released("ui_scroll_up") and is_mouse_scrollable:
+			is_mouse_scrollable = false
+			var scroll_increment: int = -1
+			scroll_deck.increment_card_spots_start(scroll_increment)
+		
+		if Input.is_action_just_released("ui_scroll_down") and is_mouse_scrollable:
+			is_mouse_scrollable = false
+			var scroll_increment: int = 1
+			scroll_deck.increment_card_spots_start(scroll_increment)
 
 func get_is_any_actor_acting() -> bool:
 	var actors_acting: bool = false

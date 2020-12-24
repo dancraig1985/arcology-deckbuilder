@@ -4,7 +4,7 @@ extends Node
 # Delay before next mouse scroll wheel input
 var OP_MOUSE_SCROLL_DELAY: float = 0.12
 # Time it takes to complete a Card Move Tween in seconds
-var OP_CARD_MOVE_SPEED = 0.2
+var OP_CARD_MOVE_SPEED = 0.16
 # Time in seconds between card draws on Decks
 var OP_DECK_DRAW_DELAY = 0.08
 # Time in seconds between card spawns from Dealer
@@ -12,9 +12,9 @@ var OP_DEALER_SPAWN_DELAY = 0.01
 # End of Turn Delay in seconds
 var OP_END_OF_TURN_DELAY: float = 0.8
 # Minimum time per Dealer action in seconds
-var OP_DEALER_BOARD_ACTION_DELAY: float = 0.1
+var OP_DEALER_BOARD_ACTION_DELAY: float = 0.06
 # Minimum time per Dealer action in seconds
-var OP_DECK_BOARD_ACTION_DELAY: float = 0.1
+var OP_DECK_BOARD_ACTION_DELAY: float = 0.06
 
 # VISUAL CONSTANTS
 var OP_CARD_SHUFFLE_SCALE: float = 1.0
