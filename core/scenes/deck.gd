@@ -1,6 +1,7 @@
 class_name Deck
 extends Node2D
 
+
 var DeckStackMachine
 
 var is_acting: bool = false

@@ -5,6 +5,10 @@ signal card_data_updated(card)
 signal is_facedown_updated(value)
 signal is_for_sale_to_player_updated(value)
 
+signal card_event_activated(card, event)
+signal removed_from_deck(card, deck)
+signal arrived_in_deck(card, deck)
+
 var card_data := {}
 var CardStackMachine
 
