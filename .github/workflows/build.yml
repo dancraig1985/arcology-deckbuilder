@@ -1,28 +1,45 @@
-name: Arcology Deckbuilder Releases
+name: Releases
 
 on:
   release:
     types: [published]
 
+env:
+  GODOT_VERSION: 3.2.3
+
 jobs:
-  Godot:
+  Release:
     runs-on: ubuntu-latest
+    container:
+      image: barichello/godot-ci:3.2.3
     strategy:
+      max-parallel: 2
       matrix:
-        platform: [linux, windows]
+        platform: ["linux", "windows"]
+        include:
+          - platform: "linux"
+            out_ext: "x86_64"
+          - platform: "windows"
+            out_ext: "exe"
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Build
-        id: build
-        uses: josephbmanley/build-godot-action@v1.4.0
-        with:
-          name: arcology-deckbuilder
-          preset: ${{ matrix.platform }}
-          debugMode: "false"
-      - name: Upload Artifact
+        env:
+          BUILD_PLATFORM: ${{ matrix.platform }}
+          BUILD_EXT: ${{ matrix.out_ext }}
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/build/$BUILD_PLATFORM/
+          cd $GITHUB_WORKSPACE
+          godot --export $BUILD_PLATFORM $GITHUB_WORKSPACE/build/$BUILD_PLATFORM/arcology-deckbuilder.$BUILD_EXT
+      - name: Upload
         uses: actions/upload-artifact@v2
         with:
           name: arcology-deckbuilder-${{ matrix.platform }}
-          path: ${{ github.workspace }}/${{ steps.build.outputs.build }}
+          path: ${{ github.workspace }}/build/${{ matrix.platform }}
