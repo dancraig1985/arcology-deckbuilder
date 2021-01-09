@@ -40,8 +40,15 @@ jobs:
           cd $GITHUB_WORKSPACE
           mkdir -p build/$BUILD_PLATFORM/
           godot --export $BUILD_PLATFORM build/$BUILD_PLATFORM/arcology-deckbuilder.$BUILD_EXT
-      - name: Upload
+      - name: Upload binaries to action
         uses: actions/upload-artifact@v2
         with:
           name: arcology-deckbuilder-${{ matrix.platform }}
           path: ${{ github.workspace }}/build/${{ matrix.platform }}
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/${{matrix.platform}}/arcology-deckbuilder.${{matrix.out_ext}}
+          asset_name: arcology-deckbuilder-$tag-${{ matrix.platform }}.${{matrix.out_ext}}
+          tag: ${{ github.ref }}
