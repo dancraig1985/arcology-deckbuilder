@@ -4,14 +4,11 @@ on:
   release:
     types: [published]
 
-env:
-  GODOT_VERSION: 3.2.3
-
 jobs:
   Release:
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:3.2.3
+      image: aristarhys/yagi:latest
     strategy:
       max-parallel: 2
       matrix:
@@ -26,17 +23,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
-      - name: Setup
-        run: |
-          mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
       - name: Build
         env:
           BUILD_PLATFORM: ${{ matrix.platform }}
           BUILD_EXT: ${{ matrix.out_ext }}
         run: |
           mkdir -p $GITHUB_WORKSPACE/build/$BUILD_PLATFORM/
-          cd $GITHUB_WORKSPACE
           godot --export $BUILD_PLATFORM $GITHUB_WORKSPACE/build/$BUILD_PLATFORM/arcology-deckbuilder.$BUILD_EXT
       - name: Upload
         uses: actions/upload-artifact@v2
