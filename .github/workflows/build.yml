@@ -14,14 +14,16 @@ jobs:
     container:
       image: aristarhys/yagi:latest
     strategy:
-      max-parallel: 2
+      max-parallel: 3
       matrix:
-        platform: ["linux", "windows"]
+        platform: ["linux", "windows", "mac"]
         include:
           - platform: "linux"
             out_ext: "x86_64"
           - platform: "windows"
             out_ext: "exe"
+          - platform: "mac"
+            out_ext: "zip"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
