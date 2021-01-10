@@ -1,9 +1,15 @@
 # arcology-deckbuilder
+
 Cyberpunk deckbuilding strategy game
 
-I'm going for less _Slay the Spire_ vibes, and more along the lines of _Mystic Vale_ crossed with _Race the Galaxy_, mixed with _Star Realms_ and plenty of cyberpunk themes.
+I'm aiming for less _Slay the Spire_ vibe.
 
-Very, very early development
+Think about something along the lines of _Mystic Vale_ crossed with _Race the Galaxy_ instead mixed with _Star Realms_ vibes and plenty of cyberpunk themes as cherry on the top.
 
-To run in its current state you will need to download the free and open source [Godot](https://godotengine.org/download/linux) editor. You can run the editor and then "Import" the project.godot file from the root of this repot. F5 to play!
+Caution! Development in early stages.
 
+Powered by [Godot](https://godotengine.org/download) engine.
+
+Just "Import" the project.godot file from the root of this repo and press F5 to play!
+
+[Wiki](https://github.com/dancraig1985/arcology-deckbuilder/wiki) has all the extra info. 
