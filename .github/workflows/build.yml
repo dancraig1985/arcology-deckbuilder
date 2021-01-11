@@ -4,34 +4,53 @@ on:
   release:
     types: [published]
 
+env:
+  GODOT_VERSION: 3.2.3
+  GODOT_VARIANT: stable
+
 jobs:
   Release:
     runs-on: ubuntu-latest
     container:
       image: aristarhys/yagi:latest
     strategy:
-      max-parallel: 2
+      max-parallel: 3
       matrix:
-        platform: ["linux", "windows"]
+        platform: ["linux", "windows", "mac"]
         include:
           - platform: "linux"
             out_ext: "x86_64"
           - platform: "windows"
             out_ext: "exe"
+          - platform: "mac"
+            out_ext: "zip"
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           lfs: true
+      - name: Setup
+        run: |
+          [ ! -d $HOME/.local/share/godot/templates/ ] \
+          && mkdir -p $HOME/.local/share/godot/templates/ \
+          && ln -s /usr/local/share/godot/templates/ $HOME/.local/share/godot/templates/$GODOT_VERSION.${GODOT_VARIANT}
       - name: Build
         env:
           BUILD_PLATFORM: ${{ matrix.platform }}
           BUILD_EXT: ${{ matrix.out_ext }}
         run: |
-          mkdir -p $GITHUB_WORKSPACE/build/$BUILD_PLATFORM/
-          godot --export $BUILD_PLATFORM $GITHUB_WORKSPACE/build/$BUILD_PLATFORM/arcology-deckbuilder.$BUILD_EXT
-      - name: Upload
+          cd $GITHUB_WORKSPACE
+          mkdir -p build/$BUILD_PLATFORM/
+          godot --export $BUILD_PLATFORM build/$BUILD_PLATFORM/arcology-deckbuilder.$BUILD_EXT
+      - name: Upload binaries to action
         uses: actions/upload-artifact@v2
         with:
           name: arcology-deckbuilder-${{ matrix.platform }}
           path: ${{ github.workspace }}/build/${{ matrix.platform }}
+      - name: Upload binaries to release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/${{matrix.platform}}/arcology-deckbuilder.${{matrix.out_ext}}
+          asset_name: arcology-deckbuilder-$tag-${{ matrix.platform }}.${{matrix.out_ext}}
+          tag: ${{ github.ref }}
