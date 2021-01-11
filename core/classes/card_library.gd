@@ -1,6 +1,8 @@
 class_name CardLibrary
 extends Node
 
+var cards := load_cards()
+
 var card_icons = [ # and order they should appear in array/match
 	"Heart",
 	"Crypto",
@@ -12,10 +14,9 @@ var card_icons = [ # and order they should appear in array/match
 
 var decks := {
 	"Player Deck": {
-		"Market Stall": 5, 
-		"Rain": 6,
+		"Market Stall": 6, 
+		"Rain": 4,
 		"Cousin Jim": 1,
-		"Net cultist": 2,
 	},
 	"Market Deck": {
 		"Anarchist": 4,
@@ -30,6 +31,7 @@ var decks := {
 		"Local Muscle": 4,
 		"LTA Veteran": 1,
 		"Market Stall": 4,
+		"Net cultist": 4,
 		"Shadow Accountant": 2,
 		"Small-time Fixer": 2,
 		"Viper Biker Gang": 1,
@@ -59,8 +61,6 @@ func load_cards() -> Dictionary:
 	var cards_json := JSON.parse(cards_file.get_as_text())
 	cards_file.close()
 	return cards_json.result
-
-var cards := load_cards()
 
 func get_card_data(card_name: String) -> Dictionary:
 	return cards[card_name]
