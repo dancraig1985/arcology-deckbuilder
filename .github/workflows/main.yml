@@ -1,0 +1,55 @@
+name: Build published release
+on:
+  release:
+    types: [published]
+
+env:
+  GODOT_VERSION: 3.3.3
+
+jobs:
+  Release:
+    runs-on: ubuntu-latest
+    container:
+      image: aristarhys/yagi:latest
+    strategy:
+      max-parallel: 3
+      matrix:
+        platform: ["linux", "windows", "mac"]
+        include:
+          - platform: "linux"
+            out_ext: "x86_64"
+          - platform: "windows"
+            out_ext: "exe"
+          - platform: "mac"
+            out_ext: "zip"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+
+      - name: Build release
+        env:
+          BUILD_PLATFORM: ${{ matrix.platform }}
+          BUILD_EXT: ${{ matrix.out_ext }} 
+        run: |
+          [ ! -d $HOME/.local/share/godot/templates/ ] \
+            && mkdir -p $HOME/.local/share/godot/templates/ \
+            && ln -s /usr/local/share/godot/templates/ $HOME/.local/share/godot/templates/${GODOT_VERSION}.stable
+          cd $GITHUB_WORKSPACE
+          mkdir -p release
+          godot --export $BUILD_PLATFORM release/$BUILD_PLATFORM.$BUILD_EXT
+
+      - name: Upload release to action
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ matrix.platform }}-release
+          path: ${{ github.workspace }}/release/${{ matrix.platform }}.${{ matrix.out_ext }}
+
+      - name: Upload release to published tag
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: ${{ github.workspace }}/release/${{ matrix.platform }}.${{ matrix.out_ext }}
+          asset_name: ${{ matrix.platform }}-$tag.${{ matrix.out_ext }}
+          tag: ${{ github.ref }}
