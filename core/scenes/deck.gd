@@ -18,11 +18,11 @@ var card_spots_start: int = 0 # card_index in deck where card_spots start
 var card_spot_indexes: Array = [] # array of card indexes per card spot
 
 enum DECK_STYLE {
-	CARD_PILE,
-	CARD_DISPLAY
+	PILE,
+	DISPLAY
 }
 
-export var deck_style: int = DECK_STYLE.CARD_PILE
+export var deck_style: int = DECK_STYLE.DISPLAY
 
 export var is_facedown: bool = true
 export var is_for_sale_to_player: bool = false

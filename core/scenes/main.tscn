@@ -21,9 +21,6 @@ margin_bottom = 40.0
 mouse_filter = 2
 texture = ExtResource( 2 )
 expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Dealer" parent="." instance=ExtResource( 5 )]
 
